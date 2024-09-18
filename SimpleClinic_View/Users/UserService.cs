@@ -58,6 +58,8 @@ namespace SimpleClinic_View.Users
                 loger.Log($"User Error:{ex.Message}");
                 
             }
+           
+            
             return apiResult;
         }
         

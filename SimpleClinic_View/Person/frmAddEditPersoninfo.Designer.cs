@@ -67,7 +67,7 @@
             lblAddEditPersonTitel.AutoSize = true;
             lblAddEditPersonTitel.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAddEditPersonTitel.ForeColor = Color.Red;
-            lblAddEditPersonTitel.Location = new Point(490, 23);
+            lblAddEditPersonTitel.Location = new Point(443, 21);
             lblAddEditPersonTitel.Name = "lblAddEditPersonTitel";
             lblAddEditPersonTitel.Size = new Size(271, 45);
             lblAddEditPersonTitel.TabIndex = 0;
@@ -316,7 +316,7 @@
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1190, 525);
+            ClientSize = new Size(1232, 563);
             Controls.Add(btnSave);
             Controls.Add(btnClose);
             Controls.Add(panel1);
@@ -324,6 +324,7 @@
             Controls.Add(lbPersonID);
             Controls.Add(label1);
             Name = "frmAddEditPersoninfo";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAddEditPersoninfo";
             Load += frmAddEditPersoninfo_Load;
             panel1.ResumeLayout(false);

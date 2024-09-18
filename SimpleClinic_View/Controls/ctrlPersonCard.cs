@@ -8,67 +8,73 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SimpleClinic_View.DTOs;
-using SimpleClinic_View.Service;
+using SimpleClinic_View.Person;
+using SimpleClinic_View.Person.DTOs;
+
 
 namespace SimpleClinic_View.Controls
 {
     public partial class ctrlPersonCard : UserControl
     {
-        private readonly PersonService personService;
-     
+        private  PersonApiClient personService;
+
         int _PersonID;
 
         public ctrlPersonCard()
         {
             InitializeComponent();
-            personService = new PersonService();
+            personService = new PersonApiClient();
 
         }
         public async void _LoadPersonData(int _PersonID)
         {
-            PersonsDTO person = await personService.Find(_PersonID);
+            var person = await personService.Find(_PersonID);
 
-            if (person == null)
+            if (person.Result == null)
             {
                 MessageBox.Show("This form will be closed because No Contact with ID = " + _PersonID);
                 return;
             }
             else
             {
-                string formattedDateOfBirth = person.DateOfBirth.ToString("yyyy-MM-dd");
-                lbPersonID.Text = person.Id.ToString();
-                lblName.Text = person.PersonName.ToString();
-                lblPhone.Text = person.PhoneNumber.ToString();
-                lblEmail.Text = person.Email.ToString();
+                string formattedDateOfBirth = person.Result.DateOfBirth.ToString("yyyy-MM-dd");
+                lbPersonID.Text = person.Result.Id.ToString();
+                lblName.Text = person.Result.PersonName.ToString();
+                lblPhone.Text = person.Result.PhoneNumber.ToString();
+                lblEmail.Text = person.Result.Email.ToString();
                 lblDateOfBirth.Text = formattedDateOfBirth.ToString();
-                lblAddress.Text = person.Address.ToString();
-                lblGender.Text = person.Gender.ToString();
+                lblAddress.Text = person.Result.Address.ToString();
+                lblGender.Text = person.Result.Gender.ToString();
 
             }
 
 
         }
 
-        public  void ResetDeffultValues()
+        public void ResetDeffultValues()
         {
-             
-               
-                lbPersonID.Text = "[???]";
-                lblName.Text    = "[???]";
-                lblPhone.Text   = "[???]";
-                 lblEmail.Text = "[???]";
-                  lblDateOfBirth.Text = "[???]";
-                lblAddress.Text ="[???]";
-                lblGender.Text = "[???]";
-          
-            
+
+
+            lbPersonID.Text = "[???]";
+            lblName.Text = "[???]";
+            lblPhone.Text = "[???]";
+            lblEmail.Text = "[???]";
+            lblDateOfBirth.Text = "[???]";
+            lblAddress.Text = "[???]";
+            lblGender.Text = "[???]";
+
+
 
 
         }
 
 
         private void ctrlPersonCard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PnPersoncard_Enter(object sender, EventArgs e)
         {
 
         }

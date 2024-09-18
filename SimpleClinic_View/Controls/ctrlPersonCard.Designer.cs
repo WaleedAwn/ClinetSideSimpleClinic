@@ -87,6 +87,7 @@
             PnPersoncard.TabIndex = 0;
             PnPersoncard.TabStop = false;
             PnPersoncard.Text = " Person Information";
+            PnPersoncard.Enter += PnPersoncard_Enter;
             // 
             // lblPhone
             // 
