@@ -18,6 +18,7 @@ namespace SimpleClinic_View.Users
             InitializeComponent();
             _UserId = usreId;
             
+            
         }
 
         private void btnClose_Click(object sender, EventArgs e)

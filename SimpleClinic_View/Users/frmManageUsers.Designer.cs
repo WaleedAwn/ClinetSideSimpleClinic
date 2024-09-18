@@ -38,17 +38,17 @@
             colPersonId = new DataGridViewTextBoxColumn();
             colFullName = new DataGridViewTextBoxColumn();
             colUserName = new DataGridViewTextBoxColumn();
+            cmsUserMenu = new ContextMenuStrip(components);
+            ShowDetailesToolStripMenuItem = new ToolStripMenuItem();
+            AddNewToolStripMenuItem = new ToolStripMenuItem();
+            EditToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem1 = new ToolStripMenuItem();
             btnClose = new Button();
             lblCounter = new Label();
             label2 = new Label();
             txtSearch = new TextBox();
             label3 = new Label();
             cbFilter = new ComboBox();
-            cmsUserMenu = new ContextMenuStrip(components);
-            ShowDetailesToolStripMenuItem = new ToolStripMenuItem();
-            AddNewToolStripMenuItem = new ToolStripMenuItem();
-            EditToolStripMenuItem = new ToolStripMenuItem();
-            deleteToolStripMenuItem1 = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListAllUsers).BeginInit();
@@ -136,6 +136,46 @@
             colUserName.ReadOnly = true;
             colUserName.Width = 125;
             // 
+            // cmsUserMenu
+            // 
+            cmsUserMenu.ImageScalingSize = new Size(24, 24);
+            cmsUserMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1 });
+            cmsUserMenu.Name = "contextMenuStrip1";
+            cmsUserMenu.Size = new Size(187, 156);
+            // 
+            // ShowDetailesToolStripMenuItem
+            // 
+            ShowDetailesToolStripMenuItem.Image = (Image)resources.GetObject("ShowDetailesToolStripMenuItem.Image");
+            ShowDetailesToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
+            ShowDetailesToolStripMenuItem.Size = new Size(186, 38);
+            ShowDetailesToolStripMenuItem.Text = "Show Details";
+            ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
+            // 
+            // AddNewToolStripMenuItem
+            // 
+            AddNewToolStripMenuItem.Image = (Image)resources.GetObject("AddNewToolStripMenuItem.Image");
+            AddNewToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
+            AddNewToolStripMenuItem.Size = new Size(186, 38);
+            AddNewToolStripMenuItem.Text = "Add new User";
+            // 
+            // EditToolStripMenuItem
+            // 
+            EditToolStripMenuItem.Image = (Image)resources.GetObject("EditToolStripMenuItem.Image");
+            EditToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            EditToolStripMenuItem.Name = "EditToolStripMenuItem";
+            EditToolStripMenuItem.Size = new Size(186, 38);
+            EditToolStripMenuItem.Text = "Edit User";
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
+            deleteToolStripMenuItem1.ImageScaling = ToolStripItemImageScaling.None;
+            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            deleteToolStripMenuItem1.Size = new Size(186, 38);
+            deleteToolStripMenuItem1.Text = "Delete";
+            // 
             // btnClose
             // 
             btnClose.BackColor = Color.White;
@@ -202,46 +242,6 @@
             cbFilter.Name = "cbFilter";
             cbFilter.Size = new Size(179, 36);
             cbFilter.TabIndex = 14;
-            // 
-            // cmsUserMenu
-            // 
-            cmsUserMenu.ImageScalingSize = new Size(24, 24);
-            cmsUserMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1 });
-            cmsUserMenu.Name = "contextMenuStrip1";
-            cmsUserMenu.Size = new Size(227, 184);
-            // 
-            // ShowDetailesToolStripMenuItem
-            // 
-            ShowDetailesToolStripMenuItem.Image = (Image)resources.GetObject("ShowDetailesToolStripMenuItem.Image");
-            ShowDetailesToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
-            ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
-            ShowDetailesToolStripMenuItem.Size = new Size(226, 38);
-            ShowDetailesToolStripMenuItem.Text = "Show Details";
-            ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
-            // 
-            // AddNewToolStripMenuItem
-            // 
-            AddNewToolStripMenuItem.Image = (Image)resources.GetObject("AddNewToolStripMenuItem.Image");
-            AddNewToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
-            AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
-            AddNewToolStripMenuItem.Size = new Size(226, 38);
-            AddNewToolStripMenuItem.Text = "Add new Person";
-            // 
-            // EditToolStripMenuItem
-            // 
-            EditToolStripMenuItem.Image = (Image)resources.GetObject("EditToolStripMenuItem.Image");
-            EditToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
-            EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            EditToolStripMenuItem.Size = new Size(226, 38);
-            EditToolStripMenuItem.Text = "Edit Info";
-            // 
-            // deleteToolStripMenuItem1
-            // 
-            deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
-            deleteToolStripMenuItem1.ImageScaling = ToolStripItemImageScaling.None;
-            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(226, 38);
-            deleteToolStripMenuItem1.Text = "Delete";
             // 
             // frmManageUsers
             // 

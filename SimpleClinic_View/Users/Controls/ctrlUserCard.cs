@@ -16,7 +16,6 @@ namespace SimpleClinic_View.Users.Controls
 {
     public partial class ctrlUserCard : UserControl
     {
-        private UserService _User;
         private ApiResult<AllUserDTO> _apiResult;
         private int _UserId = -1;
         public int UserId
@@ -30,16 +29,16 @@ namespace SimpleClinic_View.Users.Controls
         public ctrlUserCard()
         {
             InitializeComponent();
-            _User = new UserService();
+
         }
         public  async void LoadUserInfo(int userID)
         {
 
-            _apiResult = await _User.Find(userID);
+            _apiResult = await UserService.StatFind(userID);
 
             if(!_apiResult.IsSuccess)
             {
-                MessageBox.Show(_apiResult.ErrorMessage,nameof(_apiResult.Status));
+                MessageBox.Show(_apiResult.ErrorMessage,nameof(_apiResult.Status),MessageBoxButtons.OK,MessageBoxIcon.Error);
                 _ResetUserInfo();
                
             }

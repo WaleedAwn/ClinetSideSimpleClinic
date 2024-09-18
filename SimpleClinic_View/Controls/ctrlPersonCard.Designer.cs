@@ -80,9 +80,9 @@
             PnPersoncard.Controls.Add(label1);
             PnPersoncard.Font = new Font("Microsoft Sans Serif", 12F);
             PnPersoncard.Location = new Point(2, 2);
-            PnPersoncard.Margin = new Padding(2, 2, 2, 2);
+            PnPersoncard.Margin = new Padding(2);
             PnPersoncard.Name = "PnPersoncard";
-            PnPersoncard.Padding = new Padding(2, 2, 2, 2);
+            PnPersoncard.Padding = new Padding(2);
             PnPersoncard.Size = new Size(674, 230);
             PnPersoncard.TabIndex = 0;
             PnPersoncard.TabStop = false;
@@ -114,7 +114,7 @@
             // 
             pbPhone.Image = (Image)resources.GetObject("pbPhone.Image");
             pbPhone.Location = new Point(491, 142);
-            pbPhone.Margin = new Padding(2, 2, 2, 2);
+            pbPhone.Margin = new Padding(2);
             pbPhone.Name = "pbPhone";
             pbPhone.Size = new Size(32, 30);
             pbPhone.SizeMode = PictureBoxSizeMode.Zoom;
@@ -125,7 +125,7 @@
             // 
             pbDateOfBirth.Image = (Image)resources.GetObject("pbDateOfBirth.Image");
             pbDateOfBirth.Location = new Point(490, 107);
-            pbDateOfBirth.Margin = new Padding(2, 2, 2, 2);
+            pbDateOfBirth.Margin = new Padding(2);
             pbDateOfBirth.Name = "pbDateOfBirth";
             pbDateOfBirth.Size = new Size(32, 30);
             pbDateOfBirth.SizeMode = PictureBoxSizeMode.Zoom;
@@ -181,7 +181,7 @@
             // 
             pbEmail.Image = (Image)resources.GetObject("pbEmail.Image");
             pbEmail.Location = new Point(111, 149);
-            pbEmail.Margin = new Padding(2, 2, 2, 2);
+            pbEmail.Margin = new Padding(2);
             pbEmail.Name = "pbEmail";
             pbEmail.Size = new Size(32, 30);
             pbEmail.SizeMode = PictureBoxSizeMode.Zoom;
@@ -192,7 +192,7 @@
             // 
             pbAddress.Image = (Image)resources.GetObject("pbAddress.Image");
             pbAddress.Location = new Point(110, 189);
-            pbAddress.Margin = new Padding(2, 2, 2, 2);
+            pbAddress.Margin = new Padding(2);
             pbAddress.Name = "pbAddress";
             pbAddress.Size = new Size(32, 30);
             pbAddress.SizeMode = PictureBoxSizeMode.Zoom;
@@ -203,7 +203,7 @@
             // 
             pbGender.Image = (Image)resources.GetObject("pbGender.Image");
             pbGender.Location = new Point(111, 107);
-            pbGender.Margin = new Padding(2, 2, 2, 2);
+            pbGender.Margin = new Padding(2);
             pbGender.Name = "pbGender";
             pbGender.Size = new Size(32, 30);
             pbGender.SizeMode = PictureBoxSizeMode.Zoom;
@@ -303,9 +303,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(PnPersoncard);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "ctrlPersonCard";
-            Size = new Size(679, 235);
+            Size = new Size(681, 233);
             Load += ctrlPersonCard_Load;
             PnPersoncard.ResumeLayout(false);
             PnPersoncard.PerformLayout();

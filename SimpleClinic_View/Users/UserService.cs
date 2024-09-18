@@ -18,6 +18,10 @@ namespace SimpleClinic_View.Users
     {
         private readonly HttpClient _httpClient;
 
+        // Singleton HttpClient instance for static methods
+        private static readonly HttpClient _staticHttpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/UserApi/") };
+
+
         public UserService()
         {
             _httpClient = new HttpClient();
@@ -59,24 +63,70 @@ namespace SimpleClinic_View.Users
         
         public  async Task<ApiResult<AllUserDTO>> Find(int Id)
         {
+            return await StatFind(Id);
+
+            //var apiResult = new ApiResult<AllUserDTO>();
+
+            //try
+            //{
+
+            //    var response = await _httpClient.GetAsync($"Find/Id={Id}");
+
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        apiResult.IsSuccess = true;
+            //        apiResult.Status = ApiResponseStatus.Success;
+                    
+            //        var user = await response.Content.ReadFromJsonAsync<AllUserDTO>();
+            //        apiResult.Result = user;
+                    
+
+            //    }
+                
+            //    else
+            //    {
+            //        apiResult.IsSuccess = false;
+            //        apiResult.Status = response.StatusCode switch
+            //        {
+            //            System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
+            //            System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
+            //            _=> ApiResponseStatus.ServerError,
+            //        };
+            //        // if there any message in the body will be stored in ErrorMessage
+            //        apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
+
+            //    }
+                
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    Logger loger = new Logger(LoggingMethod.EventLogger);
+            //    loger.Log($"User Error:{ex.Message}");
+            //}
+            //return apiResult;
+        }       
+        
+        public static async Task<ApiResult<AllUserDTO>> StatFind(int Id)
+        {
             var apiResult = new ApiResult<AllUserDTO>();
 
             try
             {
 
-                var response = await _httpClient.GetAsync($"Find/Id={Id}");
+                var response = await _staticHttpClient.GetAsync($"Find/Id={Id}");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    
+
                     var user = await response.Content.ReadFromJsonAsync<AllUserDTO>();
                     apiResult.Result = user;
-                    
+
 
                 }
-                
+
                 else
                 {
                     apiResult.IsSuccess = false;
@@ -84,13 +134,13 @@ namespace SimpleClinic_View.Users
                     {
                         System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
                         System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
-                        _=> ApiResponseStatus.ServerError,
+                        _ => ApiResponseStatus.ServerError,
                     };
                     // if there any message in the body will be stored in ErrorMessage
                     apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
 
                 }
-                
+
 
             }
             catch (Exception ex)
@@ -99,9 +149,11 @@ namespace SimpleClinic_View.Users
                 loger.Log($"User Error:{ex.Message}");
             }
             return apiResult;
-        }       
-        
-        public  async Task<ApiResult<AllUserDTO>> Find(string userName)
+
+        }
+
+
+        public async Task<ApiResult<AllUserDTO>> Find(string userName)
         {
             var apiResult = new ApiResult<AllUserDTO>();
 
