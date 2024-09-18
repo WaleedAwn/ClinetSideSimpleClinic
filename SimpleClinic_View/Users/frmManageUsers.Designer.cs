@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageUsers));
             label1 = new Label();
             pbManagePeople = new PictureBox();
             panel1 = new Panel();
@@ -39,9 +41,18 @@
             btnClose = new Button();
             lblCounter = new Label();
             label2 = new Label();
+            txtSearch = new TextBox();
+            label3 = new Label();
+            cbFilter = new ComboBox();
+            cmsUserMenu = new ContextMenuStrip(components);
+            ShowDetailesToolStripMenuItem = new ToolStripMenuItem();
+            AddNewToolStripMenuItem = new ToolStripMenuItem();
+            EditToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem1 = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListAllUsers).BeginInit();
+            cmsUserMenu.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -84,6 +95,7 @@
             dgvListAllUsers.BackgroundColor = Color.White;
             dgvListAllUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListAllUsers.Columns.AddRange(new DataGridViewColumn[] { colUserId, colPersonId, colFullName, colUserName });
+            dgvListAllUsers.ContextMenuStrip = cmsUserMenu;
             dgvListAllUsers.Dock = DockStyle.Fill;
             dgvListAllUsers.Location = new Point(0, 0);
             dgvListAllUsers.Name = "dgvListAllUsers";
@@ -137,6 +149,7 @@
             btnClose.TabIndex = 9;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
             // 
             // lblCounter
             // 
@@ -161,12 +174,84 @@
             label2.TabIndex = 10;
             label2.Text = "# Records:";
             // 
+            // txtSearch
+            // 
+            txtSearch.Font = new Font("Segoe UI", 12F);
+            txtSearch.Location = new Point(266, 176);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(211, 34);
+            txtSearch.TabIndex = 12;
+            txtSearch.Visible = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(12, 184);
+            label3.Name = "label3";
+            label3.Size = new Size(60, 28);
+            label3.TabIndex = 13;
+            label3.Text = "Filter:";
+            // 
+            // cbFilter
+            // 
+            cbFilter.Font = new Font("Segoe UI", 12F);
+            cbFilter.FormattingEnabled = true;
+            cbFilter.Items.AddRange(new object[] { "None", "User Id", "Person Id", "Full Name", "UserName" });
+            cbFilter.Location = new Point(78, 176);
+            cbFilter.Name = "cbFilter";
+            cbFilter.Size = new Size(179, 36);
+            cbFilter.TabIndex = 14;
+            // 
+            // cmsUserMenu
+            // 
+            cmsUserMenu.ImageScalingSize = new Size(24, 24);
+            cmsUserMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1 });
+            cmsUserMenu.Name = "contextMenuStrip1";
+            cmsUserMenu.Size = new Size(227, 184);
+            // 
+            // ShowDetailesToolStripMenuItem
+            // 
+            ShowDetailesToolStripMenuItem.Image = (Image)resources.GetObject("ShowDetailesToolStripMenuItem.Image");
+            ShowDetailesToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
+            ShowDetailesToolStripMenuItem.Size = new Size(226, 38);
+            ShowDetailesToolStripMenuItem.Text = "Show Details";
+            ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
+            // 
+            // AddNewToolStripMenuItem
+            // 
+            AddNewToolStripMenuItem.Image = (Image)resources.GetObject("AddNewToolStripMenuItem.Image");
+            AddNewToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
+            AddNewToolStripMenuItem.Size = new Size(226, 38);
+            AddNewToolStripMenuItem.Text = "Add new Person";
+            // 
+            // EditToolStripMenuItem
+            // 
+            EditToolStripMenuItem.Image = (Image)resources.GetObject("EditToolStripMenuItem.Image");
+            EditToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            EditToolStripMenuItem.Name = "EditToolStripMenuItem";
+            EditToolStripMenuItem.Size = new Size(226, 38);
+            EditToolStripMenuItem.Text = "Edit Info";
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
+            deleteToolStripMenuItem1.ImageScaling = ToolStripItemImageScaling.None;
+            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            deleteToolStripMenuItem1.Size = new Size(226, 38);
+            deleteToolStripMenuItem1.Text = "Delete";
+            // 
             // frmManageUsers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(876, 532);
+            Controls.Add(cbFilter);
+            Controls.Add(label3);
+            Controls.Add(txtSearch);
             Controls.Add(lblCounter);
             Controls.Add(label2);
             Controls.Add(btnClose);
@@ -180,6 +265,7 @@
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvListAllUsers).EndInit();
+            cmsUserMenu.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -197,5 +283,13 @@
         private Button btnClose;
         private Label lblCounter;
         private Label label2;
+        private TextBox txtSearch;
+        private Label label3;
+        private ComboBox cbFilter;
+        private ContextMenuStrip cmsUserMenu;
+        private ToolStripMenuItem ShowDetailesToolStripMenuItem;
+        private ToolStripMenuItem AddNewToolStripMenuItem;
+        private ToolStripMenuItem EditToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem1;
     }
 }
