@@ -97,6 +97,7 @@
             // 
             // cbPersonFilters
             // 
+            cbPersonFilters.DropDownStyle = ComboBoxStyle.DropDownList;
             cbPersonFilters.FormattingEnabled = true;
             cbPersonFilters.Items.AddRange(new object[] { "Person ID", "National No" });
             cbPersonFilters.Location = new Point(150, 32);

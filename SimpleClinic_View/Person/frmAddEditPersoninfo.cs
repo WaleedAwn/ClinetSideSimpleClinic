@@ -19,6 +19,14 @@ namespace SimpleClinic_View
 {
     public partial class frmAddEditPersoninfo : Form
     {
+
+        // Declare a delegate
+        public delegate void DataBackEventHandler(object sender, int PersonID);
+
+        // Declare an event using the delegate
+        public event DataBackEventHandler DataBack;
+
+
         private PersonApiClient _personService;
         private ApiResult<PersonsDTO> _personDto;
         public enum enMode { AddNew = 0, Update = 1 };
@@ -121,7 +129,10 @@ namespace SimpleClinic_View
                        var NewPersonInfo = await _personService.AddNewPerson(_personDto.Result);
                         if (NewPersonInfo.IsSuccess)
                         {
+                            DataBack?.Invoke(this, NewPersonInfo.Result.Id); // firing the event 
+
                             MessageBox.Show("Data Saved Successfully", "Saved", MessageBoxButtons.OK);
+
                             MessageBox.Show($"New Person ID {NewPersonInfo.Result.Id}  ","Saved", MessageBoxButtons.OK);
 
                         }

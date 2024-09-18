@@ -100,7 +100,7 @@ namespace SimpleClinic_View.Controls
 
                     break;
 
-                case "National No.":
+                case "National No":
                     //ctrlPersonCard1.LoadPersonInfo(txtFilterValue.Text);
                     MessageBox.Show("Filter by national No not implemented yet!", "Soon!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
@@ -129,7 +129,17 @@ namespace SimpleClinic_View.Controls
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
+            frmAddEditPersoninfo frm = new frmAddEditPersoninfo(-1);
+            frm.DataBack += AddNewPerson_DataBack;
+            frm.ShowDialog();
+        }
 
+        private void AddNewPerson_DataBack(object sender, int PersonID)
+        {
+            cbPersonFilters.SelectedIndex = 0;
+            txtSearch.Text = PersonId.ToString();
+            cbPersonFilters.Focus();
+            ctrlPersonCard1._LoadPersonData(PersonId);
         }
 
         private void ctrlPersonCardWithFilter_Load(object sender, EventArgs e)
@@ -148,7 +158,7 @@ namespace SimpleClinic_View.Controls
         {
             if (string.IsNullOrEmpty(txtSearch.Text))
             {
-                e.Cancel = true;
+                //e.Cancel = true;
                 epPersonFilter.SetError(txtSearch, "This field is required!");
 
             }
