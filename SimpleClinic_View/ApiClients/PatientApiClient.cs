@@ -7,20 +7,19 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace SimpleClinic_View.ApiClients
 {
-    public class PersonApiClient
+    public class PatientApiClient
     {
         private readonly HttpClient _httpClient;
-
-        public PersonApiClient(string baseUrl )
+        
+        public PatientApiClient()
         {
-            _httpClient = new HttpClient { BaseAddress = new Uri(baseUrl) };
+            _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Patient/") };
         }
-        public async Task<List<PersonsDTO>> GetAllPeopleAsync()
+        public async Task<List<AllPatientInfoDTO>> GetAllPatientsAsync()
         {
-            List<PersonsDTO> peopleList = new List<PersonsDTO>();
+            List<AllPatientInfoDTO> PatientsList = new List<AllPatientInfoDTO>();
 
             try
             {
@@ -31,22 +30,22 @@ namespace SimpleClinic_View.ApiClients
                 if (response.IsSuccessStatusCode)
                 {
                     // Read the content as a list of PersonsDTO
-                    var resultList = await response.Content.ReadFromJsonAsync<List<PersonsDTO>>();
+                    var resultList = await response.Content.ReadFromJsonAsync<List<AllPatientInfoDTO>>();
 
                     // Validate the returned list
                     if (resultList != null && resultList.Count > 0)
                     {
-                        foreach (var person in resultList)
+                        foreach (var Patient in resultList)
                         {
                             // Additional validation logic for individual properties if needed
-                            if (!string.IsNullOrEmpty(person.PersonName) && person.DateOfBirth != DateTime.MinValue)
+                            if (!string.IsNullOrEmpty(Patient.PersonName) && Patient.DateOfBirth != DateTime.MinValue)
                             {
-                                peopleList.Add(person);
+                                PatientsList.Add(Patient);
                             }
                             else
                             {
                                 // Log or handle invalid data (e.g., show a message for invalid entries)
-                                MessageBox.Show($"Invalid data for person with ID: {person.Id}. Skipping.", "Warning", MessageBoxButtons.OK);
+                                MessageBox.Show($"Invalid data for person with ID: {Patient.Id}. Skipping.", "Warning", MessageBoxButtons.OK);
                             }
                         }
                     }
@@ -69,35 +68,36 @@ namespace SimpleClinic_View.ApiClients
             }
 
             // Return the validated list of students
-            return peopleList;
+            return PatientsList;
         }
-        
-        public async Task<PersonsDTO> Find(int PersonID)
+
+
+        public async Task<AllPatientInfoDTO> Find(int PatientID)
         {
-            PersonsDTO personInfo = null;
+            AllPatientInfoDTO patientInfo = null;
 
             try
             {
 
-                var response = await _httpClient.GetAsync($"Find/{PersonID}");
+                var response = await _httpClient.GetAsync($"Find/{PatientID}");
                 if (response.IsSuccessStatusCode)
                 {
-                    var Person=await response.Content.ReadFromJsonAsync<PersonsDTO>();
-                    if (Person!=null)
+                    var Person = await response.Content.ReadFromJsonAsync<AllPatientInfoDTO>();
+                    if (Person != null)
                     {
-                        personInfo = Person;
+                        patientInfo = Person;
 
                     }
                     else
                     {
-                     
-                        MessageBox.Show($"There is no  data for person with ID: {PersonID}. .", "Warning", MessageBoxButtons.OK);
+
+                        MessageBox.Show($"There is no  data for Patient with ID: {PatientID}. .", "Warning", MessageBoxButtons.OK);
                     }
                 }
                 else
                 {
                     // Handle unsuccessful status code
-                    MessageBox.Show($"Failed to fetch People Info : {response.StatusCode}", "Error", MessageBoxButtons.OK);
+                    MessageBox.Show($"Failed to fetch Patient Info : {response.StatusCode}", "Error", MessageBoxButtons.OK);
                 }
 
             }
@@ -106,23 +106,23 @@ namespace SimpleClinic_View.ApiClients
 
                 MessageBox.Show($"An error occurred While getting Data: {e.Message}", "Error", MessageBoxButtons.OK);
             }
-            return personInfo;
+            return patientInfo;
         }
-        public async Task<bool> ISPersonExist(int PersonID)
+        public async Task<bool> ISPatientExist(int PatientID)
         {
-           bool isFound=false;
+            bool isFound = false;
 
             try
             {
 
-                var response = await _httpClient.GetAsync($"IsExist/{PersonID}");
+                var response = await _httpClient.GetAsync($"IsExist/{PatientID}");
                 if (response.IsSuccessStatusCode)
                 {
-                   isFound=true;
+                    isFound = true;
                 }
                 else
                 {
-                   return false;
+                    return false;
                 }
 
             }
@@ -132,44 +132,41 @@ namespace SimpleClinic_View.ApiClients
                 MessageBox.Show($"An error occurred While getting Data: {e.Message}", "Error", MessageBoxButtons.OK);
                 return false;
             }
-          return isFound;
+            return isFound;
         }
 
 
 
-        public async Task<int > AddNewPersonAsync(PersonsDTO newPerson)
+        public async Task<bool> AddNewPatientAsync(AllPatientInfoDTO newPerson)
         {
-           int personID = -1;
+            bool isAdded = false;
             try
             {
                 var response = await _httpClient.PostAsJsonAsync("Add", newPerson);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var Person = await response.Content.ReadFromJsonAsync<PersonsDTO>();
-                    personID = Person.Id;
-                    
+                    isAdded = true;
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
-                    MessageBox.Show($"An error occurred While Adding New  Person:");
+                    return false;
 
-                    return -1;
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show($"An error occurred While Adding New  Person: {e.Message}", "Error", MessageBoxButtons.OK);
 
-               
+                return false;
             }
-           return personID;
+            return isAdded;
         }
 
-        public async Task<bool> UpdatePersonInfo(int PersonID,PersonsDTO UpdatePerson)
+        public async Task<bool> UpdatePersonInfo(int PersonID, AllPatientInfoDTO UpdatePerson)
         {
-         
-            
+
+
             bool isUpdated = false;
             try
             {
@@ -187,7 +184,7 @@ namespace SimpleClinic_View.ApiClients
             }
             catch (Exception e)
             {
-                MessageBox.Show($"An error occurred While Updating  Person Info: {e.Message}", "Error", MessageBoxButtons.OK);
+                MessageBox.Show($"An error occurred While Updating  Patient Info: {e.Message}", "Error", MessageBoxButtons.OK);
 
                 return false;
             }
@@ -219,7 +216,6 @@ namespace SimpleClinic_View.ApiClients
             }
             return isdeleted;
         }
-
 
 
     }

@@ -1,4 +1,5 @@
-﻿using SimpleClinic_View.DTOs;
+﻿using SimpleClinic_View.ApiClients;
+using SimpleClinic_View.DTOs;
 using SimpleClinic_View.Service;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace SimpleClinic_View
                 _Mode = enMode.Update;
         }
 
+      
 
         public async void _LoadData()
         {
@@ -62,13 +64,9 @@ namespace SimpleClinic_View
             dtpDateOFBirth.Text = formattedDateOfBirth.ToString();
             cbgender.Text = _personDto.Gender.ToString();
 
-            
-
-
-
-
-
         }
+       
+        
         private void frmAddEditPersoninfo_Load(object sender, EventArgs e)
         {
             _LoadData();
@@ -76,7 +74,7 @@ namespace SimpleClinic_View
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-
+            int newPersonID = 0;
             _personDto.PersonName=tbName.Text;
             _personDto.PhoneNumber=tbPhoneNumber.Text;
             _personDto.Email=tbEmail.Text;
@@ -92,34 +90,54 @@ namespace SimpleClinic_View
             _personDto.Address=tbAdress.Text;
             _personDto.DateOfBirth = dtpDateOFBirth.Value;
 
-            if (_Mode == enMode.AddNew)
-            {
-                if (await _personService.AddNewPerson(_personDto))
+            //if (PersonDataValidation.ValidateAllPersonInfo(_personDto))
+            //{
+
+                if (_Mode == enMode.AddNew)
                 {
-                    MessageBox.Show("Data Saved Successfully", "Saved", MessageBoxButtons.OK);
+                    if (!await _personService.ISPersonExist(_personDto.Id))
+                    {
+                        newPersonID = await _personService.AddNewPerson(_personDto);
+                        if (newPersonID!= -1)
+                        {
+                            
+
+                            MessageBox.Show("Data Saved Successfully", "Saved", MessageBoxButtons.OK);
+                            MessageBox.Show($"New Person ID {newPersonID}  ","Saved", MessageBoxButtons.OK);
+
+
+                        }
+                        else
+                            MessageBox.Show("Error: Person is Not  Saved ", "Error", MessageBoxButtons.OK);
+                    }
+                    else { 
+                    
+                            MessageBox.Show("Error: this Person is found before Insert New One ", "Error", MessageBoxButtons.OK);
+
+                    }
+
                 }
-                else
-                    MessageBox.Show("Error: Person is Not  Saved ", "Error", MessageBoxButtons.OK);
 
-
-            }
-
-
-            if (_Mode == enMode.Update)
-            {
-                _personDto.Id = _PersonID;
-                if (await _personService.UpdatePerson(_personDto.Id,_personDto))
+                if (_Mode == enMode.Update)
                 {
-                    MessageBox.Show("Data Updated Successfully", "Saved", MessageBoxButtons.OK);
+                    _personDto.Id = _PersonID;
+                    if (await _personService.UpdatePerson(_personDto.Id, _personDto))
+                    {
+                        MessageBox.Show("Data Updated Successfully", "Saved", MessageBoxButtons.OK);
+                    }
+                    else
+                        MessageBox.Show("Error: Person is Not  Updated ", "Error", MessageBoxButtons.OK);
+
+
                 }
-                else
-                    MessageBox.Show("Error: Person is Not  Updated ", "Error", MessageBoxButtons.OK);
 
 
-            }
+            //}
 
-
-
+            //else
+            //{
+            //    MessageBox.Show("Ensure that Data Are Correct");
+            //}
         }
 
         private void btnClose_Click(object sender, EventArgs e)

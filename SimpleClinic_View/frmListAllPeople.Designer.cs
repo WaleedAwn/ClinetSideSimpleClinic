@@ -49,6 +49,8 @@
             lblCounter = new Label();
             btnAddNew = new PictureBox();
             btnClose = new Button();
+            addASPatientToolStripMenuItem = new ToolStripMenuItem();
+            addASDoctorToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvListAllPeople).BeginInit();
             contextMenuStrip1.SuspendLayout();
@@ -151,9 +153,9 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, doAppoitmentToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, doAppoitmentToolStripMenuItem, addASPatientToolStripMenuItem, addASDoctorToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(229, 164);
+            contextMenuStrip1.Size = new Size(229, 228);
             // 
             // ShowDetailesToolStripMenuItem
             // 
@@ -238,6 +240,18 @@
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             // 
+            // addASPatientToolStripMenuItem
+            // 
+            addASPatientToolStripMenuItem.Name = "addASPatientToolStripMenuItem";
+            addASPatientToolStripMenuItem.Size = new Size(228, 32);
+            addASPatientToolStripMenuItem.Text = "Add AS Patient";
+            // 
+            // addASDoctorToolStripMenuItem
+            // 
+            addASDoctorToolStripMenuItem.Name = "addASDoctorToolStripMenuItem";
+            addASDoctorToolStripMenuItem.Size = new Size(228, 32);
+            addASDoctorToolStripMenuItem.Text = "Add AS Doctor";
+            // 
             // frmListAllPeople
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
@@ -283,5 +297,7 @@
         private Button btnClose;
         private ToolStripMenuItem deleteToolStripMenuItem1;
         private ToolStripMenuItem doAppoitmentToolStripMenuItem;
+        private ToolStripMenuItem addASPatientToolStripMenuItem;
+        private ToolStripMenuItem addASDoctorToolStripMenuItem;
     }
 }

@@ -30,7 +30,7 @@ namespace SimpleClinic_View.Service
             return await _personApiClient.Find(id);
         }
 
-        public async Task<bool> AddNewPerson(PersonsDTO NewPerson)
+        public async Task<int> AddNewPerson(PersonsDTO NewPerson)
         {
             return await _personApiClient.AddNewPersonAsync(NewPerson);
 
@@ -54,11 +54,12 @@ namespace SimpleClinic_View.Service
 
         }
 
-     
 
+        //public bool Save()
+        //{
+          
 
-
-
+        // }
 
     }
 }

@@ -12,5 +12,11 @@ namespace SimpleClinic_View
             Form frm = new frmListAllPeople();
             frm.ShowDialog();
         }
+
+        private void btnPatient_Click(object sender, EventArgs e)
+        {
+            Form frm = new frmListAllPatients();
+            frm.ShowDialog();
+        }
     }
 }
