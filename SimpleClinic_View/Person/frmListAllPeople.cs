@@ -9,37 +9,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http.Json;
-using SimpleClinic_View.DTOs;
-using SimpleClinic_View.Service;
+using SimpleClinic_View.Person;
 
 
 namespace SimpleClinic_View
 {
     public partial class frmListAllPeople : Form
     {
-        private readonly PersonService _personService;
+        private  PersonApiClient _personService;
 
         public frmListAllPeople()
         {
             InitializeComponent();
-            _personService = new PersonService(); // Initialize the service layer
+            _personService = new PersonApiClient(); // Initialize the service layer
         }
 
         private async void _RefreshAllPeopleData()
         {
             dgvListAllPeople.Rows.Clear();
 
-            List<PersonsDTO> peopleList = await _personService.GetAllPeople();
+            var peopleList = await _personService.GetAllPeople();
 
-            if (peopleList != null && peopleList.Count > 0)
+            if (peopleList != null && peopleList.Result.Count > 0)
             {
-                foreach (var person in peopleList)
+                foreach (var person in peopleList.Result)
                 {
                     string formattedDateOfBirth = person.DateOfBirth.ToString("yyyy-MM-dd");
                     dgvListAllPeople.Rows.Add(person.Id, person.PersonName, person.PhoneNumber,
                     person.Email, formattedDateOfBirth, person.Gender, person.Address);
                 }
-                lblCounter.Text = peopleList.Count.ToString();
+                lblCounter.Text = peopleList.Result.Count.ToString();
             }
             else
             {
@@ -99,7 +98,8 @@ namespace SimpleClinic_View
 
             if (MessageBox.Show("Are you sure you want to delete thisPerson [" + PersonId + "]", "Confirm Delete", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                if (await _personService.DeletePerson(PersonId))
+                var Isdeleted = await _personService.DeletePerson(PersonId);
+                if (Isdeleted.IsSuccess)
                 {
                     MessageBox.Show("Person deleted Successfully.");
                     _RefreshAllPeopleData();

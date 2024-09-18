@@ -1,41 +1,39 @@
-﻿using SimpleClinic_View.Globals;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using SimpleClinic_View.Globals;
 using SimpleClinic_View.Logging;
+using SimpleClinic_View.Person.DTOs;
 using SimpleClinic_View.Users.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualBasic;
 
-namespace SimpleClinic_View.Users
+
+namespace SimpleClinic_View.Person
 {
-    public class UserService
+    public class PersonApiClient
     {
         private readonly HttpClient _httpClient;
 
-        public UserService()
+        public PersonApiClient()
         {
-            _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("http://localhost:5029/api/UserApi/");
+            _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Persons/") };
         }
-
-        public  async Task<ApiResult<List<AllUserDTO>>> GetAllUsers()
+        public async Task<ApiResult<List<PersonsDTO>>> GetAllPeople()
         {
-            var apiResult = new ApiResult<List<AllUserDTO>>();
+            var apiResult = new ApiResult<List<PersonsDTO>>();
             try
             {
                 var response = await _httpClient.GetAsync("All");
 
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    var users = await _httpClient.GetFromJsonAsync<List<AllUserDTO>>("All");
+                    var users = await _httpClient.GetFromJsonAsync<List<PersonsDTO>>("All");
                     apiResult.Result = users;
 
                 }
@@ -52,75 +50,27 @@ namespace SimpleClinic_View.Users
             {
                 Logger loger = new Logger(LoggingMethod.EventLogger);
                 loger.Log($"User Error:{ex.Message}");
-                
+
             }
-           
-            
+
+
             return apiResult;
         }
-        
-        public  async Task<ApiResult<AllUserDTO>> Find(int Id)
+
+        public async Task<ApiResult<PersonsDTO>> Find(int PersonID)
         {
-            var apiResult = new ApiResult<AllUserDTO>();
+            var apiResult = new ApiResult<PersonsDTO>();
 
             try
             {
-
-                var response = await _httpClient.GetAsync($"Find/Id={Id}");
+                var response = await _httpClient.GetAsync($"Find/{PersonID}");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    
-                    var user = await response.Content.ReadFromJsonAsync<AllUserDTO>();
+                    var user = await response.Content.ReadFromJsonAsync<PersonsDTO>();
                     apiResult.Result = user;
-                    
-
-                }
-                
-                else
-                {
-                    apiResult.IsSuccess = false;
-                    apiResult.Status = response.StatusCode switch
-                    {
-                        System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
-                        System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
-                        _=> ApiResponseStatus.ServerError,
-                    };
-                    // if there any message in the body will be stored in ErrorMessage
-                    apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
-
-                }
-                
-
-            }
-            catch (Exception ex)
-            {
-                Logger loger = new Logger(LoggingMethod.EventLogger);
-                loger.Log($"User Error:{ex.Message}");
-            }
-            return apiResult;
-        }       
-        
-        public  async Task<ApiResult<AllUserDTO>> Find(string userName)
-        {
-            var apiResult = new ApiResult<AllUserDTO>();
-
-            try
-            {
-
-                var response = await _httpClient.GetAsync($"Find/UserName={userName}");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    apiResult.IsSuccess = true;
-                    apiResult.Status = ApiResponseStatus.Success;
-
-                    var user = await response.Content.ReadFromJsonAsync<AllUserDTO>();
-                    apiResult.Result = user;
-
-
                 }
 
                 else
@@ -134,8 +84,8 @@ namespace SimpleClinic_View.Users
                     };
                     // if there any message in the body will be stored in ErrorMessage
                     apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
-
                 }
+
 
             }
             catch (Exception ex)
@@ -145,66 +95,29 @@ namespace SimpleClinic_View.Users
             }
             return apiResult;
         }
-        
-        public  async Task<ApiResult<UserDTO>> AddUser(UserDTO newUserDTO)
-        {
-            var apiResult = new ApiResult<UserDTO>();
-
-            try
-            {
-                var response = await _httpClient.PostAsJsonAsync("", newUserDTO);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    apiResult.Result = await response.Content.ReadFromJsonAsync<UserDTO>();
-                    apiResult.IsSuccess = true;
-                    apiResult.Status = ApiResponseStatus.Success;
-
-                }
-                else
-                {
-                    apiResult.Status = response.StatusCode switch
-                    { 
-                        System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
-                        System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
-                        System.Net.HttpStatusCode.Conflict => ApiResponseStatus.Conflict,
-                        _ => ApiResponseStatus.ServerError,
-                    
-                    };
-                    apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger logger = new Logger(LoggingMethod.EventLogger);
-                logger.Log($"User Error: {ex.Message}");
-            }
-            return apiResult;
-        }
-        
-        public  async Task<ApiResult<bool>> DeleteUser(int UserId)
+        public async Task<ApiResult<bool>> ISPersonExist(int PersonID)
         {
             var apiResult = new ApiResult<bool>();
 
             try
             {
-                var response = await _httpClient.DeleteAsync($"Delete/Id={UserId}");
 
+                var response = await _httpClient.GetAsync($"IsExist/{PersonID}");
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.Status = ApiResponseStatus.Success;
                     apiResult.Result = true;
                     apiResult.IsSuccess = true;
                 }
-                else 
+                else
                 {
                     apiResult.IsSuccess = false;
                     apiResult.Result = false;
                     apiResult.Status = response.StatusCode switch
-                    { 
+                    {
                         System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
                         System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
-                        _=> ApiResponseStatus.ServerError,
+                        _ => ApiResponseStatus.ServerError,
                     };
                 }
                 apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
@@ -215,28 +128,67 @@ namespace SimpleClinic_View.Users
                 Logger logger = new Logger(LoggingMethod.EventLogger);
                 logger.Log($"User Error: {ex.Message}");
             }
-            return apiResult;
+            return apiResult;        
         }
-        
-        public  async Task<ApiResult<UserDTO>> UpdateUser(int UserId, UserDTO updatedUser)
+
+
+
+        public async Task<ApiResult<PersonsDTO>> AddNewPerson(PersonsDTO newPerson)
         {
-            var apiResult = new ApiResult<UserDTO>();
+            var apiResult = new ApiResult<PersonsDTO>();
             try
             {
-                var response = await _httpClient.PutAsJsonAsync($"Update/Id={UserId}", updatedUser);
+                var response = await _httpClient.PostAsJsonAsync("Add", newPerson);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResult.Result = await response.Content.ReadFromJsonAsync<PersonsDTO>();
+                    apiResult.IsSuccess = true;
+                    apiResult.Status = ApiResponseStatus.Success;
+
+                }
+                else
+                {
+                    apiResult.Status = response.StatusCode switch
+                    {
+                        System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
+                        System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
+                        System.Net.HttpStatusCode.Conflict => ApiResponseStatus.Conflict,
+                        _ => ApiResponseStatus.ServerError,
+
+                    };
+                    apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger logger = new Logger(LoggingMethod.EventLogger);
+                logger.Log($"User Error: {ex.Message}");
+            }
+            return apiResult;
+        }
+
+        public async Task<ApiResult<PersonsDTO>> UpdatePersonInfo(int PersonID, PersonsDTO UpdatePerson)
+        {
+
+
+            var apiResult = new ApiResult<PersonsDTO>();
+            try
+            {
+                var response = await _httpClient.PutAsJsonAsync($"Update/{PersonID}", UpdatePerson);
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    apiResult.Result = await response.Content.ReadFromJsonAsync<UserDTO>();
+                    apiResult.Result = await response.Content.ReadFromJsonAsync<PersonsDTO>();
 
                 }
-                else 
+                else
                 {
                     apiResult.IsSuccess = false;
                     apiResult.Status = response.StatusCode switch
-                    { 
+                    {
                         System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
                         System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
                         System.Net.HttpStatusCode.Conflict => ApiResponseStatus.Conflict,
@@ -256,44 +208,44 @@ namespace SimpleClinic_View.Users
             }
             return apiResult;
         }
-      
-        public  async Task<ApiResult<bool>> CheckCredentials(string userName, string password)
+
+        public async Task<ApiResult<bool>> DeletePerson(int PersonID)
         {
             var apiResult = new ApiResult<bool>();
+
             try
             {
-
-                var response = await _httpClient.GetAsync($"CheckCredentials/UserName={userName}/Password{password}");
+                var response = await _httpClient.DeleteAsync($"Delete/{PersonID}");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.Status = ApiResponseStatus.Success;
                     apiResult.Result = true;
                     apiResult.IsSuccess = true;
-
                 }
                 else
                 {
                     apiResult.IsSuccess = false;
                     apiResult.Result = false;
                     apiResult.Status = response.StatusCode switch
-                    { 
+                    {
+                        System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
                         System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
-                        System.Net.HttpStatusCode.Unauthorized => ApiResponseStatus.Unauthorized,
-                        _=> ApiResponseStatus.ServerError,
-
+                        _ => ApiResponseStatus.ServerError,
                     };
-                    apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
                 }
+                apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
 
             }
             catch (Exception ex)
             {
-                Logger loger = new Logger(LoggingMethod.EventLogger);
-                loger.Log($"User Error:{ex.Message}");
+                Logger logger = new Logger(LoggingMethod.EventLogger);
+                logger.Log($"User Error: {ex.Message}");
             }
             return apiResult;
         }
+
+
 
     }
 }

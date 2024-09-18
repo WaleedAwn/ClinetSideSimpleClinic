@@ -1,4 +1,4 @@
-﻿using SimpleClinic_View.DTOs;
+﻿using SimpleClinic_View.Person.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,15 +6,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace SimpleClinic_View.ApiClients
+namespace SimpleClinic_View.Globals.Validation
 {
-    public class PersonDataValidation
+    public class Validation
     {
 
-        static public bool ValidateId(int id)
-        {
-            return id > 0; // Id must be positive
-        }
+       
 
         static public bool ValidatePersonName(string personName)
         {
@@ -55,11 +52,7 @@ namespace SimpleClinic_View.ApiClients
             return true;
         }
 
-        static public bool ValidateGender(string gender)
-        {
-            string[] validGenders = { "Male", "Female" }; // Accept only specific values
-            return Array.Exists(validGenders, g => g.Equals(gender, StringComparison.OrdinalIgnoreCase));
-        }
+       
 
         static public bool ValidatePhoneNumber(string phoneNumber)
         {
@@ -70,15 +63,10 @@ namespace SimpleClinic_View.ApiClients
 
         static public bool ValidateEmail(string email)
         {
-            try
-            {
+          
                 var addr = new System.Net.Mail.MailAddress(email);
                 return addr.Address == email; // Valid email format
-            }
-            catch
-            {
-                return false;
-            }
+           
         }
 
         static public bool ValidateAddress(string address)
@@ -88,12 +76,10 @@ namespace SimpleClinic_View.ApiClients
 
         static public bool ValidateAllPersonInfo(PersonsDTO person)
         {
-            // Check if Id is invalid (0 or negative)
-            if (ValidateId(person.Id))
-                return false;
+            
 
             // Check if PersonName is empty or less than 3 characters
-            if (ValidatePersonName(person.PersonName) )
+            if (ValidatePersonName(person.PersonName))
                 return false;
 
             // Check if PhoneNumber is invalid (not 9 digits)
@@ -101,9 +87,8 @@ namespace SimpleClinic_View.ApiClients
                 return false;
 
             // Check if Gender is empty or invalid
-           
-            if (ValidateGender(person.Gender))
-                return false;
+
+          
 
             return true; // If all validations pass, return true
         }

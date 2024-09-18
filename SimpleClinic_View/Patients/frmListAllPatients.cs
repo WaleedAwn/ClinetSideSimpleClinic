@@ -1,6 +1,5 @@
-﻿using SimpleClinic_View.ApiClients;
-using SimpleClinic_View.DTOs;
-using SimpleClinic_View.Service;
+﻿using SimpleClinic_View.Patients;
+using SimpleClinic_View.Patients.DTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

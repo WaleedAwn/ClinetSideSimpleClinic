@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleClinic_View.DTOs
+namespace SimpleClinic_View.Person.DTOs
 {
     public class PersonsDTO
     {
         public PersonsDTO()
         {
-            
+
         }
         public PersonsDTO(int id, string personName, DateTime dateOfBirth, string gender, string PhoneNumber, string email, string address)
         {

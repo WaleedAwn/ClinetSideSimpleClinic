@@ -1,6 +1,6 @@
-﻿using SimpleClinic_View.ApiClients;
-using SimpleClinic_View.DTOs;
-using SimpleClinic_View.Service;
+﻿using SimpleClinic_View.Patients;
+using SimpleClinic_View.Patients.DTOs;
+using SimpleClinic_View.Person.DTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ namespace SimpleClinic_View
 {
     public partial class frmAddEditPatientinfo : Form
     {
-        private PersonService _personService;
+   
         private PatientApiClient _PatientApiClient;
         private AllPatientInfoDTO _AllPatientInfoDTO;
         private PersonsDTO _personDto;
@@ -29,7 +29,7 @@ namespace SimpleClinic_View
             _PatientID = PatientID;
             _AllPatientInfoDTO = new AllPatientInfoDTO();
             _PatientApiClient= new PatientApiClient();
-            _personService = new PersonService();
+            
             InitializeComponent();
 
             if (_PatientID == -1)
@@ -51,7 +51,7 @@ namespace SimpleClinic_View
             _personDto=new PersonsDTO();
             _AllPatientInfoDTO = await _PatientApiClient.Find(_PatientID);
 
-            _personDto = await _personService.Find(_AllPatientInfoDTO.personId);
+            //_personDto = await _personService.Find(_AllPatientInfoDTO.personId);
 
             if (_personDto == null)
             {

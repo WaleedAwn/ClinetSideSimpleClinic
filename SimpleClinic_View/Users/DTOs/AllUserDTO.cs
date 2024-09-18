@@ -22,5 +22,7 @@ namespace SimpleClinic_View.Users.DTOs
             PersonId = personId;
         }
 
+
+
     }
 }

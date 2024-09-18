@@ -4,26 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleClinic_View.DTOs
+namespace SimpleClinic_View.Patients.DTOs
 {
 
     public class AllPatientInfoDTO
     {
         public AllPatientInfoDTO()
         {
-            
+
         }
         public AllPatientInfoDTO(int id, int personId, string personName, DateTime dateOfBirth, string gender, string PhoneNumber, string email, string address)
         {
-            this.Id = id;
+            Id = id;
             this.personId = personId;
 
-            this.PersonName = personName;
-            this.DateOfBirth = dateOfBirth;
-            this.Gender = gender;
+            PersonName = personName;
+            DateOfBirth = dateOfBirth;
+            Gender = gender;
             this.PhoneNumber = PhoneNumber;
-            this.Email = email;
-            this.Address = address;
+            Email = email;
+            Address = address;
 
         }
         public int Id { get; set; }
@@ -42,12 +42,12 @@ namespace SimpleClinic_View.DTOs
     {
         public PatientDTO()
         {
-            
+
         }
         public PatientDTO(int id, int Personid)
         {
-            this.Id = id;
-            this.PersonId = Personid;
+            Id = id;
+            PersonId = Personid;
 
         }
 

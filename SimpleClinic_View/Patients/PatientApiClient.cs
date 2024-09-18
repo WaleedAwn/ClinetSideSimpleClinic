@@ -1,18 +1,18 @@
-﻿using SimpleClinic_View.DTOs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using SimpleClinic_View.Patients.DTOs;
 
-namespace SimpleClinic_View.ApiClients
+namespace SimpleClinic_View.Patients
 {
     public class PatientApiClient
     {
         private readonly HttpClient _httpClient;
-        
+
         public PatientApiClient()
         {
             _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Patient/") };
