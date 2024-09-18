@@ -8,52 +8,58 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SimpleClinic_View.Globals;
 using SimpleClinic_View.Person;
 using SimpleClinic_View.Person.DTOs;
+using SimpleClinic_View.Users.DTOs;
 
 
 namespace SimpleClinic_View.Controls
 {
     public partial class ctrlPersonCard : UserControl
     {
-        private  PersonApiClient personService;
+        private ApiResult<PersonsDTO> _apiResult;
+        private int _PersonId = -1;
 
-        int _PersonID;
+        public int PersonId
+        {
+            get
+            {
+                return _PersonId;
+            }
+        }
+        public ApiResult<PersonsDTO> SelectedPersonInfo
+        {
+            get
+            {
+                return _apiResult;
+            }
+        }
 
         public ctrlPersonCard()
         {
             InitializeComponent();
-            personService = new PersonApiClient();
+            _apiResult  = new ApiResult<PersonsDTO>();
 
         }
         public async void _LoadPersonData(int _PersonID)
         {
-            var person = await personService.Find(_PersonID);
+             _apiResult = await PersonApiClient.StatFind(_PersonID);
 
-            if (person.Result == null)
+            if (!_apiResult.IsSuccess)
             {
-                MessageBox.Show("This form will be closed because No Contact with ID = " + _PersonID);
+                MessageBox.Show(_apiResult.ErrorMessage, nameof(_apiResult.Status), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ResetDeffultValues();
                 return;
             }
             else
-            {
-                string formattedDateOfBirth = person.Result.DateOfBirth.ToString("yyyy-MM-dd");
-                lbPersonID.Text = person.Result.Id.ToString();
-                lblName.Text = person.Result.PersonName.ToString();
-                lblPhone.Text = person.Result.PhoneNumber.ToString();
-                lblEmail.Text = person.Result.Email.ToString();
-                lblDateOfBirth.Text = formattedDateOfBirth.ToString();
-                lblAddress.Text = person.Result.Address.ToString();
-                lblGender.Text = person.Result.Gender.ToString();
-
-            }
+                _FillPersonInfo();
 
 
         }
 
-        public void ResetDeffultValues()
+        private void ResetDeffultValues()
         {
-
 
             lbPersonID.Text = "[???]";
             lblName.Text = "[???]";
@@ -63,11 +69,20 @@ namespace SimpleClinic_View.Controls
             lblAddress.Text = "[???]";
             lblGender.Text = "[???]";
 
-
-
-
         }
 
+        private void _FillPersonInfo()
+        {
+            _PersonId = _apiResult.Result.Id;
+            string formattedDateOfBirth = _apiResult.Result.DateOfBirth.ToString("yyyy-MM-dd");
+            lbPersonID.Text = _apiResult.Result.Id.ToString();
+            lblName.Text = _apiResult.Result.PersonName.ToString();
+            lblPhone.Text = _apiResult.Result.PhoneNumber.ToString();
+            lblEmail.Text = _apiResult.Result.Email.ToString();
+            lblDateOfBirth.Text = formattedDateOfBirth.ToString();
+            lblAddress.Text = _apiResult.Result.Address.ToString();
+            lblGender.Text = _apiResult.Result.Gender.ToString();
+        }
 
         private void ctrlPersonCard_Load(object sender, EventArgs e)
         {

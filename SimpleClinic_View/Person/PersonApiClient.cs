@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.ApplicationServices;
 using SimpleClinic_View.Globals;
 using SimpleClinic_View.Logging;
 using SimpleClinic_View.Person.DTOs;
@@ -17,6 +18,7 @@ namespace SimpleClinic_View.Person
     public class PersonApiClient
     {
         private readonly HttpClient _httpClient;
+        private static readonly HttpClient _staticHttpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Persons/") };
 
         public PersonApiClient()
         {
@@ -57,13 +59,13 @@ namespace SimpleClinic_View.Person
             return apiResult;
         }
 
-        public async Task<ApiResult<PersonsDTO>> Find(int PersonID)
+        public static async Task<ApiResult<PersonsDTO>> StatFind(int PersonID)
         {
             var apiResult = new ApiResult<PersonsDTO>();
 
             try
             {
-                var response = await _httpClient.GetAsync($"Find/{PersonID}");
+                var response = await _staticHttpClient.GetAsync($"Find/{PersonID}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -95,6 +97,13 @@ namespace SimpleClinic_View.Person
             }
             return apiResult;
         }
+
+        public async Task<ApiResult<PersonsDTO>> Find(int PersonID)
+        {
+            return await StatFind(PersonID);
+        }
+
+
         public async Task<ApiResult<bool>> ISPersonExist(int PersonID)
         {
             var apiResult = new ApiResult<bool>();
@@ -131,7 +140,7 @@ namespace SimpleClinic_View.Person
             return apiResult;        
         }
 
-
+        
 
         public async Task<ApiResult<PersonsDTO>> AddNewPerson(PersonsDTO newPerson)
         {

@@ -54,7 +54,7 @@
             gbFilter.Margin = new Padding(2);
             gbFilter.Name = "gbFilter";
             gbFilter.Padding = new Padding(2);
-            gbFilter.Size = new Size(645, 86);
+            gbFilter.Size = new Size(670, 86);
             gbFilter.TabIndex = 2;
             gbFilter.TabStop = false;
             gbFilter.Text = "Filter";
@@ -64,7 +64,7 @@
             btnAddNew.BackColor = Color.White;
             btnAddNew.BackgroundImage = (Image)resources.GetObject("btnAddNew.BackgroundImage");
             btnAddNew.BackgroundImageLayout = ImageLayout.Zoom;
-            btnAddNew.Location = new Point(511, 22);
+            btnAddNew.Location = new Point(606, 19);
             btnAddNew.Margin = new Padding(2);
             btnAddNew.Name = "btnAddNew";
             btnAddNew.Size = new Size(47, 54);
@@ -77,7 +77,7 @@
             btnFind.BackColor = Color.White;
             btnFind.BackgroundImage = (Image)resources.GetObject("btnFind.BackgroundImage");
             btnFind.BackgroundImageLayout = ImageLayout.Zoom;
-            btnFind.Location = new Point(458, 22);
+            btnFind.Location = new Point(555, 22);
             btnFind.Margin = new Padding(2);
             btnFind.Name = "btnFind";
             btnFind.Size = new Size(47, 54);
@@ -87,11 +87,13 @@
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(303, 34);
+            txtSearch.Location = new Point(317, 34);
             txtSearch.Margin = new Padding(2);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(136, 30);
+            txtSearch.Size = new Size(213, 30);
             txtSearch.TabIndex = 2;
+            txtSearch.KeyPress += txtSearch_KeyPress;
+            txtSearch.Validating += txtSearch_Validating;
             // 
             // cbPersonFilters
             // 
@@ -100,13 +102,14 @@
             cbPersonFilters.Location = new Point(150, 32);
             cbPersonFilters.Margin = new Padding(2);
             cbPersonFilters.Name = "cbPersonFilters";
-            cbPersonFilters.Size = new Size(149, 33);
+            cbPersonFilters.Size = new Size(163, 33);
             cbPersonFilters.TabIndex = 1;
+            cbPersonFilters.SelectedIndexChanged += cbPersonFilters_SelectedIndexChanged;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(68, 34);
+            label8.Location = new Point(57, 35);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
             label8.Size = new Size(89, 25);

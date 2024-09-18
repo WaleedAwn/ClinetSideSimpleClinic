@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SimpleClinic_View.DTOs;
+using SimpleClinic_View.Person.DTOs;
 using SimpleClinic_View.Users.DTOs;
 using SimpleClinic_View.Globals;
 

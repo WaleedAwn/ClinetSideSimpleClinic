@@ -22,20 +22,14 @@ namespace SimpleClinic_View
 
         private void frmShowPersonDetails_Load(object sender, EventArgs e)
         {
-            if (_personID == -1)
-            {
-                MessageBox.Show("This form will be closed because No Person with ID = " +_personID);
-
-                this.Close();
-            }
-
+            
             ctrlPersonCard1._LoadPersonData(_personID);
 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            ctrlPersonCard1.ResetDeffultValues();
+           
             this.Close();
         }
 
