@@ -16,7 +16,7 @@ namespace SimpleClinic_View.Controls
     public partial class ctrlPersonCard : UserControl
     {
         private readonly PersonService personService;
-     
+
         int _PersonID;
 
         public ctrlPersonCard()
@@ -50,25 +50,30 @@ namespace SimpleClinic_View.Controls
 
         }
 
-        public  void ResetDeffultValues()
+        public void ResetDeffultValues()
         {
-             
-               
-                lbPersonID.Text = "[???]";
-                lblName.Text    = "[???]";
-                lblPhone.Text   = "[???]";
-                 lblEmail.Text = "[???]";
-                  lblDateOfBirth.Text = "[???]";
-                lblAddress.Text ="[???]";
-                lblGender.Text = "[???]";
-          
-            
+
+
+            lbPersonID.Text = "[???]";
+            lblName.Text = "[???]";
+            lblPhone.Text = "[???]";
+            lblEmail.Text = "[???]";
+            lblDateOfBirth.Text = "[???]";
+            lblAddress.Text = "[???]";
+            lblGender.Text = "[???]";
+
+
 
 
         }
 
 
         private void ctrlPersonCard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PnPersoncard_Enter(object sender, EventArgs e)
         {
 
         }
