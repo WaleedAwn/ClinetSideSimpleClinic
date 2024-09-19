@@ -1,29 +1,28 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SimpleClinic_View.Doctors.DTOs;
 using SimpleClinic_View.Globals;
 using SimpleClinic_View.Logging;
 using SimpleClinic_View.Patients.DTOs;
-using SimpleClinic_View.Person.DTOs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Json;
+using System.Security.Permissions;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SimpleClinic_View.Patients
+namespace SimpleClinic_View.Doctors
 {
-    public class PatientApiClient
+    public class DoctorApiClient
     {
         private readonly HttpClient _httpClient;
 
-        public PatientApiClient()
+        public DoctorApiClient()
         {
-            _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Patient/") };
+            _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Doctors/") };
         }
-        public async Task<ApiResult<List<AllPatientInfoDTO>>> GetAllPatientsAsync()
+        public async Task<ApiResult<List<AllDoctorsInfoDTO>>> GetAllDoctorsAsync()
         {
-            var apiResult = new ApiResult<List<AllPatientInfoDTO>>();
+            var apiResult = new ApiResult<List<AllDoctorsInfoDTO>>();
             try
             {
                 var response = await _httpClient.GetAsync("All");
@@ -32,7 +31,7 @@ namespace SimpleClinic_View.Patients
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    var users = await _httpClient.GetFromJsonAsync<List<AllPatientInfoDTO>>("All");
+                    var users = await _httpClient.GetFromJsonAsync<List<AllDoctorsInfoDTO>>("All");
                     apiResult.Result = users;
 
                 }
@@ -57,19 +56,19 @@ namespace SimpleClinic_View.Patients
         }
 
 
-        public async Task<ApiResult<AllPatientInfoDTO>> Find(int PatientID)
+        public async Task<ApiResult<AllDoctorsInfoDTO>> Find(int DoctorID)
         {
-            var apiResult = new ApiResult<AllPatientInfoDTO>();
+            var apiResult = new ApiResult<AllDoctorsInfoDTO>();
 
             try
             {
-                var response = await _httpClient.GetAsync($"Find/{PatientID}");
+                var response = await _httpClient.GetAsync($"Find/{DoctorID}");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    var user = await response.Content.ReadFromJsonAsync<AllPatientInfoDTO>();
+                    var user = await response.Content.ReadFromJsonAsync<AllDoctorsInfoDTO>();
                     apiResult.Result = user;
                 }
 
@@ -96,54 +95,17 @@ namespace SimpleClinic_View.Patients
             return apiResult;
         }
 
-        public async Task<ApiResult<bool>> ISPatientExist(int PatientID)
-        {
-            var apiResult = new ApiResult<bool>();
 
+        public async Task<ApiResult<AllDoctorsInfoDTO>> AddNewPatientAsync(DoctorsDTO newDoctor)
+        {
+            var apiResult = new ApiResult<AllDoctorsInfoDTO>();
             try
             {
-
-                var response = await _httpClient.GetAsync($"IsExist/{PatientID}");
-                if (response.IsSuccessStatusCode)
-                {
-                    apiResult.Status = ApiResponseStatus.Success;
-                    apiResult.Result = true;
-                    apiResult.IsSuccess = true;
-                }
-                else
-                {
-                    apiResult.IsSuccess = false;
-                    apiResult.Result = false;
-                    apiResult.Status = response.StatusCode switch
-                    {
-                        System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
-                        System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
-                        _ => ApiResponseStatus.ServerError,
-                    };
-                }
-                apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
-
-            }
-            catch (Exception ex)
-            {
-                Logger logger = new Logger(LoggingMethod.EventLogger);
-                logger.Log($"User Error: {ex.Message}");
-            }
-            return apiResult;
-        }
-
-
-
-        public async Task<ApiResult<AllPatientInfoDTO>> AddNewPatientAsync(PatientDTO newPatient)
-        {
-            var apiResult = new ApiResult<AllPatientInfoDTO>();
-            try
-            {
-                var response = await _httpClient.PostAsJsonAsync("Add", newPatient);
+                var response = await _httpClient.PostAsJsonAsync("Add", newDoctor);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    apiResult.Result = await response.Content.ReadFromJsonAsync<AllPatientInfoDTO>();
+                    apiResult.Result = await response.Content.ReadFromJsonAsync<AllDoctorsInfoDTO>();
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
 
@@ -249,18 +211,3 @@ namespace SimpleClinic_View.Patients
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

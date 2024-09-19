@@ -41,6 +41,7 @@
             colDateOFBirth = new DataGridViewTextBoxColumn();
             colGender = new DataGridViewTextBoxColumn();
             colAdress = new DataGridViewTextBoxColumn();
+            colPersonID = new DataGridViewTextBoxColumn();
             contextMenuStrip2 = new ContextMenuStrip(components);
             ShowDetailesToolStripMenuItem = new ToolStripMenuItem();
             AddNewToolStripMenuItem = new ToolStripMenuItem();
@@ -116,7 +117,7 @@
             dgvListAllPatients.AllowUserToOrderColumns = true;
             dgvListAllPatients.BackgroundColor = Color.White;
             dgvListAllPatients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvListAllPatients.Columns.AddRange(new DataGridViewColumn[] { colPatientID, colName, colPhone, colEmail, colDateOFBirth, colGender, colAdress });
+            dgvListAllPatients.Columns.AddRange(new DataGridViewColumn[] { colPatientID, colName, colPhone, colEmail, colDateOFBirth, colGender, colAdress, colPersonID });
             dgvListAllPatients.ContextMenuStrip = contextMenuStrip2;
             dgvListAllPatients.Location = new Point(52, 351);
             dgvListAllPatients.Name = "dgvListAllPatients";
@@ -181,18 +182,26 @@
             colAdress.ReadOnly = true;
             colAdress.Width = 150;
             // 
+            // colPersonID
+            // 
+            colPersonID.HeaderText = "Person ID";
+            colPersonID.MinimumWidth = 8;
+            colPersonID.Name = "colPersonID";
+            colPersonID.ReadOnly = true;
+            colPersonID.Width = 150;
+            // 
             // contextMenuStrip2
             // 
             contextMenuStrip2.ImageScalingSize = new Size(24, 24);
             contextMenuStrip2.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, doAppoitmentToolStripMenuItem });
             contextMenuStrip2.Name = "contextMenuStrip1";
-            contextMenuStrip2.Size = new Size(230, 164);
+            contextMenuStrip2.Size = new Size(249, 197);
             // 
             // ShowDetailesToolStripMenuItem
             // 
             ShowDetailesToolStripMenuItem.Image = Properties.Resources.Add_Person_40;
             ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
-            ShowDetailesToolStripMenuItem.Size = new Size(229, 32);
+            ShowDetailesToolStripMenuItem.Size = new Size(248, 32);
             ShowDetailesToolStripMenuItem.Text = "Show Details";
             ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
             // 
@@ -200,14 +209,15 @@
             // 
             AddNewToolStripMenuItem.Image = Properties.Resources.Edit_User_32;
             AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
-            AddNewToolStripMenuItem.Size = new Size(229, 32);
+            AddNewToolStripMenuItem.Size = new Size(248, 32);
             AddNewToolStripMenuItem.Text = "Add new Patient";
+            AddNewToolStripMenuItem.Click += AddNewToolStripMenuItem_Click;
             // 
             // EditToolStripMenuItem
             // 
             EditToolStripMenuItem.Image = Properties.Resources.Delete_User_32;
             EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            EditToolStripMenuItem.Size = new Size(229, 32);
+            EditToolStripMenuItem.Size = new Size(248, 32);
             EditToolStripMenuItem.Text = "Edit Info";
             EditToolStripMenuItem.Click += EditToolStripMenuItem_Click;
             // 
@@ -215,13 +225,14 @@
             // 
             deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(229, 32);
+            deleteToolStripMenuItem1.Size = new Size(248, 32);
             deleteToolStripMenuItem1.Text = "Delete";
+            deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // doAppoitmentToolStripMenuItem
             // 
             doAppoitmentToolStripMenuItem.Name = "doAppoitmentToolStripMenuItem";
-            doAppoitmentToolStripMenuItem.Size = new Size(229, 32);
+            doAppoitmentToolStripMenuItem.Size = new Size(248, 32);
             doAppoitmentToolStripMenuItem.Text = "Do Appoitment";
             // 
             // label1
@@ -332,13 +343,6 @@
         private DataGridView dgvListAllPatients;
         private Label label1;
         private PictureBox pbManagePeople;
-        private DataGridViewTextBoxColumn colPatientID;
-        private DataGridViewTextBoxColumn colName;
-        private DataGridViewTextBoxColumn colPhone;
-        private DataGridViewTextBoxColumn colEmail;
-        private DataGridViewTextBoxColumn colDateOFBirth;
-        private DataGridViewTextBoxColumn colGender;
-        private DataGridViewTextBoxColumn colAdress;
         private ContextMenuStrip contextMenuStrip2;
         private ToolStripMenuItem ShowDetailesToolStripMenuItem;
         private ToolStripMenuItem AddNewToolStripMenuItem;
@@ -353,5 +357,13 @@
         private ToolStripMenuItem toolStripMenuItem5;
         private ToolStripMenuItem toolStripMenuItem6;
         private ToolStripMenuItem toolStripMenuItem7;
+        private DataGridViewTextBoxColumn colPatientID;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn colPhone;
+        private DataGridViewTextBoxColumn colEmail;
+        private DataGridViewTextBoxColumn colDateOFBirth;
+        private DataGridViewTextBoxColumn colGender;
+        private DataGridViewTextBoxColumn colAdress;
+        private DataGridViewTextBoxColumn colPersonID;
     }
 }

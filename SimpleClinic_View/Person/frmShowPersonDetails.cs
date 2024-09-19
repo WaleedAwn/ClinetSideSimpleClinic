@@ -28,7 +28,6 @@ namespace SimpleClinic_View
 
                 this.Close();
             }
-
             ctrlPersonCard1._LoadPersonData(_personID);
 
         }
