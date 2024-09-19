@@ -37,7 +37,7 @@ namespace SimpleClinic_View.Controls
         {
             get
             {
-                return _personId;
+               return ctrlPersonCard1.PersonId;
             }
         }
 
@@ -85,7 +85,7 @@ namespace SimpleClinic_View.Controls
         public void LoadPersonInfo(int PersonID)
         {
 
-            cbPersonFilters.SelectedIndex = 1;
+            cbPersonFilters.SelectedIndex = 0;
             txtSearch.Text = PersonID.ToString();
             FindNow();
 
@@ -113,7 +113,6 @@ namespace SimpleClinic_View.Controls
                 // Raise the event with a parameter
                 OnPersonSelected(ctrlPersonCard1.PersonId);
         }
-
 
         private async void btnFind_Click(object sender, EventArgs e)
         {
@@ -164,6 +163,11 @@ namespace SimpleClinic_View.Controls
             }
             else
                 epPersonFilter.SetError(txtSearch, null);
+        }
+
+        public void FilterFocus()
+        {
+            txtSearch.Focus();    
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)

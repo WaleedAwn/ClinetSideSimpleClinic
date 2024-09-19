@@ -49,20 +49,24 @@
             txtSearch = new TextBox();
             label3 = new Label();
             cbFilter = new ComboBox();
+            btnAddNew = new PictureBox();
+            changePasswordToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListAllUsers).BeginInit();
             cmsUserMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnAddNew).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 18F);
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            label1.ForeColor = Color.Red;
             label1.Location = new Point(398, 118);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(208, 36);
+            label1.Size = new Size(216, 41);
             label1.TabIndex = 3;
             label1.Text = "Manage Users";
             // 
@@ -139,16 +143,16 @@
             // cmsUserMenu
             // 
             cmsUserMenu.ImageScalingSize = new Size(24, 24);
-            cmsUserMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1 });
+            cmsUserMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, changePasswordToolStripMenuItem });
             cmsUserMenu.Name = "contextMenuStrip1";
-            cmsUserMenu.Size = new Size(187, 156);
+            cmsUserMenu.Size = new Size(227, 222);
             // 
             // ShowDetailesToolStripMenuItem
             // 
             ShowDetailesToolStripMenuItem.Image = (Image)resources.GetObject("ShowDetailesToolStripMenuItem.Image");
             ShowDetailesToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
-            ShowDetailesToolStripMenuItem.Size = new Size(186, 38);
+            ShowDetailesToolStripMenuItem.Size = new Size(226, 38);
             ShowDetailesToolStripMenuItem.Text = "Show Details";
             ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
             // 
@@ -157,24 +161,27 @@
             AddNewToolStripMenuItem.Image = (Image)resources.GetObject("AddNewToolStripMenuItem.Image");
             AddNewToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
-            AddNewToolStripMenuItem.Size = new Size(186, 38);
+            AddNewToolStripMenuItem.Size = new Size(226, 38);
             AddNewToolStripMenuItem.Text = "Add new User";
+            AddNewToolStripMenuItem.Click += AddNewToolStripMenuItem_Click;
             // 
             // EditToolStripMenuItem
             // 
             EditToolStripMenuItem.Image = (Image)resources.GetObject("EditToolStripMenuItem.Image");
             EditToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            EditToolStripMenuItem.Size = new Size(186, 38);
+            EditToolStripMenuItem.Size = new Size(226, 38);
             EditToolStripMenuItem.Text = "Edit User";
+            EditToolStripMenuItem.Click += EditToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem1
             // 
             deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
             deleteToolStripMenuItem1.ImageScaling = ToolStripItemImageScaling.None;
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(186, 38);
+            deleteToolStripMenuItem1.Size = new Size(226, 38);
             deleteToolStripMenuItem1.Text = "Delete";
+            deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // btnClose
             // 
@@ -243,12 +250,35 @@
             cbFilter.Size = new Size(179, 36);
             cbFilter.TabIndex = 14;
             // 
+            // btnAddNew
+            // 
+            btnAddNew.BackgroundImage = Properties.Resources.Add_Person_40;
+            btnAddNew.BackgroundImageLayout = ImageLayout.Zoom;
+            btnAddNew.BorderStyle = BorderStyle.FixedSingle;
+            btnAddNew.Location = new Point(796, 158);
+            btnAddNew.Margin = new Padding(2);
+            btnAddNew.Name = "btnAddNew";
+            btnAddNew.Size = new Size(73, 60);
+            btnAddNew.TabIndex = 15;
+            btnAddNew.TabStop = false;
+            btnAddNew.Click += btnAddNew_Click;
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            changePasswordToolStripMenuItem.Image = (Image)resources.GetObject("changePasswordToolStripMenuItem.Image");
+            changePasswordToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            changePasswordToolStripMenuItem.Size = new Size(226, 38);
+            changePasswordToolStripMenuItem.Text = "Change Password";
+            changePasswordToolStripMenuItem.Click += changePasswordToolStripMenuItem_Click;
+            // 
             // frmManageUsers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(876, 532);
+            Controls.Add(btnAddNew);
             Controls.Add(cbFilter);
             Controls.Add(label3);
             Controls.Add(txtSearch);
@@ -260,12 +290,14 @@
             Controls.Add(pbManagePeople);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "frmManageUsers";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Manage Users";
             Load += frmManageUsers_Load;
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvListAllUsers).EndInit();
             cmsUserMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnAddNew).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -291,5 +323,7 @@
         private ToolStripMenuItem AddNewToolStripMenuItem;
         private ToolStripMenuItem EditToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem1;
+        private PictureBox btnAddNew;
+        private ToolStripMenuItem changePasswordToolStripMenuItem;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditUser));
             tcUserInfo = new TabControl();
             tpPersonInfo = new TabPage();
@@ -39,15 +40,17 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            textBox3 = new TextBox();
+            txtConfirmPassword = new TextBox();
             txtPassword = new TextBox();
             txtUserName = new TextBox();
             lblMode = new Label();
             btnClose = new Button();
             btnSave = new Button();
+            errorProvider1 = new ErrorProvider(components);
             tcUserInfo.SuspendLayout();
             tpPersonInfo.SuspendLayout();
             tpUserInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // tcUserInfo
@@ -86,14 +89,17 @@
             btnNext.TabIndex = 12;
             btnNext.Text = "Next";
             btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
             // 
             // ctrlPersonCardWithFilter1
             // 
             ctrlPersonCardWithFilter1.BackColor = Color.White;
+            ctrlPersonCardWithFilter1.FilterEnabled = true;
             ctrlPersonCardWithFilter1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ctrlPersonCardWithFilter1.Location = new Point(2, 37);
             ctrlPersonCardWithFilter1.Margin = new Padding(2);
             ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
+            ctrlPersonCardWithFilter1.ShowAddPerson = true;
             ctrlPersonCardWithFilter1.Size = new Size(721, 342);
             ctrlPersonCardWithFilter1.TabIndex = 0;
             // 
@@ -104,7 +110,7 @@
             tpUserInfo.Controls.Add(label3);
             tpUserInfo.Controls.Add(label2);
             tpUserInfo.Controls.Add(label1);
-            tpUserInfo.Controls.Add(textBox3);
+            tpUserInfo.Controls.Add(txtConfirmPassword);
             tpUserInfo.Controls.Add(txtPassword);
             tpUserInfo.Controls.Add(txtUserName);
             tpUserInfo.Location = new Point(4, 37);
@@ -160,19 +166,23 @@
             label1.TabIndex = 3;
             label1.Text = "User Name:";
             // 
-            // textBox3
+            // txtConfirmPassword
             // 
-            textBox3.Location = new Point(227, 245);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(194, 34);
-            textBox3.TabIndex = 2;
+            txtConfirmPassword.Location = new Point(227, 245);
+            txtConfirmPassword.Name = "txtConfirmPassword";
+            txtConfirmPassword.PasswordChar = '*';
+            txtConfirmPassword.Size = new Size(194, 34);
+            txtConfirmPassword.TabIndex = 2;
+            txtConfirmPassword.Validating += txtConfirmPassword_Validating;
             // 
             // txtPassword
             // 
             txtPassword.Location = new Point(227, 191);
             txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(194, 34);
             txtPassword.TabIndex = 1;
+            txtPassword.Validating += txtPassword_Validating;
             // 
             // txtUserName
             // 
@@ -180,15 +190,17 @@
             txtUserName.Name = "txtUserName";
             txtUserName.Size = new Size(194, 34);
             txtUserName.TabIndex = 0;
+            txtUserName.Validating += txtUserName_Validating;
             // 
             // lblMode
             // 
             lblMode.AutoSize = true;
-            lblMode.Font = new Font("Microsoft Sans Serif", 18F);
+            lblMode.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMode.ForeColor = Color.Red;
             lblMode.Location = new Point(362, 29);
             lblMode.Margin = new Padding(2, 0, 2, 0);
             lblMode.Name = "lblMode";
-            lblMode.Size = new Size(209, 36);
+            lblMode.Size = new Size(220, 41);
             lblMode.TabIndex = 5;
             lblMode.Text = "Add New User";
             // 
@@ -205,10 +217,12 @@
             btnClose.TabIndex = 10;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
             // 
             // btnSave
             // 
             btnSave.BackColor = Color.White;
+            btnSave.Enabled = false;
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Image = Properties.Resources.Close_32;
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
@@ -219,6 +233,11 @@
             btnSave.TabIndex = 11;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // frmAddEditUser
             // 
@@ -230,12 +249,17 @@
             Controls.Add(btnClose);
             Controls.Add(lblMode);
             Controls.Add(tcUserInfo);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "frmAddEditUser";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAddEditUser";
+            Activated += frmAddEditUser_Activated;
+            Load += frmAddEditUser_Load;
             tcUserInfo.ResumeLayout(false);
             tpPersonInfo.ResumeLayout(false);
             tpUserInfo.ResumeLayout(false);
             tpUserInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -248,7 +272,7 @@
         private SimpleClinic_View.Controls.ctrlPersonCardWithFilter ctrlPersonCardWithFilter1;
         private Label lblMode;
         private Button btnNext;
-        private TextBox textBox3;
+        private TextBox txtConfirmPassword;
         private TextBox txtPassword;
         private TextBox txtUserName;
         private Button btnClose;
@@ -258,5 +282,6 @@
         private Label label3;
         private Label label2;
         private Label label1;
+        private ErrorProvider errorProvider1;
     }
 }

@@ -56,7 +56,7 @@ namespace SimpleClinic_View
                 return;
             }
             _Mode = enMode.Update;
-          _personDto = await _personService.Find(_PersonID);
+            _personDto = await _personService.Find(_PersonID);
 
             if (_personDto.Result == null)
             {

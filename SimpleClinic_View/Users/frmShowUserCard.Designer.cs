@@ -44,6 +44,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 18F);
+            label1.ForeColor = Color.FromArgb(192, 0, 0);
             label1.Location = new Point(272, 9);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
@@ -77,6 +78,7 @@
             Controls.Add(ctrlUserCard1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "frmShowUserCard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmShowUserCard";
             Load += frmShowUserCard_Load;
             ResumeLayout(false);
