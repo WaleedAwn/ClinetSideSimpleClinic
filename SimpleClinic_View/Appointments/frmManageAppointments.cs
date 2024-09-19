@@ -139,6 +139,11 @@ namespace SimpleClinic_View.Appointments
             lblCounter.Text = dgvListAllAppointments.Rows.Count.ToString();
 
         }
-    
+
+        private void txtFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbFilterBy.SelectedIndex == 1 || cbFilterBy.SelectedIndex == 2 || cbFilterBy.SelectedIndex == 4 || cbFilterBy.SelectedIndex == 7 || cbFilterBy.SelectedIndex == 8)
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
     }
 }

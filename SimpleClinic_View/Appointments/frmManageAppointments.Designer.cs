@@ -84,6 +84,7 @@
             txtFilter.TabIndex = 22;
             txtFilter.Visible = false;
             txtFilter.TextChanged += txtFilter_TextChanged;
+            txtFilter.KeyPress += txtFilter_KeyPress;
             // 
             // lblCounter
             // 

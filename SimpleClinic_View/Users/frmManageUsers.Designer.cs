@@ -34,23 +34,19 @@
             pbManagePeople = new PictureBox();
             panel1 = new Panel();
             dgvListAllUsers = new DataGridView();
-            colUserId = new DataGridViewTextBoxColumn();
-            colPersonId = new DataGridViewTextBoxColumn();
-            colFullName = new DataGridViewTextBoxColumn();
-            colUserName = new DataGridViewTextBoxColumn();
             cmsUserMenu = new ContextMenuStrip(components);
             ShowDetailesToolStripMenuItem = new ToolStripMenuItem();
             AddNewToolStripMenuItem = new ToolStripMenuItem();
             EditToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem1 = new ToolStripMenuItem();
+            changePasswordToolStripMenuItem = new ToolStripMenuItem();
             btnClose = new Button();
             lblCounter = new Label();
             label2 = new Label();
-            txtSearch = new TextBox();
+            txtFilter = new TextBox();
             label3 = new Label();
-            cbFilter = new ComboBox();
+            cbFilterBy = new ComboBox();
             btnAddNew = new PictureBox();
-            changePasswordToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListAllUsers).BeginInit();
@@ -96,9 +92,9 @@
             dgvListAllUsers.AllowUserToAddRows = false;
             dgvListAllUsers.AllowUserToDeleteRows = false;
             dgvListAllUsers.AllowUserToOrderColumns = true;
+            dgvListAllUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvListAllUsers.BackgroundColor = Color.White;
             dgvListAllUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvListAllUsers.Columns.AddRange(new DataGridViewColumn[] { colUserId, colPersonId, colFullName, colUserName });
             dgvListAllUsers.ContextMenuStrip = cmsUserMenu;
             dgvListAllUsers.Dock = DockStyle.Fill;
             dgvListAllUsers.Location = new Point(0, 0);
@@ -108,51 +104,19 @@
             dgvListAllUsers.Size = new Size(868, 264);
             dgvListAllUsers.TabIndex = 0;
             // 
-            // colUserId
-            // 
-            colUserId.HeaderText = "User Id";
-            colUserId.MinimumWidth = 6;
-            colUserId.Name = "colUserId";
-            colUserId.ReadOnly = true;
-            colUserId.Width = 125;
-            // 
-            // colPersonId
-            // 
-            colPersonId.HeaderText = "Person Id";
-            colPersonId.MinimumWidth = 6;
-            colPersonId.Name = "colPersonId";
-            colPersonId.ReadOnly = true;
-            colPersonId.Width = 125;
-            // 
-            // colFullName
-            // 
-            colFullName.HeaderText = "Full Name";
-            colFullName.MinimumWidth = 6;
-            colFullName.Name = "colFullName";
-            colFullName.ReadOnly = true;
-            colFullName.Width = 300;
-            // 
-            // colUserName
-            // 
-            colUserName.HeaderText = "UserName";
-            colUserName.MinimumWidth = 6;
-            colUserName.Name = "colUserName";
-            colUserName.ReadOnly = true;
-            colUserName.Width = 125;
-            // 
             // cmsUserMenu
             // 
             cmsUserMenu.ImageScalingSize = new Size(24, 24);
             cmsUserMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, changePasswordToolStripMenuItem });
             cmsUserMenu.Name = "contextMenuStrip1";
-            cmsUserMenu.Size = new Size(227, 222);
+            cmsUserMenu.Size = new Size(210, 194);
             // 
             // ShowDetailesToolStripMenuItem
             // 
             ShowDetailesToolStripMenuItem.Image = (Image)resources.GetObject("ShowDetailesToolStripMenuItem.Image");
             ShowDetailesToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
-            ShowDetailesToolStripMenuItem.Size = new Size(226, 38);
+            ShowDetailesToolStripMenuItem.Size = new Size(209, 38);
             ShowDetailesToolStripMenuItem.Text = "Show Details";
             ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
             // 
@@ -161,7 +125,7 @@
             AddNewToolStripMenuItem.Image = (Image)resources.GetObject("AddNewToolStripMenuItem.Image");
             AddNewToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
-            AddNewToolStripMenuItem.Size = new Size(226, 38);
+            AddNewToolStripMenuItem.Size = new Size(209, 38);
             AddNewToolStripMenuItem.Text = "Add new User";
             AddNewToolStripMenuItem.Click += AddNewToolStripMenuItem_Click;
             // 
@@ -170,7 +134,7 @@
             EditToolStripMenuItem.Image = (Image)resources.GetObject("EditToolStripMenuItem.Image");
             EditToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            EditToolStripMenuItem.Size = new Size(226, 38);
+            EditToolStripMenuItem.Size = new Size(209, 38);
             EditToolStripMenuItem.Text = "Edit User";
             EditToolStripMenuItem.Click += EditToolStripMenuItem_Click;
             // 
@@ -179,9 +143,18 @@
             deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
             deleteToolStripMenuItem1.ImageScaling = ToolStripItemImageScaling.None;
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(226, 38);
+            deleteToolStripMenuItem1.Size = new Size(209, 38);
             deleteToolStripMenuItem1.Text = "Delete";
             deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            changePasswordToolStripMenuItem.Image = (Image)resources.GetObject("changePasswordToolStripMenuItem.Image");
+            changePasswordToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            changePasswordToolStripMenuItem.Size = new Size(209, 38);
+            changePasswordToolStripMenuItem.Text = "Change Password";
+            changePasswordToolStripMenuItem.Click += changePasswordToolStripMenuItem_Click;
             // 
             // btnClose
             // 
@@ -221,34 +194,38 @@
             label2.TabIndex = 10;
             label2.Text = "# Records:";
             // 
-            // txtSearch
+            // txtFilter
             // 
-            txtSearch.Font = new Font("Segoe UI", 12F);
-            txtSearch.Location = new Point(266, 176);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(211, 34);
-            txtSearch.TabIndex = 12;
-            txtSearch.Visible = false;
+            txtFilter.Font = new Font("Segoe UI", 12F);
+            txtFilter.Location = new Point(266, 178);
+            txtFilter.Name = "txtFilter";
+            txtFilter.Size = new Size(211, 34);
+            txtFilter.TabIndex = 12;
+            txtFilter.Visible = false;
+            txtFilter.TextChanged += txtFilter_TextChanged;
+            txtFilter.KeyPress += txtFilter_KeyPress;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(12, 184);
             label3.Name = "label3";
-            label3.Size = new Size(60, 28);
+            label3.Size = new Size(67, 28);
             label3.TabIndex = 13;
             label3.Text = "Filter:";
             // 
-            // cbFilter
+            // cbFilterBy
             // 
-            cbFilter.Font = new Font("Segoe UI", 12F);
-            cbFilter.FormattingEnabled = true;
-            cbFilter.Items.AddRange(new object[] { "None", "User Id", "Person Id", "Full Name", "UserName" });
-            cbFilter.Location = new Point(78, 176);
-            cbFilter.Name = "cbFilter";
-            cbFilter.Size = new Size(179, 36);
-            cbFilter.TabIndex = 14;
+            cbFilterBy.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbFilterBy.Font = new Font("Segoe UI", 12F);
+            cbFilterBy.FormattingEnabled = true;
+            cbFilterBy.Items.AddRange(new object[] { "None", "User Id", "Person Id", "Full Name", "User Name" });
+            cbFilterBy.Location = new Point(78, 176);
+            cbFilterBy.Name = "cbFilterBy";
+            cbFilterBy.Size = new Size(179, 36);
+            cbFilterBy.TabIndex = 14;
+            cbFilterBy.SelectedIndexChanged += cbFilterBy_SelectedIndexChanged;
             // 
             // btnAddNew
             // 
@@ -263,15 +240,6 @@
             btnAddNew.TabStop = false;
             btnAddNew.Click += btnAddNew_Click;
             // 
-            // changePasswordToolStripMenuItem
-            // 
-            changePasswordToolStripMenuItem.Image = (Image)resources.GetObject("changePasswordToolStripMenuItem.Image");
-            changePasswordToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
-            changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            changePasswordToolStripMenuItem.Size = new Size(226, 38);
-            changePasswordToolStripMenuItem.Text = "Change Password";
-            changePasswordToolStripMenuItem.Click += changePasswordToolStripMenuItem_Click;
-            // 
             // frmManageUsers
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -279,9 +247,9 @@
             BackColor = Color.White;
             ClientSize = new Size(876, 532);
             Controls.Add(btnAddNew);
-            Controls.Add(cbFilter);
+            Controls.Add(cbFilterBy);
             Controls.Add(label3);
-            Controls.Add(txtSearch);
+            Controls.Add(txtFilter);
             Controls.Add(lblCounter);
             Controls.Add(label2);
             Controls.Add(btnClose);
@@ -308,16 +276,12 @@
         private PictureBox pbManagePeople;
         private Panel panel1;
         private DataGridView dgvListAllUsers;
-        private DataGridViewTextBoxColumn colUserId;
-        private DataGridViewTextBoxColumn colPersonId;
-        private DataGridViewTextBoxColumn colFullName;
-        private DataGridViewTextBoxColumn colUserName;
         private Button btnClose;
         private Label lblCounter;
         private Label label2;
-        private TextBox txtSearch;
+        private TextBox txtFilter;
         private Label label3;
-        private ComboBox cbFilter;
+        private ComboBox cbFilterBy;
         private ContextMenuStrip cmsUserMenu;
         private ToolStripMenuItem ShowDetailesToolStripMenuItem;
         private ToolStripMenuItem AddNewToolStripMenuItem;
