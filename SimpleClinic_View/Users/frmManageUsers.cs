@@ -25,6 +25,7 @@ namespace SimpleClinic_View.Users
         {
             dgvListAllUsers.Rows.Clear();
             var userList = await _userServices.GetAllUsers();
+            
             if (userList.Result.Count > 0)
                 lblCounter.Text = userList.Result.Count.ToString();
 
