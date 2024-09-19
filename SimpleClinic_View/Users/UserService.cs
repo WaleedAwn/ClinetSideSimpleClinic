@@ -121,46 +121,7 @@ namespace SimpleClinic_View.Users
         {
             return await StatFind(Id);
 
-            //var apiResult = new ApiResult<AllUserDTO>();
-
-            //try
-            //{
-
-            //    var response = await _httpClient.GetAsync($"Find/Id={Id}");
-
-            //    if (response.IsSuccessStatusCode)
-            //    {
-            //        apiResult.IsSuccess = true;
-            //        apiResult.Status = ApiResponseStatus.Success;
-                    
-            //        var user = await response.Content.ReadFromJsonAsync<AllUserDTO>();
-            //        apiResult.Result = user;
-                    
-
-            //    }
-                
-            //    else
-            //    {
-            //        apiResult.IsSuccess = false;
-            //        apiResult.Status = response.StatusCode switch
-            //        {
-            //            System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
-            //            System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
-            //            _=> ApiResponseStatus.ServerError,
-            //        };
-            //        // if there any message in the body will be stored in ErrorMessage
-            //        apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
-
-            //    }
-                
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    Logger loger = new Logger(LoggingMethod.EventLogger);
-            //    loger.Log($"User Error:{ex.Message}");
-            //}
-            //return apiResult;
+            
         }       
         
         public static async Task<UserService> StatFind(int Id)
