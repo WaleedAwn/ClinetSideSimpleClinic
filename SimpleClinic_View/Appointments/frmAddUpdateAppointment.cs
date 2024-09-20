@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SimpleClinic_View
+namespace SimpleClinic_View.Appointments
 {
-    public partial class frmTest : Form
+    public partial class frmAddUpdateAppointment : Form
     {
-        public frmTest()
+        public frmAddUpdateAppointment()
         {
             InitializeComponent();
         }
