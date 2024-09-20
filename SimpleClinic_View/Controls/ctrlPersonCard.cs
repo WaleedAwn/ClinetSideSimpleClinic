@@ -44,6 +44,7 @@ namespace SimpleClinic_View.Controls
         }
         public async void _LoadPersonData(int _PersonID)
         {
+            MessageBox.Show($"{_PersonID}");
              _apiResult = await PersonApiClient.StatFind(_PersonID);
 
             if (!_apiResult.IsSuccess)

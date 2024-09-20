@@ -136,9 +136,10 @@ namespace SimpleClinic_View.Controls
         private void AddNewPerson_DataBack(object sender, int PersonID)
         {
             cbPersonFilters.SelectedIndex = 0;
-            txtSearch.Text = PersonId.ToString();
+            _personId = PersonID;
+            txtSearch.Text = _personId.ToString();
             cbPersonFilters.Focus();
-            ctrlPersonCard1._LoadPersonData(PersonId);
+            ctrlPersonCard1._LoadPersonData(_personId);
         }
 
         private void ctrlPersonCardWithFilter_Load(object sender, EventArgs e)
