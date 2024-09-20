@@ -61,9 +61,10 @@
             // 
             pbManagePeople.BackColor = Color.Transparent;
             pbManagePeople.Image = Properties.Resources.People_400;
-            pbManagePeople.Location = new Point(677, 12);
+            pbManagePeople.Location = new Point(492, 10);
+            pbManagePeople.Margin = new Padding(2, 2, 2, 2);
             pbManagePeople.Name = "pbManagePeople";
-            pbManagePeople.Size = new Size(279, 162);
+            pbManagePeople.Size = new Size(203, 130);
             pbManagePeople.SizeMode = PictureBoxSizeMode.Zoom;
             pbManagePeople.TabIndex = 0;
             pbManagePeople.TabStop = false;
@@ -72,9 +73,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 18F);
-            label1.Location = new Point(677, 177);
+            label1.Location = new Point(492, 142);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(269, 40);
+            label1.Size = new Size(223, 36);
             label1.TabIndex = 1;
             label1.Text = "Manage People";
             // 
@@ -87,11 +89,12 @@
             dgvListAllPeople.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListAllPeople.Columns.AddRange(new DataGridViewColumn[] { colPersonID, colName, colPhone, colEmail, colDateOFBirth, colGender, colAdress });
             dgvListAllPeople.ContextMenuStrip = contextMenuStrip1;
-            dgvListAllPeople.Location = new Point(12, 261);
+            dgvListAllPeople.Location = new Point(9, 209);
+            dgvListAllPeople.Margin = new Padding(2, 2, 2, 2);
             dgvListAllPeople.Name = "dgvListAllPeople";
             dgvListAllPeople.ReadOnly = true;
             dgvListAllPeople.RowHeadersWidth = 62;
-            dgvListAllPeople.Size = new Size(1578, 405);
+            dgvListAllPeople.Size = new Size(1148, 324);
             dgvListAllPeople.TabIndex = 2;
             // 
             // colPersonID
@@ -155,13 +158,13 @@
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, doAppoitmentToolStripMenuItem, addASPatientToolStripMenuItem, addASDoctorToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(229, 228);
+            contextMenuStrip1.Size = new Size(193, 214);
             // 
             // ShowDetailesToolStripMenuItem
             // 
             ShowDetailesToolStripMenuItem.Image = Properties.Resources.Add_Person_40;
             ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
-            ShowDetailesToolStripMenuItem.Size = new Size(228, 32);
+            ShowDetailesToolStripMenuItem.Size = new Size(192, 30);
             ShowDetailesToolStripMenuItem.Text = "Show Details";
             ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
             // 
@@ -169,7 +172,7 @@
             // 
             AddNewToolStripMenuItem.Image = Properties.Resources.Edit_User_32;
             AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
-            AddNewToolStripMenuItem.Size = new Size(228, 32);
+            AddNewToolStripMenuItem.Size = new Size(192, 30);
             AddNewToolStripMenuItem.Text = "Add new Person";
             AddNewToolStripMenuItem.Click += AddNewToolStripMenuItem_Click;
             // 
@@ -177,7 +180,7 @@
             // 
             EditToolStripMenuItem.Image = Properties.Resources.Delete_User_32;
             EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            EditToolStripMenuItem.Size = new Size(228, 32);
+            EditToolStripMenuItem.Size = new Size(192, 30);
             EditToolStripMenuItem.Text = "Edit Info";
             EditToolStripMenuItem.Click += EditToolStripMenuItem_Click;
             // 
@@ -185,38 +188,37 @@
             // 
             deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(228, 32);
+            deleteToolStripMenuItem1.Size = new Size(192, 30);
             deleteToolStripMenuItem1.Text = "Delete";
             deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // doAppoitmentToolStripMenuItem
             // 
             doAppoitmentToolStripMenuItem.Name = "doAppoitmentToolStripMenuItem";
-            doAppoitmentToolStripMenuItem.Size = new Size(228, 32);
+            doAppoitmentToolStripMenuItem.Size = new Size(192, 30);
             doAppoitmentToolStripMenuItem.Text = "Do Appoitment";
             // 
             // addASPatientToolStripMenuItem
             // 
             addASPatientToolStripMenuItem.Name = "addASPatientToolStripMenuItem";
-            addASPatientToolStripMenuItem.Size = new Size(228, 32);
+            addASPatientToolStripMenuItem.Size = new Size(192, 30);
             addASPatientToolStripMenuItem.Text = "Add AS Patient";
-            addASPatientToolStripMenuItem.Click += addASPatientToolStripMenuItem_Click;
             // 
             // addASDoctorToolStripMenuItem
             // 
             addASDoctorToolStripMenuItem.Name = "addASDoctorToolStripMenuItem";
-            addASDoctorToolStripMenuItem.Size = new Size(228, 32);
+            addASDoctorToolStripMenuItem.Size = new Size(192, 30);
             addASDoctorToolStripMenuItem.Text = "Add AS Doctor";
-            addASDoctorToolStripMenuItem.Click += addASDoctorToolStripMenuItem_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(22, 231);
+            label2.Location = new Point(16, 185);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(96, 20);
+            label2.Size = new Size(82, 16);
             label2.TabIndex = 4;
             label2.Text = "# Records:";
             // 
@@ -224,9 +226,10 @@
             // 
             lblCounter.AutoSize = true;
             lblCounter.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
-            lblCounter.Location = new Point(113, 231);
+            lblCounter.Location = new Point(82, 185);
+            lblCounter.Margin = new Padding(2, 0, 2, 0);
             lblCounter.Name = "lblCounter";
-            lblCounter.Size = new Size(19, 20);
+            lblCounter.Size = new Size(15, 16);
             lblCounter.TabIndex = 6;
             lblCounter.Text = "0";
             // 
@@ -235,9 +238,10 @@
             btnAddNew.BackgroundImage = Properties.Resources.Add_Person_40;
             btnAddNew.BackgroundImageLayout = ImageLayout.Zoom;
             btnAddNew.BorderStyle = BorderStyle.FixedSingle;
-            btnAddNew.Location = new Point(1490, 177);
+            btnAddNew.Location = new Point(1084, 142);
+            btnAddNew.Margin = new Padding(2, 2, 2, 2);
             btnAddNew.Name = "btnAddNew";
-            btnAddNew.Size = new Size(100, 74);
+            btnAddNew.Size = new Size(73, 60);
             btnAddNew.TabIndex = 7;
             btnAddNew.TabStop = false;
             btnAddNew.Click += btnAddNew_Click;
@@ -246,9 +250,10 @@
             // 
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(1451, 672);
+            btnClose.Location = new Point(1055, 538);
+            btnClose.Margin = new Padding(2, 2, 2, 2);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(139, 53);
+            btnClose.Size = new Size(101, 42);
             btnClose.TabIndex = 8;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
@@ -256,9 +261,9 @@
             // 
             // frmListAllPeople
             // 
-            AutoScaleDimensions = new SizeF(11F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1610, 741);
+            ClientSize = new Size(1171, 593);
             Controls.Add(btnClose);
             Controls.Add(btnAddNew);
             Controls.Add(lblCounter);
@@ -266,7 +271,9 @@
             Controls.Add(dgvListAllPeople);
             Controls.Add(label1);
             Controls.Add(pbManagePeople);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "frmListAllPeople";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Manage All People";
             Load += frmListAllPeople_Load;
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).EndInit();

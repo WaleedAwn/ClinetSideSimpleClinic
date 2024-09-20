@@ -1,11 +1,32 @@
 ﻿using SimpleClinic_View.Globals;
 using SimpleClinic_View.Person;
 using SimpleClinic_View.Person.DTOs;
+using SimpleClinic_View.Globals.Validation;
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics.Contracts;
+using System.Diagnostics.Eventing.Reader;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SimpleClinic_View
 {
     public partial class frmAddEditPersoninfo : Form
     {
+
+        // Declare a delegate
+        public delegate void DataBackEventHandler(object sender, int PersonID);
+
+        // Declare an event using the delegate
+        public event DataBackEventHandler DataBack;
+
+
         private PersonApiClient _personService;
         private ApiResult<PersonsDTO> _personDto;
         public enum enMode { AddNew = 0, Update = 1 };
@@ -22,7 +43,7 @@ namespace SimpleClinic_View
                 _Mode = enMode.Update;
         }
 
-
+      
 
         public async void _LoadData()
         {
@@ -48,16 +69,16 @@ namespace SimpleClinic_View
             lblAddEditPersonTitel.Text = "Edit Person Info ";
 
             lbPersonID.Text = _personDto.Result.Id.ToString();
-            tbName.Text   = _personDto.Result.PersonName.ToString();
+            tbName.Text = _personDto.Result.PersonName.ToString();
             tbPhoneNumber.Text = _personDto.Result.PhoneNumber.ToString();
-            tbEmail.Text   = _personDto.Result.Email.ToString();
+            tbEmail.Text = _personDto.Result.Email.ToString();
             tbAdress.Text = _personDto.Result.Address.ToString();
             dtpDateOFBirth.Text = formattedDateOfBirth.ToString();
-            cbgender.Text     = _personDto.Result.Gender.ToString();
+            cbgender.Text = _personDto.Result.Gender.ToString();
 
         }
-
-
+       
+        
         private void frmAddEditPersoninfo_Load(object sender, EventArgs e)
         {
             _LoadData();
@@ -65,7 +86,7 @@ namespace SimpleClinic_View
 
         private PersonsDTO SetPersonData()
         {
-            PersonsDTO person = new PersonsDTO();
+            PersonsDTO person=new PersonsDTO();
             person.PersonName = tbName.Text;
             person.PhoneNumber = tbPhoneNumber.Text;
             person.Email = tbEmail.Text;
@@ -80,64 +101,65 @@ namespace SimpleClinic_View
                 person.Gender = "F";
 
             }
-          
-            
             person.Address = tbAdress.Text;
             person.DateOfBirth = dtpDateOFBirth.Value;
-
-            return person;
-
+        
+        return person;
+        
 
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
 
-            _personDto.Result = SetPersonData();
+               _personDto.Result = SetPersonData();
 
             //if (Validation.ValidateAllPersonInfo(_personDto.Result))
             //{
             MessageBox.Show($"{_personDto.Result.PersonName}");
+               
 
-
-            if (_Mode == enMode.AddNew)
-            {
-                //  var isExist = await _personService.ISPersonExist(_personDto.Result.Id);
-
-
-                //if (isExist.IsSuccess)
-                //{
-                var NewPersonInfo = await _personService.AddNewPerson(_personDto.Result);
-                if (NewPersonInfo.IsSuccess)
+                if (_Mode == enMode.AddNew)
                 {
-                    MessageBox.Show("Data Saved Successfully", "Saved", MessageBoxButtons.OK);
-                    MessageBox.Show($"New Person ID {NewPersonInfo.Result.Id}  ", "Saved", MessageBoxButtons.OK);
+              //  var isExist = await _personService.ISPersonExist(_personDto.Result.Id);
+                  
+                
+                    //if (isExist.IsSuccess)
+                    //{
+                       var NewPersonInfo = await _personService.AddNewPerson(_personDto.Result);
+                        if (NewPersonInfo.IsSuccess)
+                        {
+                            DataBack?.Invoke(this, NewPersonInfo.Result.Id); // firing the event 
+
+                            MessageBox.Show("Data Saved Successfully", "Saved", MessageBoxButtons.OK);
+
+                            MessageBox.Show($"New Person ID {NewPersonInfo.Result.Id}  ","Saved", MessageBoxButtons.OK);
+
+                        }
+                        else
+                            MessageBox.Show("Error: Person is Not  Saved ", "Error", MessageBoxButtons.OK);
+                    //}
+                    //else { 
+                    
+                    //        MessageBox.Show("Error: this Person is found before Insert New One ", "Error", MessageBoxButtons.OK);
+
+                    //}
 
                 }
-                else
-                    MessageBox.Show("Error: Person is Not  Saved ", "Error", MessageBoxButtons.OK);
-                //}
-                //else { 
 
-                //        MessageBox.Show("Error: this Person is found before Insert New One ", "Error", MessageBoxButtons.OK);
-
-                //}
-
-            }
-
-            else if (_Mode == enMode.Update)
-            {
-                _personDto.Result.Id = _PersonID;
+               else if (_Mode == enMode.Update)
+                {
+                    _personDto.Result.Id = _PersonID;
                 var isUpdated = await _personService.UpdatePersonInfo(_personDto.Result.Id, _personDto.Result);
-
+                   
                 if (isUpdated.IsSuccess)
                 {
-                    MessageBox.Show("Data Updated Successfully", "Saved", MessageBoxButtons.OK);
+                        MessageBox.Show("Data Updated Successfully", "Saved", MessageBoxButtons.OK);
                 }
-                else
-                    MessageBox.Show("Error: Person is Not  Updated ", "Error", MessageBoxButtons.OK);
+                    else
+                        MessageBox.Show("Error: Person is Not  Updated ", "Error", MessageBoxButtons.OK);
 
-            }
+                }
 
 
             //}
@@ -150,7 +172,7 @@ namespace SimpleClinic_View
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+              this.Close();
         }
     }
 }

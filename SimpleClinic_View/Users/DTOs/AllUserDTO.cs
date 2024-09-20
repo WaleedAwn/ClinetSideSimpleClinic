@@ -21,7 +21,10 @@ namespace SimpleClinic_View.Users.DTOs
             Name = name;
             PersonId = personId;
         }
-
+        public AllUserDTO()
+        {
+            
+        }
 
 
     }

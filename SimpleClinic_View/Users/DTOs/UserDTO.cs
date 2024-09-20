@@ -19,5 +19,9 @@ namespace SimpleClinic_View.Users.DTOs
             Password = password;
             PersonId = personId;
         }
+        public UserDTO()
+        {
+            
+        }
     }
 }
