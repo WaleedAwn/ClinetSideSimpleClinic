@@ -16,7 +16,7 @@ namespace SimpleClinic_View
 {
     public partial class frmListAllPeople : Form
     {
-        private  PersonApiClient _personService;
+        private PersonApiClient _personService;
 
         public frmListAllPeople()
         {
@@ -64,10 +64,7 @@ namespace SimpleClinic_View
 
 
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+
 
         private void ShowDetailesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -113,6 +110,25 @@ namespace SimpleClinic_View
 
             }
 
+
+        }
+
+        private void addASPatientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Form frm = new frmAddEditPatientinfo((int)dgvListAllPeople.CurrentRow.Cells[0].Value,"add");
+            //frm.ShowDialog();
+           MessageBox.Show("Add Person As Patient Will be here ");
+              
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void addASDoctorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Add Person As Doctor Will be here ");
 
         }
     }

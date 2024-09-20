@@ -127,6 +127,7 @@ namespace SimpleClinic_View
                     //if (isExist.IsSuccess)
                     //{
                        var NewPersonInfo = await _personService.AddNewPerson(_personDto.Result);
+
                         if (NewPersonInfo.IsSuccess)
                         {
                             DataBack?.Invoke(this, NewPersonInfo.Result.Id); // firing the event 

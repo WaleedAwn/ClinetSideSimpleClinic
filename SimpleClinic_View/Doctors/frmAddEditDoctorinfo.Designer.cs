@@ -1,6 +1,6 @@
-﻿namespace SimpleClinic_View
+﻿namespace SimpleClinic_View.Doctors
 {
-    partial class frmAddEditPatientinfo
+    partial class frmAddEditDoctorinfo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditPatientinfo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditDoctorinfo));
+            lbPersonID = new Label();
+            label9 = new Label();
             btnSave = new Button();
             btnClose = new Button();
             panel1 = new Panel();
+            pictureBox3 = new PictureBox();
+            txbSpecialization = new TextBox();
+            label8 = new Label();
             pbDateOfBirth = new PictureBox();
             tbAdress = new TextBox();
             dtpDateOFBirth = new DateTimePicker();
@@ -51,11 +56,10 @@
             label4 = new Label();
             label5 = new Label();
             lblAddEditPatientTitel = new Label();
-            lbPatientID = new Label();
+            lbDoctorID = new Label();
             label1 = new Label();
-            lbPersonID = new Label();
-            label9 = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbDateOfBirth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -64,14 +68,34 @@
             ((System.ComponentModel.ISupportInitialize)pbGender).BeginInit();
             SuspendLayout();
             // 
+            // lbPersonID
+            // 
+            lbPersonID.AutoSize = true;
+            lbPersonID.Font = new Font("Microsoft Sans Serif", 12F);
+            lbPersonID.Location = new Point(186, 47);
+            lbPersonID.Name = "lbPersonID";
+            lbPersonID.Size = new Size(75, 29);
+            lbPersonID.TabIndex = 48;
+            lbPersonID.Text = "[????]";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            label9.Location = new Point(53, 47);
+            label9.Name = "label9";
+            label9.Size = new Size(142, 29);
+            label9.TabIndex = 47;
+            label9.Text = "Person ID :";
+            // 
             // btnSave
             // 
             btnSave.Image = (Image)resources.GetObject("btnSave.Image");
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(1058, 436);
+            btnSave.Location = new Point(1070, 462);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(139, 53);
-            btnSave.TabIndex = 38;
+            btnSave.TabIndex = 46;
             btnSave.Text = "Save ";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
@@ -80,16 +104,19 @@
             // 
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(891, 436);
+            btnClose.Location = new Point(903, 462);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(139, 53);
-            btnClose.TabIndex = 37;
+            btnClose.TabIndex = 45;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             // 
             // panel1
             // 
+            panel1.Controls.Add(pictureBox3);
+            panel1.Controls.Add(txbSpecialization);
+            panel1.Controls.Add(label8);
             panel1.Controls.Add(pbDateOfBirth);
             panel1.Controls.Add(tbAdress);
             panel1.Controls.Add(dtpDateOFBirth);
@@ -108,10 +135,38 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label5);
-            panel1.Location = new Point(41, 115);
+            panel1.Location = new Point(53, 141);
             panel1.Name = "panel1";
             panel1.Size = new Size(1126, 301);
-            panel1.TabIndex = 36;
+            panel1.TabIndex = 44;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(721, 44);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(44, 38);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.TabIndex = 45;
+            pictureBox3.TabStop = false;
+            // 
+            // txbSpecialization
+            // 
+            txbSpecialization.BackColor = Color.White;
+            txbSpecialization.Location = new Point(778, 47);
+            txbSpecialization.Name = "txbSpecialization";
+            txbSpecialization.Size = new Size(254, 33);
+            txbSpecialization.TabIndex = 44;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            label8.Location = new Point(513, 41);
+            label8.Name = "label8";
+            label8.Size = new Size(191, 29);
+            label8.TabIndex = 43;
+            label8.Text = "Specialization :";
             // 
             // pbDateOfBirth
             // 
@@ -287,70 +342,51 @@
             lblAddEditPatientTitel.AutoSize = true;
             lblAddEditPatientTitel.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAddEditPatientTitel.ForeColor = Color.Red;
-            lblAddEditPatientTitel.Location = new Point(462, 21);
+            lblAddEditPatientTitel.Location = new Point(474, 47);
             lblAddEditPatientTitel.Name = "lblAddEditPatientTitel";
-            lblAddEditPatientTitel.Size = new Size(274, 45);
-            lblAddEditPatientTitel.TabIndex = 33;
-            lblAddEditPatientTitel.Text = "Add New Patient";
+            lblAddEditPatientTitel.Size = new Size(273, 45);
+            lblAddEditPatientTitel.TabIndex = 41;
+            lblAddEditPatientTitel.Text = "Add New Doctor";
             // 
-            // lbPatientID
+            // lbDoctorID
             // 
-            lbPatientID.AutoSize = true;
-            lbPatientID.Font = new Font("Microsoft Sans Serif", 12F);
-            lbPatientID.Location = new Point(174, 66);
-            lbPatientID.Name = "lbPatientID";
-            lbPatientID.Size = new Size(75, 29);
-            lbPatientID.TabIndex = 35;
-            lbPatientID.Text = "[????]";
+            lbDoctorID.AutoSize = true;
+            lbDoctorID.Font = new Font("Microsoft Sans Serif", 12F);
+            lbDoctorID.Location = new Point(186, 92);
+            lbDoctorID.Name = "lbDoctorID";
+            lbDoctorID.Size = new Size(75, 29);
+            lbDoctorID.TabIndex = 43;
+            lbDoctorID.Text = "[????]";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label1.Location = new Point(41, 66);
+            label1.Location = new Point(53, 92);
             label1.Name = "label1";
-            label1.Size = new Size(140, 29);
-            label1.TabIndex = 34;
-            label1.Text = "Patient ID :";
+            label1.Size = new Size(136, 29);
+            label1.TabIndex = 42;
+            label1.Text = "Doctor ID :";
             // 
-            // lbPersonID
-            // 
-            lbPersonID.AutoSize = true;
-            lbPersonID.Font = new Font("Microsoft Sans Serif", 12F);
-            lbPersonID.Location = new Point(174, 21);
-            lbPersonID.Name = "lbPersonID";
-            lbPersonID.Size = new Size(75, 29);
-            lbPersonID.TabIndex = 40;
-            lbPersonID.Text = "[????]";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label9.Location = new Point(41, 21);
-            label9.Name = "label9";
-            label9.Size = new Size(142, 29);
-            label9.TabIndex = 39;
-            label9.Text = "Person ID :";
-            // 
-            // frmAddEditPatientinfo
+            // frmAddEditDoctorinfo
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1228, 532);
+            ClientSize = new Size(1260, 535);
             Controls.Add(lbPersonID);
             Controls.Add(label9);
             Controls.Add(btnSave);
             Controls.Add(btnClose);
             Controls.Add(panel1);
             Controls.Add(lblAddEditPatientTitel);
-            Controls.Add(lbPatientID);
+            Controls.Add(lbDoctorID);
             Controls.Add(label1);
-            Name = "frmAddEditPatientinfo";
-            Text = "frmAddEditPatientinfo";
-            Load += frmAddEditPatientinfo_Load;
+            Name = "frmAddEditDoctorinfo";
+            Text = "frmAddEditDoctorinfo";
+            Load += frmAddEditDoctorinfo_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbDateOfBirth).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -363,9 +399,14 @@
 
         #endregion
 
+        private Label lbPersonID;
+        private Label label9;
         private Button btnSave;
         private Button btnClose;
         private Panel panel1;
+        private PictureBox pictureBox3;
+        private TextBox txbSpecialization;
+        private Label label8;
         private PictureBox pbDateOfBirth;
         private TextBox tbAdress;
         private DateTimePicker dtpDateOFBirth;
@@ -385,9 +426,7 @@
         private Label label4;
         private Label label5;
         private Label lblAddEditPatientTitel;
-        private Label lbPatientID;
+        private Label lbDoctorID;
         private Label label1;
-        private Label lbPersonID;
-        private Label label9;
     }
 }

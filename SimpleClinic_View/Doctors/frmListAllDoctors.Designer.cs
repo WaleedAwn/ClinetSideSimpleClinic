@@ -1,6 +1,6 @@
-﻿namespace SimpleClinic_View
+﻿namespace SimpleClinic_View.Doctors
 {
-    partial class frmListAllPatients
+    partial class frmListAllDoctors
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            btnClose = new Button();
-            btnAddNewpatient = new PictureBox();
+            btnAddNewDoctor = new PictureBox();
             lblCounter = new Label();
             label2 = new Label();
-            dgvListAllPatients = new DataGridView();
+            dgvListAllDoctors = new DataGridView();
             colPatientID = new DataGridViewTextBoxColumn();
+            colSpesialization = new DataGridViewTextBoxColumn();
             colName = new DataGridViewTextBoxColumn();
             colPhone = new DataGridViewTextBoxColumn();
             colEmail = new DataGridViewTextBoxColumn();
@@ -50,53 +50,33 @@
             doAppoitmentToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             pbManagePeople = new PictureBox();
-            contextMenuStrip3 = new ContextMenuStrip(components);
-            toolStripMenuItem1 = new ToolStripMenuItem();
-            toolStripMenuItem2 = new ToolStripMenuItem();
-            toolStripMenuItem3 = new ToolStripMenuItem();
-            toolStripMenuItem4 = new ToolStripMenuItem();
-            toolStripMenuItem5 = new ToolStripMenuItem();
-            toolStripMenuItem6 = new ToolStripMenuItem();
-            toolStripMenuItem7 = new ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)btnAddNewpatient).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dgvListAllPatients).BeginInit();
+            btnClose = new Button();
+            ((System.ComponentModel.ISupportInitialize)btnAddNewDoctor).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvListAllDoctors).BeginInit();
             contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).BeginInit();
-            contextMenuStrip3.SuspendLayout();
             SuspendLayout();
             // 
-            // btnClose
+            // btnAddNewDoctor
             // 
-            btnClose.Image = Properties.Resources.Close_32;
-            btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(1491, 762);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(139, 53);
-            btnClose.TabIndex = 15;
-            btnClose.Text = "Close";
-            btnClose.UseVisualStyleBackColor = true;
-            btnClose.Click += btnClose_Click;
-            // 
-            // btnAddNewpatient
-            // 
-            btnAddNewpatient.BackgroundImage = Properties.Resources.Add_Person_40;
-            btnAddNewpatient.BackgroundImageLayout = ImageLayout.Zoom;
-            btnAddNewpatient.BorderStyle = BorderStyle.FixedSingle;
-            btnAddNewpatient.Location = new Point(1530, 267);
-            btnAddNewpatient.Name = "btnAddNewpatient";
-            btnAddNewpatient.Size = new Size(100, 74);
-            btnAddNewpatient.TabIndex = 14;
-            btnAddNewpatient.TabStop = false;
-            btnAddNewpatient.Click += btnAddNewpatient_Click;
+            btnAddNewDoctor.BackgroundImage = Properties.Resources.Add_Person_40;
+            btnAddNewDoctor.BackgroundImageLayout = ImageLayout.Zoom;
+            btnAddNewDoctor.BorderStyle = BorderStyle.FixedSingle;
+            btnAddNewDoctor.Location = new Point(1484, 257);
+            btnAddNewDoctor.Name = "btnAddNewDoctor";
+            btnAddNewDoctor.Size = new Size(100, 74);
+            btnAddNewDoctor.TabIndex = 20;
+            btnAddNewDoctor.TabStop = false;
+            btnAddNewDoctor.Click += btnAddNewDoctor_Click;
             // 
             // lblCounter
             // 
             lblCounter.AutoSize = true;
             lblCounter.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
-            lblCounter.Location = new Point(153, 321);
+            lblCounter.Location = new Point(108, 301);
             lblCounter.Name = "lblCounter";
             lblCounter.Size = new Size(19, 20);
-            lblCounter.TabIndex = 13;
+            lblCounter.TabIndex = 19;
             lblCounter.Text = "0";
             // 
             // label2
@@ -104,27 +84,27 @@
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(62, 321);
+            label2.Location = new Point(6, 301);
             label2.Name = "label2";
             label2.Size = new Size(96, 20);
-            label2.TabIndex = 12;
+            label2.TabIndex = 18;
             label2.Text = "# Records:";
             // 
-            // dgvListAllPatients
+            // dgvListAllDoctors
             // 
-            dgvListAllPatients.AllowUserToAddRows = false;
-            dgvListAllPatients.AllowUserToDeleteRows = false;
-            dgvListAllPatients.AllowUserToOrderColumns = true;
-            dgvListAllPatients.BackgroundColor = Color.White;
-            dgvListAllPatients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvListAllPatients.Columns.AddRange(new DataGridViewColumn[] { colPatientID, colName, colPhone, colEmail, colDateOFBirth, colGender, colAdress, colPersonID });
-            dgvListAllPatients.ContextMenuStrip = contextMenuStrip2;
-            dgvListAllPatients.Location = new Point(52, 351);
-            dgvListAllPatients.Name = "dgvListAllPatients";
-            dgvListAllPatients.ReadOnly = true;
-            dgvListAllPatients.RowHeadersWidth = 62;
-            dgvListAllPatients.Size = new Size(1578, 405);
-            dgvListAllPatients.TabIndex = 11;
+            dgvListAllDoctors.AllowUserToAddRows = false;
+            dgvListAllDoctors.AllowUserToDeleteRows = false;
+            dgvListAllDoctors.AllowUserToOrderColumns = true;
+            dgvListAllDoctors.BackgroundColor = Color.White;
+            dgvListAllDoctors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvListAllDoctors.Columns.AddRange(new DataGridViewColumn[] { colPatientID, colSpesialization, colName, colPhone, colEmail, colDateOFBirth, colGender, colAdress, colPersonID });
+            dgvListAllDoctors.ContextMenuStrip = contextMenuStrip2;
+            dgvListAllDoctors.Location = new Point(6, 341);
+            dgvListAllDoctors.Name = "dgvListAllDoctors";
+            dgvListAllDoctors.ReadOnly = true;
+            dgvListAllDoctors.RowHeadersWidth = 62;
+            dgvListAllDoctors.Size = new Size(1578, 405);
+            dgvListAllDoctors.TabIndex = 17;
             // 
             // colPatientID
             // 
@@ -133,6 +113,14 @@
             colPatientID.Name = "colPatientID";
             colPatientID.ReadOnly = true;
             colPatientID.Width = 150;
+            // 
+            // colSpesialization
+            // 
+            colSpesialization.HeaderText = "Spesalization";
+            colSpesialization.MinimumWidth = 8;
+            colSpesialization.Name = "colSpesialization";
+            colSpesialization.ReadOnly = true;
+            colSpesialization.Width = 150;
             // 
             // colName
             // 
@@ -195,13 +183,13 @@
             contextMenuStrip2.ImageScalingSize = new Size(24, 24);
             contextMenuStrip2.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, doAppoitmentToolStripMenuItem });
             contextMenuStrip2.Name = "contextMenuStrip1";
-            contextMenuStrip2.Size = new Size(249, 197);
+            contextMenuStrip2.Size = new Size(229, 164);
             // 
             // ShowDetailesToolStripMenuItem
             // 
             ShowDetailesToolStripMenuItem.Image = Properties.Resources.Add_Person_40;
             ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
-            ShowDetailesToolStripMenuItem.Size = new Size(248, 32);
+            ShowDetailesToolStripMenuItem.Size = new Size(228, 32);
             ShowDetailesToolStripMenuItem.Text = "Show Details";
             ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
             // 
@@ -209,15 +197,15 @@
             // 
             AddNewToolStripMenuItem.Image = Properties.Resources.Edit_User_32;
             AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
-            AddNewToolStripMenuItem.Size = new Size(248, 32);
-            AddNewToolStripMenuItem.Text = "Add new Patient";
+            AddNewToolStripMenuItem.Size = new Size(228, 32);
+            AddNewToolStripMenuItem.Text = "Add new Doctor";
             AddNewToolStripMenuItem.Click += AddNewToolStripMenuItem_Click;
             // 
             // EditToolStripMenuItem
             // 
             EditToolStripMenuItem.Image = Properties.Resources.Delete_User_32;
             EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            EditToolStripMenuItem.Size = new Size(248, 32);
+            EditToolStripMenuItem.Size = new Size(228, 32);
             EditToolStripMenuItem.Text = "Edit Info";
             EditToolStripMenuItem.Click += EditToolStripMenuItem_Click;
             // 
@@ -225,139 +213,82 @@
             // 
             deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(248, 32);
+            deleteToolStripMenuItem1.Size = new Size(228, 32);
             deleteToolStripMenuItem1.Text = "Delete";
             deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // doAppoitmentToolStripMenuItem
             // 
             doAppoitmentToolStripMenuItem.Name = "doAppoitmentToolStripMenuItem";
-            doAppoitmentToolStripMenuItem.Size = new Size(248, 32);
+            doAppoitmentToolStripMenuItem.Size = new Size(228, 32);
             doAppoitmentToolStripMenuItem.Text = "Do Appoitment";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 18F);
-            label1.Location = new Point(685, 202);
+            label1.Location = new Point(639, 192);
             label1.Name = "label1";
-            label1.Size = new Size(287, 40);
-            label1.TabIndex = 10;
-            label1.Text = "Manage Patients";
+            label1.Size = new Size(281, 40);
+            label1.TabIndex = 16;
+            label1.Text = "Manage Doctors";
             // 
             // pbManagePeople
             // 
             pbManagePeople.BackColor = Color.Transparent;
             pbManagePeople.Image = Properties.Resources.People_400;
-            pbManagePeople.Location = new Point(685, 22);
+            pbManagePeople.Location = new Point(639, 12);
             pbManagePeople.Name = "pbManagePeople";
             pbManagePeople.Size = new Size(279, 162);
             pbManagePeople.SizeMode = PictureBoxSizeMode.Zoom;
-            pbManagePeople.TabIndex = 9;
+            pbManagePeople.TabIndex = 15;
             pbManagePeople.TabStop = false;
             // 
-            // contextMenuStrip3
+            // btnClose
             // 
-            contextMenuStrip3.ImageScalingSize = new Size(24, 24);
-            contextMenuStrip3.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2, toolStripMenuItem3, toolStripMenuItem4, toolStripMenuItem5, toolStripMenuItem6, toolStripMenuItem7 });
-            contextMenuStrip3.Name = "contextMenuStrip1";
-            contextMenuStrip3.Size = new Size(229, 228);
+            btnClose.Image = Properties.Resources.Close_32;
+            btnClose.ImageAlign = ContentAlignment.MiddleLeft;
+            btnClose.Location = new Point(1445, 766);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(139, 53);
+            btnClose.TabIndex = 21;
+            btnClose.Text = "Close";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Image = Properties.Resources.Add_Person_40;
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(228, 32);
-            toolStripMenuItem1.Text = "Show Details";
-            // 
-            // toolStripMenuItem2
-            // 
-            toolStripMenuItem2.Image = Properties.Resources.Edit_User_32;
-            toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(228, 32);
-            toolStripMenuItem2.Text = "Add new Person";
-            // 
-            // toolStripMenuItem3
-            // 
-            toolStripMenuItem3.Image = Properties.Resources.Delete_User_32;
-            toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(228, 32);
-            toolStripMenuItem3.Text = "Edit Info";
-            // 
-            // toolStripMenuItem4
-            // 
-            toolStripMenuItem4.Image = Properties.Resources.Delete_User_32;
-            toolStripMenuItem4.Name = "toolStripMenuItem4";
-            toolStripMenuItem4.Size = new Size(228, 32);
-            toolStripMenuItem4.Text = "Delete";
-            // 
-            // toolStripMenuItem5
-            // 
-            toolStripMenuItem5.Name = "toolStripMenuItem5";
-            toolStripMenuItem5.Size = new Size(228, 32);
-            toolStripMenuItem5.Text = "Do Appoitment";
-            // 
-            // toolStripMenuItem6
-            // 
-            toolStripMenuItem6.Name = "toolStripMenuItem6";
-            toolStripMenuItem6.Size = new Size(228, 32);
-            toolStripMenuItem6.Text = "Add AS Patient";
-            // 
-            // toolStripMenuItem7
-            // 
-            toolStripMenuItem7.Name = "toolStripMenuItem7";
-            toolStripMenuItem7.Size = new Size(228, 32);
-            toolStripMenuItem7.Text = "Add AS Doctor";
-            // 
-            // frmListAllPatients
+            // frmListAllDoctors
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1682, 917);
+            ClientSize = new Size(1630, 831);
             Controls.Add(btnClose);
-            Controls.Add(btnAddNewpatient);
+            Controls.Add(btnAddNewDoctor);
             Controls.Add(lblCounter);
             Controls.Add(label2);
-            Controls.Add(dgvListAllPatients);
+            Controls.Add(dgvListAllDoctors);
             Controls.Add(label1);
             Controls.Add(pbManagePeople);
-            Name = "frmListAllPatients";
-            SizeGripStyle = SizeGripStyle.Show;
-            Text = "frmListAllPatients";
-            Load += frmListAllPatients_Load;
-            ((System.ComponentModel.ISupportInitialize)btnAddNewpatient).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dgvListAllPatients).EndInit();
+            Name = "frmListAllDoctors";
+            Text = "frmListAllDoctors";
+            Load += frmListAllDoctors_Load;
+            ((System.ComponentModel.ISupportInitialize)btnAddNewDoctor).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvListAllDoctors).EndInit();
             contextMenuStrip2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).EndInit();
-            contextMenuStrip3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button btnClose;
-        private PictureBox btnAddNewpatient;
+        private PictureBox btnAddNewDoctor;
         private Label lblCounter;
         private Label label2;
-        private DataGridView dgvListAllPatients;
+        private DataGridView dgvListAllDoctors;
         private Label label1;
         private PictureBox pbManagePeople;
-        private ContextMenuStrip contextMenuStrip2;
-        private ToolStripMenuItem ShowDetailesToolStripMenuItem;
-        private ToolStripMenuItem AddNewToolStripMenuItem;
-        private ToolStripMenuItem EditToolStripMenuItem;
-        private ToolStripMenuItem deleteToolStripMenuItem1;
-        private ToolStripMenuItem doAppoitmentToolStripMenuItem;
-        private ContextMenuStrip contextMenuStrip3;
-        private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem toolStripMenuItem3;
-        private ToolStripMenuItem toolStripMenuItem4;
-        private ToolStripMenuItem toolStripMenuItem5;
-        private ToolStripMenuItem toolStripMenuItem6;
-        private ToolStripMenuItem toolStripMenuItem7;
         private DataGridViewTextBoxColumn colPatientID;
+        private DataGridViewTextBoxColumn colSpesialization;
         private DataGridViewTextBoxColumn colName;
         private DataGridViewTextBoxColumn colPhone;
         private DataGridViewTextBoxColumn colEmail;
@@ -365,5 +296,12 @@
         private DataGridViewTextBoxColumn colGender;
         private DataGridViewTextBoxColumn colAdress;
         private DataGridViewTextBoxColumn colPersonID;
+        private ContextMenuStrip contextMenuStrip2;
+        private ToolStripMenuItem ShowDetailesToolStripMenuItem;
+        private ToolStripMenuItem AddNewToolStripMenuItem;
+        private ToolStripMenuItem EditToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem1;
+        private ToolStripMenuItem doAppoitmentToolStripMenuItem;
+        private Button btnClose;
     }
 }
