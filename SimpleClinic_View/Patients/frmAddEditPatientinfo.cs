@@ -1,66 +1,4 @@
-﻿//using SimpleClinic_View.Patients;
-//using SimpleClinic_View.Patients.DTOs;
-//using SimpleClinic_View.Person.DTOs;
-//using System;
-//using System.Collections.Generic;
-//using System.ComponentModel;
-//using System.Data;
-//using System.Drawing;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using System.Windows.Forms;
-//using System.Xml.Linq;
-
-//namespace SimpleClinic_View
-//{
-//    public partial class frmAddEditPatientinfo : Form
-//    {
-//        private readonly PatientFacade _patientFacade;
-
-//        public enum enMode { AddNew = 0, Update = 1 };
-//        private enMode _Mode;
-//        int _PatientID = -1;
-//        public frmAddEditPatientinfo(int PatientID)
-//        {
-//            _PatientID = PatientID;
-//            _patientFacade = new PatientFacade();
-//            InitializeComponent();
-
-//            if (_PatientID == -1)
-//                _Mode = enMode.AddNew;
-//            else
-//                _Mode = enMode.Update;
-//        }
-
-//        public async void _LoadData()
-//        {
-
-//        }
-
-
-
-//        private void frmAddEditPatientinfo_Load(object sender, EventArgs e)
-//        {
-//            _LoadData();
-
-//        }
-
-
-//        private void btnSave_Click(object sender, EventArgs e)
-//        {
-
-//        }
-
-//        private void btnClose_Click(object sender, EventArgs e)
-//        {
-//            this.Close();
-//        }
-
-
-
-//    }
-//}
+﻿
 using SimpleClinic_View.Globals;
 using SimpleClinic_View.Patients;
 using SimpleClinic_View.Patients.DTOs;
@@ -77,18 +15,27 @@ namespace SimpleClinic_View
         public enum enMode { AddNew = 0, Update = 1 };
         private enMode _Mode;
         int _PatientID = -1;
-
+        string asPatient = "";
         public frmAddEditPatientinfo(int PatientID)
         {
             _PatientID = PatientID;
             _patientFacade = new PatientFacade();
             InitializeComponent();
 
-            
             _Mode = (_PatientID == -1) ? enMode.AddNew : enMode.Update;
         }
+        //public frmAddEditPatientinfo(int PatientID, string asPatient = "non")
+        //{
+        //    _PatientID = PatientID;
+        //    _patientFacade = new PatientFacade();
+        //    InitializeComponent();
 
-      
+
+        //    _Mode = (_PatientID == -1) ? enMode.AddNew : enMode.Update;
+        //    this.asPatient = asPatient;
+        //}
+
+
         public async void _LoadData()
         {
             if (_Mode == enMode.Update)
@@ -112,12 +59,42 @@ namespace SimpleClinic_View
                 {
                     ShowError($"Exception occurred: {ex.Message}");
                 }
+            
+            
             }
+
+            //if (_Mode == enMode.AddNew && asPatient=="add" ) {
+
+            //    lblAddEditPatientTitel.Text = "Add this Person As Patient";
+            //    try
+            //    {
+            //        var patientResult = await _patientFacade.GetPatientAsync(_PatientID);
+
+            //        if (patientResult.IsSuccess && patientResult.Result != null)
+            //        {
+            //            PopulateFields(patientResult.Result);
+            //        }
+            //        else
+            //        {
+            //            ShowError($"Error loading patient data: {patientResult.ErrorMessage}");
+            //            this.Close();
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        ShowError($"Exception occurred: {ex.Message}");
+            //    }
+
+
+            //}
+
+
+
         }
 
         private void PopulateFields(AllPatientInfoDTO patient)
         {
-            lbPersonID.Text=patient.personId.ToString();
+            lbPersonID.Text = patient.personId.ToString();
             lbPatientID.Text = patient.Id.ToString();
 
             tbName.Text = patient.PersonName;
@@ -148,20 +125,19 @@ namespace SimpleClinic_View
 
         string SetGender()
         {
-            if (cbgender.SelectedIndex == 0)
-             return "M";
-            
-            return "F";
-           
+            if (cbgender.SelectedIndex == -1)
+                return ""; // Return empty or add validation if no selection is made
+            return cbgender.SelectedIndex == 0 ? "M" : "F";
         }
-       
+
+
         private async void btnSave_Click(object sender, EventArgs e)
         {
-           
+
             btnSave.Enabled = false;
 
             var personDto = new PersonsDTO();
-             
+
             personDto.PersonName = tbName.Text;
             personDto.DateOfBirth = dtpDateOFBirth.Value;
             personDto.Gender = SetGender();
@@ -171,26 +147,26 @@ namespace SimpleClinic_View
 
             var patientDto = new PatientDTO();
             patientDto.PersonId = personDto.Id;
-           
+
             try
             {
                 ApiResult<AllPatientInfoDTO> result;
-             
+
 
 
                 if (_Mode == enMode.AddNew)
                 {
                     result = await _patientFacade.CreatePatientAsync(personDto, patientDto);
                     _PatientID = result.Result.Id;
-                
+
                 }
                 else if (_Mode == enMode.Update)
                 {
                     personDto.Id = Convert.ToInt32(lbPersonID.Text);
                     result = await _patientFacade.UpdatePatientAsync(_PatientID, personDto, patientDto);
-                  
+
                     MessageBox.Show($"{result.IsSuccess}");
-                
+
                 }
 
                 else
@@ -198,13 +174,13 @@ namespace SimpleClinic_View
                     return;
                 }
 
-                
+
                 if (result.IsSuccess)
                 {
                     MessageBox.Show("Patient information saved successfully.");
-                 
-                    _Mode=enMode.Update;
-                       
+
+                    _Mode = enMode.Update;
+
                     _LoadData();
                 }
                 else
@@ -218,27 +194,29 @@ namespace SimpleClinic_View
             }
             finally
             {
-                
+
                 btnSave.Enabled = true;
             }
         }
+  
 
-      
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-   
+
         private void ShowError(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-       
+
         private void frmAddEditPatientinfo_Load(object sender, EventArgs e)
         {
             _LoadData();
         }
     }
 }
+
+

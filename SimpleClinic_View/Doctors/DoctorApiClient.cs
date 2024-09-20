@@ -96,16 +96,16 @@ namespace SimpleClinic_View.Doctors
         }
 
 
-        public async Task<ApiResult<AllDoctorsInfoDTO>> AddNewPatientAsync(DoctorsDTO newDoctor)
+        public async Task<ApiResult<DoctorsDTO>> AddNewDoctorAsync(DoctorsDTO newDoctor)
         {
-            var apiResult = new ApiResult<AllDoctorsInfoDTO>();
+            var apiResult = new ApiResult<DoctorsDTO>();
             try
             {
                 var response = await _httpClient.PostAsJsonAsync("Add", newDoctor);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    apiResult.Result = await response.Content.ReadFromJsonAsync<AllDoctorsInfoDTO>();
+                    apiResult.Result = await response.Content.ReadFromJsonAsync<DoctorsDTO>();
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
 
@@ -131,20 +131,20 @@ namespace SimpleClinic_View.Doctors
             return apiResult;
         }
 
-        public async Task<ApiResult<PatientDTO>> UpdatePatientInfo(int PatientID, PatientDTO UpdatePatient)
+        public async Task<ApiResult<DoctorsDTO>> UpdateDoctorInfo(int DoctorID, DoctorsDTO UpdateDoctor)
         {
 
 
-            var apiResult = new ApiResult<PatientDTO>();
+            var apiResult = new ApiResult<DoctorsDTO>();
             try
             {
-                var response = await _httpClient.PutAsJsonAsync($"Update/{PatientID}", UpdatePatient);
+                var response = await _httpClient.PutAsJsonAsync($"Update/{DoctorID}", UpdateDoctor);
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    apiResult.Result = await response.Content.ReadFromJsonAsync<PatientDTO>();
+                    apiResult.Result = await response.Content.ReadFromJsonAsync<DoctorsDTO>();
 
                 }
                 else
@@ -172,13 +172,13 @@ namespace SimpleClinic_View.Doctors
             return apiResult;
         }
 
-        public async Task<ApiResult<bool>> DeletePatient(int PatientID)
+        public async Task<ApiResult<bool>> DeleteDoctor(int DoctorId)
         {
             var apiResult = new ApiResult<bool>();
 
             try
             {
-                var response = await _httpClient.DeleteAsync($"Delete/{PatientID}");
+                var response = await _httpClient.DeleteAsync($"Delete/{DoctorId}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -210,4 +210,6 @@ namespace SimpleClinic_View.Doctors
 
 
     }
+
+
 }

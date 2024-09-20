@@ -1,4 +1,5 @@
 
+using SimpleClinic_View.Doctors;
 using SimpleClinic_View.Users;
 namespace SimpleClinic_View
 {
@@ -23,7 +24,13 @@ namespace SimpleClinic_View
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            Form frm =new frmManageUsers();
+            Form frm = new frmManageUsers();
+            frm.ShowDialog();
+        }
+
+        private void btnDoctor_Click(object sender, EventArgs e)
+        {
+            Form frm =new frmListAllDoctors();
             frm.ShowDialog();
         }
     }

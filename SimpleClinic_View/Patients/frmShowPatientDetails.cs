@@ -38,6 +38,8 @@ namespace SimpleClinic_View.Patients
             }
             lbPatientID.Text = _PatientID.ToString();
             ctrlPersonCard1._LoadPersonData(Patient.Result.personId);
+        
+        
         }
 
         private void btnEditInfo_Click(object sender, EventArgs e)

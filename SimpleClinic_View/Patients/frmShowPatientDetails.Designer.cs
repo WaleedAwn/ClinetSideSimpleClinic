@@ -32,13 +32,14 @@
             btnClose = new Button();
             btnEditInfo = new Button();
             lblAddEditPatient = new Label();
-            lbPatientID = new Label();
             label1 = new Label();
+            lbPatientID = new Label();
             SuspendLayout();
             // 
             // ctrlPersonCard1
             // 
             ctrlPersonCard1.Location = new Point(12, 177);
+            ctrlPersonCard1.Margin = new Padding(3, 2, 3, 2);
             ctrlPersonCard1.Name = "ctrlPersonCard1";
             ctrlPersonCard1.Size = new Size(927, 333);
             ctrlPersonCard1.TabIndex = 0;
@@ -77,16 +78,6 @@
             lblAddEditPatient.TabIndex = 12;
             lblAddEditPatient.Text = "Patient Detailes";
             // 
-            // lbPatientID
-            // 
-            lbPatientID.AutoSize = true;
-            lbPatientID.Font = new Font("Microsoft Sans Serif", 12F);
-            lbPatientID.Location = new Point(145, 109);
-            lbPatientID.Name = "lbPatientID";
-            lbPatientID.Size = new Size(75, 29);
-            lbPatientID.TabIndex = 37;
-            lbPatientID.Text = "[????]";
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -96,6 +87,16 @@
             label1.Size = new Size(140, 29);
             label1.TabIndex = 36;
             label1.Text = "Patient ID :";
+            // 
+            // lbPatientID
+            // 
+            lbPatientID.AutoSize = true;
+            lbPatientID.Font = new Font("Microsoft Sans Serif", 12F);
+            lbPatientID.Location = new Point(145, 109);
+            lbPatientID.Name = "lbPatientID";
+            lbPatientID.Size = new Size(75, 29);
+            lbPatientID.TabIndex = 37;
+            lbPatientID.Text = "[????]";
             // 
             // frmShowPatientDetails
             // 
@@ -121,7 +122,7 @@
         private Button btnClose;
         private Button btnEditInfo;
         private Label lblAddEditPatient;
-        private Label lbPatientID;
         private Label label1;
+        private Label lbPatientID;
     }
 }

@@ -10,6 +10,10 @@ namespace SimpleClinic_View.Doctors.DTOs
 
     public class DoctorsDTO
     {
+        public DoctorsDTO()
+        {
+            
+        }
         public DoctorsDTO(int id, int Personid, string specialization)
         {
             this.Id = id;
