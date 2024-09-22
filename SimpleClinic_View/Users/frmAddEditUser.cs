@@ -100,6 +100,7 @@ namespace SimpleClinic_View.Users
             txtPassword.Text = _apiResult.Result.Password;
             txtConfirmPassword.Text = _apiResult.Result.Password;
             ctrlPersonCardWithFilter1.LoadPersonInfo(_apiResult.Result.PersonId);
+            
 
         }
 
@@ -197,7 +198,7 @@ namespace SimpleClinic_View.Users
 
         private async void btnNext_Click(object sender, EventArgs e)
         {
-            if (_Mode == enMode.Update)
+            if(_Mode == enMode.Update)
             {
                 btnSave.Enabled = true;
                 tpUserInfo.Enabled = true;
@@ -205,7 +206,8 @@ namespace SimpleClinic_View.Users
                 return;
             }
 
-            //incase of add new mode.
+            // Incase of add new mode.
+
             if (ctrlPersonCardWithFilter1.PersonId != -1)
             {
 

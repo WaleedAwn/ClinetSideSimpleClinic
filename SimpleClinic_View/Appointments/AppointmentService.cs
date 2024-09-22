@@ -63,6 +63,7 @@ namespace SimpleClinic_View.Appointments
 
             }
         }
+        
         private int _appointmentId = -1;
 
         public int AppointmentId

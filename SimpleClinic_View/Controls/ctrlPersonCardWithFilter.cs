@@ -55,6 +55,13 @@ namespace SimpleClinic_View.Controls
                return ctrlPersonCard1.PersonId;
             }
         }
+        public int PatientId
+        {
+            get
+            {
+                return ctrlPersonCard1.PatientId;
+            }
+        }
 
         private bool _ShowAddPerson = true;
         public bool ShowAddPerson
