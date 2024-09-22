@@ -44,6 +44,9 @@ namespace SimpleClinic_View.Users
         {
             //this will initialize the reset the defaule values
 
+            // deleting the PatientId filter from the combo box 
+            ctrlPersonCardWithFilter1.DeleteItemFromFilter(1);
+
             if (_Mode == enMode.AddNew)
             {
                 lblMode.Text = "Add New User";

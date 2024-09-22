@@ -99,7 +99,7 @@
             // 
             cbPersonFilters.DropDownStyle = ComboBoxStyle.DropDownList;
             cbPersonFilters.FormattingEnabled = true;
-            cbPersonFilters.Items.AddRange(new object[] { "Person ID", "National No" });
+            cbPersonFilters.Items.AddRange(new object[] { "Person ID", "Patient ID", "National No" });
             cbPersonFilters.Location = new Point(150, 32);
             cbPersonFilters.Margin = new Padding(2);
             cbPersonFilters.Name = "cbPersonFilters";

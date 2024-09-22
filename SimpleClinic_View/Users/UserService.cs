@@ -1,5 +1,4 @@
 ﻿using SimpleClinic_View.Globals;
-using SimpleClinic_View.Logging;
 using SimpleClinic_View.Users.DTOs;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
+using SimpleClinic_View.Patients.Logging;
 
 namespace SimpleClinic_View.Users
 {

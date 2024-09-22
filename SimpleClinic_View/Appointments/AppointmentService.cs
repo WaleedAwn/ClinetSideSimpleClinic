@@ -1,5 +1,4 @@
 ﻿using SimpleClinic_View.Globals;
-using SimpleClinic_View.Logging;
 using SimpleClinic_View.Appointments.DTOs;
 using SimpleClinic_View.Appointments;
 using System;
@@ -9,6 +8,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleClinic_View.Appointments.DTOs;
+using SimpleClinic_View.Patients.Logging;
 
 namespace SimpleClinic_View.Appointments
 {

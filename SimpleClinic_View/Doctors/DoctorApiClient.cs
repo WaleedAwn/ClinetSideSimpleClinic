@@ -1,7 +1,7 @@
 ﻿using SimpleClinic_View.Doctors.DTOs;
 using SimpleClinic_View.Globals;
-using SimpleClinic_View.Logging;
 using SimpleClinic_View.Patients.DTOs;
+using SimpleClinic_View.Patients.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
