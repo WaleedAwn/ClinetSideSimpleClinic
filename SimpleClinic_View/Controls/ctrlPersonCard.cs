@@ -60,9 +60,9 @@ namespace SimpleClinic_View.Controls
         }
         public async Task _LoadPersonData(int personId)
         {
+            _PatientId = -1;
             _FindPatient = false;
-            //MessageBox.Show($"{personId}");
-             _apiResult = await PersonApiClient.StatFind(personId);
+            _apiResult = await PersonApiClient.StatFind(personId);
 
             if(!_apiResult.IsSuccess)
             {
