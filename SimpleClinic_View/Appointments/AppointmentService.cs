@@ -47,7 +47,7 @@ namespace SimpleClinic_View.Appointments
 
         private AppointmentDTO _appointmentDTO
         {
-            get { return new AppointmentDTO(_apiResult.Result.Id, _apiResult.Result.PatientId, _apiResult.Result.DoctorId, _apiResult.Result.AppointmentDate,GetAppointmentStatus, _apiResult.Result.MedicalRecordId, _apiResult.Result.PatientId); }
+            get { return new AppointmentDTO(_apiResult.Result.Id, _apiResult.Result.PatientId, _apiResult.Result.DoctorId, _apiResult.Result.AppointmentDate,GetAppointmentStatus, _apiResult.Result.MedicalRecordId, _apiResult.Result.PaymentId); }
         }
 
         private ApiResult<AllAppointmentDTO> _apiResult;

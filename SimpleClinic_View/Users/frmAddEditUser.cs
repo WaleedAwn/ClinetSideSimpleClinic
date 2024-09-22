@@ -258,10 +258,12 @@ namespace SimpleClinic_View.Users
             if (await _userService.Save())
             {
                 lblUserId.Text = _userService.UserId.ToString();
+                ctrlPersonCardWithFilter1.FilterEnabled = false;
                 //change form mode to update.
                 _Mode = enMode.Update;
                 lblMode.Text = "Update User";
                 this.Text = "Update User";
+
 
                 MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

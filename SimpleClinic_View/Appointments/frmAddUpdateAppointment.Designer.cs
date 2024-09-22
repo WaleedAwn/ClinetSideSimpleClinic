@@ -56,7 +56,7 @@
             tcAppointments.Location = new Point(12, 72);
             tcAppointments.Name = "tcAppointments";
             tcAppointments.SelectedIndex = 0;
-            tcAppointments.Size = new Size(890, 410);
+            tcAppointments.Size = new Size(912, 410);
             tcAppointments.TabIndex = 0;
             // 
             // tpPatientInfo
@@ -66,7 +66,7 @@
             tpPatientInfo.Location = new Point(4, 37);
             tpPatientInfo.Name = "tpPatientInfo";
             tpPatientInfo.Padding = new Padding(3);
-            tpPatientInfo.Size = new Size(882, 369);
+            tpPatientInfo.Size = new Size(904, 369);
             tpPatientInfo.TabIndex = 0;
             tpPatientInfo.Text = "Patient Info";
             tpPatientInfo.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@
             btnNext.FlatStyle = FlatStyle.Flat;
             btnNext.Image = (Image)resources.GetObject("btnNext.Image");
             btnNext.ImageAlign = ContentAlignment.MiddleRight;
-            btnNext.Location = new Point(750, 292);
+            btnNext.Location = new Point(776, 295);
             btnNext.Margin = new Padding(2);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(123, 40);
@@ -109,7 +109,7 @@
             tpAppointmentInfo.Location = new Point(4, 37);
             tpAppointmentInfo.Name = "tpAppointmentInfo";
             tpAppointmentInfo.Padding = new Padding(3);
-            tpAppointmentInfo.Size = new Size(882, 369);
+            tpAppointmentInfo.Size = new Size(904, 369);
             tpAppointmentInfo.TabIndex = 1;
             tpAppointmentInfo.Text = "Appointment Info";
             tpAppointmentInfo.UseVisualStyleBackColor = true;
@@ -178,12 +178,13 @@
             btnSave.BackColor = Color.White;
             btnSave.Enabled = false;
             btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI", 12F);
             btnSave.Image = Properties.Resources.Close_32;
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(780, 485);
+            btnSave.Location = new Point(790, 483);
             btnSave.Margin = new Padding(2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(118, 37);
+            btnSave.Size = new Size(130, 37);
             btnSave.TabIndex = 2;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -193,15 +194,17 @@
             // 
             btnClose.BackColor = Color.White;
             btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Segoe UI", 12F);
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(654, 486);
+            btnClose.Location = new Point(656, 483);
             btnClose.Margin = new Padding(2);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(118, 37);
+            btnClose.Size = new Size(130, 37);
             btnClose.TabIndex = 3;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
             // 
             // lblMode
             // 
@@ -226,6 +229,7 @@
             Controls.Add(btnClose);
             Controls.Add(tcAppointments);
             Name = "frmAddUpdateAppointment";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "frmAddUpdateAppointment";
             Load += frmAddUpdateAppointment_Load;
             tcAppointments.ResumeLayout(false);

@@ -58,12 +58,13 @@
             btnAddNew.BackgroundImage = (Image)resources.GetObject("btnAddNew.BackgroundImage");
             btnAddNew.BackgroundImageLayout = ImageLayout.Zoom;
             btnAddNew.BorderStyle = BorderStyle.FixedSingle;
-            btnAddNew.Location = new Point(1192, 162);
+            btnAddNew.Location = new Point(1252, 162);
             btnAddNew.Margin = new Padding(2);
             btnAddNew.Name = "btnAddNew";
             btnAddNew.Size = new Size(73, 60);
             btnAddNew.TabIndex = 25;
             btnAddNew.TabStop = false;
+            btnAddNew.Click += btnAddNew_Click;
             // 
             // label3
             // 
@@ -89,23 +90,23 @@
             // lblCounter
             // 
             lblCounter.AutoSize = true;
-            lblCounter.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
-            lblCounter.Location = new Point(97, 533);
+            lblCounter.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblCounter.Location = new Point(125, 533);
             lblCounter.Margin = new Padding(2, 0, 2, 0);
             lblCounter.Name = "lblCounter";
-            lblCounter.Size = new Size(15, 16);
+            lblCounter.Size = new Size(24, 28);
             lblCounter.TabIndex = 21;
             lblCounter.Text = "0";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
             label2.Location = new Point(11, 533);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(82, 16);
+            label2.Size = new Size(110, 28);
             label2.TabIndex = 20;
             label2.Text = "# Records:";
             // 
@@ -113,15 +114,17 @@
             // 
             btnClose.BackColor = Color.White;
             btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(1146, 531);
+            btnClose.Location = new Point(1182, 531);
             btnClose.Margin = new Padding(2);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(119, 33);
+            btnClose.Size = new Size(144, 40);
             btnClose.TabIndex = 19;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
             // 
             // deleteToolStripMenuItem1
             // 
@@ -138,6 +141,7 @@
             EditToolStripMenuItem.Name = "EditToolStripMenuItem";
             EditToolStripMenuItem.Size = new Size(245, 38);
             EditToolStripMenuItem.Text = "Edit Appointment";
+            EditToolStripMenuItem.Click += EditToolStripMenuItem_Click;
             // 
             // cbFilterBy
             // 
@@ -158,6 +162,7 @@
             AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
             AddNewToolStripMenuItem.Size = new Size(245, 38);
             AddNewToolStripMenuItem.Text = "Add new Appointment";
+            AddNewToolStripMenuItem.Click += AddNewToolStripMenuItem_Click;
             // 
             // cmsUserMenu
             // 
@@ -179,7 +184,7 @@
             dgvListAllAppointments.AllowUserToAddRows = false;
             dgvListAllAppointments.AllowUserToDeleteRows = false;
             dgvListAllAppointments.AllowUserToOrderColumns = true;
-            dgvListAllAppointments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvListAllAppointments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvListAllAppointments.BackgroundColor = Color.White;
             dgvListAllAppointments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListAllAppointments.ContextMenuStrip = cmsUserMenu;
@@ -188,7 +193,7 @@
             dgvListAllAppointments.Name = "dgvListAllAppointments";
             dgvListAllAppointments.ReadOnly = true;
             dgvListAllAppointments.RowHeadersWidth = 51;
-            dgvListAllAppointments.Size = new Size(1253, 301);
+            dgvListAllAppointments.Size = new Size(1314, 301);
             dgvListAllAppointments.TabIndex = 0;
             // 
             // panel1
@@ -198,14 +203,14 @@
             panel1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             panel1.Location = new Point(12, 227);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1253, 301);
+            panel1.Size = new Size(1314, 301);
             panel1.TabIndex = 18;
             // 
             // pbManagePeople
             // 
             pbManagePeople.BackColor = Color.Transparent;
             pbManagePeople.Image = (Image)resources.GetObject("pbManagePeople.Image");
-            pbManagePeople.Location = new Point(570, 0);
+            pbManagePeople.Location = new Point(606, 0);
             pbManagePeople.Margin = new Padding(2);
             pbManagePeople.Name = "pbManagePeople";
             pbManagePeople.Size = new Size(277, 120);
@@ -218,7 +223,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             label1.ForeColor = Color.Red;
-            label1.Location = new Point(543, 122);
+            label1.Location = new Point(579, 122);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(342, 41);
@@ -231,7 +236,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.White;
-            ClientSize = new Size(1274, 575);
+            ClientSize = new Size(1332, 583);
             Controls.Add(btnAddNew);
             Controls.Add(label3);
             Controls.Add(txtFilter);

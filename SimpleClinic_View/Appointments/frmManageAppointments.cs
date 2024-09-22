@@ -50,10 +50,11 @@ namespace SimpleClinic_View.Appointments
                 dgvListAllAppointments.Columns[2].HeaderText = "Patient Name";
                 dgvListAllAppointments.Columns[3].HeaderText = "Dr.Id";
                 dgvListAllAppointments.Columns[4].HeaderText = "Dr.Name";
-                dgvListAllAppointments.Columns[5].HeaderText = "App Date";
-                dgvListAllAppointments.Columns[6].HeaderText = "Status";
-                dgvListAllAppointments.Columns[7].HeaderText = "Medical Record";
-                dgvListAllAppointments.Columns[8].HeaderText = "Payment";
+                dgvListAllAppointments.Columns[5].HeaderText = "Dr.Specialization";
+                dgvListAllAppointments.Columns[6].HeaderText = "App Date";
+                dgvListAllAppointments.Columns[7].HeaderText = "Status";
+                dgvListAllAppointments.Columns[8].HeaderText = "Medical Record";
+                dgvListAllAppointments.Columns[9].HeaderText = "Payment";
 
             }
 
@@ -144,6 +145,33 @@ namespace SimpleClinic_View.Appointments
         {
             if (cbFilterBy.SelectedIndex == 1 || cbFilterBy.SelectedIndex == 2 || cbFilterBy.SelectedIndex == 4 || cbFilterBy.SelectedIndex == 7 || cbFilterBy.SelectedIndex == 8)
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void AddNewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateAppointment frm = new frmAddUpdateAppointment();
+            frm.ShowDialog();
+            _RefreshAppointments();
+        }
+
+        private void EditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+            frmAddUpdateAppointment frm = new frmAddUpdateAppointment(id);
+            frm.ShowDialog();
+            _RefreshAppointments();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateAppointment frm = new frmAddUpdateAppointment();
+            frm.ShowDialog();
+            _RefreshAppointments();
         }
     }
 }

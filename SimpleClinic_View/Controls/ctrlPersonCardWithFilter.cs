@@ -106,6 +106,8 @@ namespace SimpleClinic_View.Controls
         public void DeleteItemFromFilter(int index)
         {
             cbPersonFilters.Items.RemoveAt(index);
+            if(cbPersonFilters.Items.Count >0)
+                cbPersonFilters.SelectedIndex = 0;
         }
 
         public  void LoadPersonInfo(int PersonID)

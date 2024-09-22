@@ -49,26 +49,18 @@ namespace SimpleClinic_View.Appointments
         {
 
             var doctors = await DoctorApiClient.GetAllDoctors();
-            
-            cbDoctors.Items.Clear();
 
             if (!doctors.IsSuccess)
                 return;
 
-            string displayText;
-
-            if (doctors.Result == null)
-                MessageBox.Show("error");
-
             foreach (var a in doctors.Result)
             {
-                displayText = $"{a.PersonName} - {a.Specialization}";
-                cbDoctors.Items.Add(new { Id = a.Id, Display = displayText });
-                
+
+                cbDoctors.Items.Add(a);
+
             }
 
-            cbDoctors.DisplayMember = "Display";
-            cbDoctors.ValueMember = "Id";
+            cbDoctors.SelectedIndex = 0;
 
         }
 
@@ -78,6 +70,7 @@ namespace SimpleClinic_View.Appointments
             // deleting the personId and nationa No filter from the combo box 
             ctrlPersonCardWithFilter1.DeleteItemFromFilter(0);
             ctrlPersonCardWithFilter1.DeleteItemFromFilter(1);
+
             _FillDoctorsInComboBox();
 
             if (_Mode == enMode.AddNew)
@@ -122,7 +115,8 @@ namespace SimpleClinic_View.Appointments
 
             ctrlPersonCardWithFilter1.LoadPersonInfo(_appointmentApiResult.Result.PatientId);
 
-            lblAppointmentId.Text = _AppointmentId.ToString();
+            lblAppointmentId.Text = _appointmentApiResult.Result.Id.ToString();
+            _AppointmentId = _appointmentApiResult.Result.Id;
 
             dtpAppointmentDate.Value = _appointmentApiResult.Result.AppointmentDate;
 
@@ -163,14 +157,57 @@ namespace SimpleClinic_View.Appointments
 
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
+
+            _appointmentApiResult.Result.Id = _AppointmentId;
+            _appointmentApiResult.Result.PatientId = ctrlPersonCardWithFilter1.PatientId;
+            _appointmentApiResult.Result.AppointmentDate = dtpAppointmentDate.Value;
+            _appointmentApiResult.Result.AppointmentStatus = "New";
+
+            AllDoctorsInfoDTO doctor = new AllDoctorsInfoDTO();
+
+            if (cbDoctors.SelectedItem != null)
+                doctor = (AllDoctorsInfoDTO)cbDoctors.SelectedItem;
+
+            _appointmentApiResult.Result.DoctorId = doctor.Id;
+
+            _appointmentService.ApiResult = _appointmentApiResult;
+
+            if (await _appointmentService.Save())
+            {
+                MessageBox.Show("New appointment added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ctrlPersonCardWithFilter1.FilterEnabled = false;
+
+                lblMode.Text = "Update Appointment";
+                this.Text = "Update Appointment";
+                _Mode = enMode.Update;
+                lblAppointmentId.Text = _appointmentService.AppointmentId.ToString();
+                _AppointmentId = _appointmentService.AppointmentId;
+
+            }
+            else
+            {
+                MessageBox.Show("Appointment save failed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
         }
 
         private void cbDoctors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if (cbDoctors.SelectedItem != null)
+            {
+                var doctor = (AllDoctorsInfoDTO)cbDoctors.SelectedItem;
+
+                MessageBox.Show($"{doctor.Id}, {doctor.PersonName}");
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
