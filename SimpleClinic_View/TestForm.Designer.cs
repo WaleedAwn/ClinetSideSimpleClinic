@@ -41,6 +41,7 @@
             ctrlPersonCardWithFilter1.ShowAddPerson = true;
             ctrlPersonCardWithFilter1.Size = new Size(694, 341);
             ctrlPersonCardWithFilter1.TabIndex = 0;
+            ctrlPersonCardWithFilter1.OnPersonSelected += ctrlPersonCardWithFilter1_OnPersonSelected;
             // 
             // TestForm
             // 

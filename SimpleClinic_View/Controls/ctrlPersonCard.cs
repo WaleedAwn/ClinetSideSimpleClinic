@@ -58,11 +58,11 @@ namespace SimpleClinic_View.Controls
             _patinet = new PatientApiClient();
 
         }
-        public async void _LoadPersonData(int _PersonID)
+        public async Task _LoadPersonData(int personId)
         {
             _FindPatient = false;
-            MessageBox.Show($"{_PersonID}");
-             _apiResult = await PersonApiClient.StatFind(_PersonID);
+            //MessageBox.Show($"{personId}");
+             _apiResult = await PersonApiClient.StatFind(personId);
 
             if(!_apiResult.IsSuccess)
             {
@@ -71,7 +71,10 @@ namespace SimpleClinic_View.Controls
                 return;
             }
             else
+            {
+                _PersonId = personId;
                 _FillPersonInfo();
+            }
 
 
         }
@@ -81,7 +84,7 @@ namespace SimpleClinic_View.Controls
             lblPatientId.Visible = _FindPatient;
 
         }
-        public async void _LoadPatientData(int patientId)
+        public async Task _LoadPatientData(int patientId)
         {
             _FindPatient = true;
             _patientApiResult = await _patinet.Find(patientId);
@@ -93,7 +96,11 @@ namespace SimpleClinic_View.Controls
                 return;
             }
             else
+            {
+                _PatientId = patientId;
                 _FillPatientInfo();
+
+            }
 
         }
 
@@ -115,9 +122,10 @@ namespace SimpleClinic_View.Controls
         private void _FillPersonInfo()
         {
             _PatientIdVisiblty();
-            _PersonId = _apiResult.Result.Id;
+
+            //_PersonId = _apiResult.Result.Id;
             string formattedDateOfBirth = _apiResult.Result.DateOfBirth.ToString("yyyy-MM-dd");
-            lbPersonID.Text = _apiResult.Result.Id.ToString();
+            lbPersonID.Text = _PersonId.ToString();
             lblName.Text = _apiResult.Result.PersonName.ToString();
             lblPhone.Text = _apiResult.Result.PhoneNumber.ToString();
             lblEmail.Text = _apiResult.Result.Email.ToString();
@@ -131,11 +139,13 @@ namespace SimpleClinic_View.Controls
             // show the patientId label
             _PatientIdVisiblty();
 
-             _PatientId = _patientApiResult.Result.Id;
+            
             string formattedDateOfBirth = _patientApiResult.Result.DateOfBirth.ToString("yyyy-MM-dd");
             lblPatientIdValue.Text = _PatientId.ToString();
+            _PersonId = _patientApiResult.Result.personId;
 
-            lbPersonID.Text = _patientApiResult.Result.Id.ToString();
+            lblPatientIdValue.Text = _patientApiResult.Result.Id.ToString();
+            lbPersonID.Text = _patientApiResult.Result.personId.ToString();
             lblName.Text = _patientApiResult.Result.PersonName.ToString();
             lblPhone.Text = _patientApiResult.Result.PhoneNumber.ToString();
             lblEmail.Text = _patientApiResult.Result.Email.ToString();

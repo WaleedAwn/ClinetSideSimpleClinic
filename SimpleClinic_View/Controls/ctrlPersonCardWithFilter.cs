@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.ApplicationServices;
 using SimpleClinic_View.Globals;
 using SimpleClinic_View.Person;
 using SimpleClinic_View.Person.DTOs;
@@ -21,8 +22,8 @@ namespace SimpleClinic_View.Controls
 
         public class PersonSelectedEventArgs : EventArgs
         {
-            public int PersonId { get; } = -1;
-            public int PatientId { get; } = -1;
+            public int PersonId { get; } 
+            public int PatientId { get; } 
             
             public PersonSelectedEventArgs(int personId, int patientId)
             {
@@ -100,7 +101,7 @@ namespace SimpleClinic_View.Controls
             cbPersonFilters.Items.RemoveAt(index);
         }
 
-        public void LoadPersonInfo(int PersonID)
+        public  void LoadPersonInfo(int PersonID)
         {
             
             cbPersonFilters.SelectedIndex = 0;
@@ -109,16 +110,17 @@ namespace SimpleClinic_View.Controls
 
         }
 
-        private void FindNow()
+        private async void FindNow()
         {
-            switch (cbPersonFilters.Text)
+             switch (cbPersonFilters.Text)
             {
+                
                 case "Person ID":
-                    ctrlPersonCard1._LoadPersonData(int.Parse(txtSearch.Text));
+                     await ctrlPersonCard1._LoadPersonData(int.Parse(txtSearch.Text));
 
                     break;
                 case "Patient ID":
-                    ctrlPersonCard1._LoadPatientData(int.Parse(txtSearch.Text));
+                    await ctrlPersonCard1._LoadPatientData(int.Parse(txtSearch.Text));
                     break;
 
                 case "National No":
