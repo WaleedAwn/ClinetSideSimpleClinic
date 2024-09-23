@@ -1,6 +1,7 @@
 
 using SimpleClinic_View.Users;
-namespace SimpleClinic_View
+using SimpleClinic_View.MedicalRecords.ListMedicalRecods;
+    namespace SimpleClinic_View
 {
     public partial class Form1 : Form
     {
@@ -23,7 +24,13 @@ namespace SimpleClinic_View
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
-            Form frm =new frmManageUsers();
+            Form frm = new frmManageUsers();
+            frm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form frm = new ListMedicalRecod();
             frm.ShowDialog();
         }
     }
