@@ -1,4 +1,5 @@
-﻿using SimpleClinic_View.Appointments.DTOs;
+﻿using Microsoft.VisualBasic;
+using SimpleClinic_View.Appointments.DTOs;
 using SimpleClinic_View.Globals;
 using SimpleClinic_View.Users;
 using System;
@@ -177,10 +178,10 @@ namespace SimpleClinic_View.Appointments
         private async void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
-            if(MessageBox.Show($"Are you sure you want to delete appointment wiht Id=[{id}]","Confirm Delete",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show($"Are you sure you want to delete appointment wiht Id=[{id}]", "Confirm Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 var deleteResult = await AppointmentService.DeleteAppointment(id);
-                if(deleteResult.IsSuccess)
+                if (deleteResult.IsSuccess)
                 {
                     MessageBox.Show("Delete Success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _RefreshAppointments();
@@ -191,6 +192,29 @@ namespace SimpleClinic_View.Appointments
                 }
             }
         }
-    
+
+        private async void cancelAppointmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure do want to cancel this appointment?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+            var appointmentService = await AppointmentService.StatFind(id);
+            
+            if(appointmentService != null)
+            {
+                if(await appointmentService.Cancel())
+                {
+                    MessageBox.Show("Appointment cancelled successfully!","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    _RefreshAppointments();
+                }
+                else
+                {
+                    MessageBox.Show(appointmentService.ApiResult.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }    
+
+        }
+        
     }
 }

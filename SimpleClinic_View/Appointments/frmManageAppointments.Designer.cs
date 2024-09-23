@@ -46,6 +46,10 @@
             panel1 = new Panel();
             pbManagePeople = new PictureBox();
             label1 = new Label();
+            cancelAppointmentToolStripMenuItem = new ToolStripMenuItem();
+            completeProceduresToolStripMenuItem = new ToolStripMenuItem();
+            visitDoctorToolStripMenuItem = new ToolStripMenuItem();
+            paymentToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)btnAddNew).BeginInit();
             cmsAppointmentMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListAllAppointments).BeginInit();
@@ -168,9 +172,9 @@
             // cmsAppointmentMenu
             // 
             cmsAppointmentMenu.ImageScalingSize = new Size(24, 24);
-            cmsAppointmentMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1 });
+            cmsAppointmentMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, cancelAppointmentToolStripMenuItem, completeProceduresToolStripMenuItem });
             cmsAppointmentMenu.Name = "contextMenuStrip1";
-            cmsAppointmentMenu.Size = new Size(246, 184);
+            cmsAppointmentMenu.Size = new Size(246, 260);
             // 
             // ShowDetailesToolStripMenuItem
             // 
@@ -231,6 +235,40 @@
             label1.TabIndex = 17;
             label1.Text = "Manage Appointments";
             // 
+            // cancelAppointmentToolStripMenuItem
+            // 
+            cancelAppointmentToolStripMenuItem.Image = (Image)resources.GetObject("cancelAppointmentToolStripMenuItem.Image");
+            cancelAppointmentToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            cancelAppointmentToolStripMenuItem.Name = "cancelAppointmentToolStripMenuItem";
+            cancelAppointmentToolStripMenuItem.Size = new Size(245, 38);
+            cancelAppointmentToolStripMenuItem.Text = "Cancel Appointment";
+            cancelAppointmentToolStripMenuItem.Click += cancelAppointmentToolStripMenuItem_Click;
+            // 
+            // completeProceduresToolStripMenuItem
+            // 
+            completeProceduresToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { visitDoctorToolStripMenuItem, paymentToolStripMenuItem });
+            completeProceduresToolStripMenuItem.Image = (Image)resources.GetObject("completeProceduresToolStripMenuItem.Image");
+            completeProceduresToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            completeProceduresToolStripMenuItem.Name = "completeProceduresToolStripMenuItem";
+            completeProceduresToolStripMenuItem.Size = new Size(245, 38);
+            completeProceduresToolStripMenuItem.Text = "Complete Procedures";
+            // 
+            // visitDoctorToolStripMenuItem
+            // 
+            visitDoctorToolStripMenuItem.Image = (Image)resources.GetObject("visitDoctorToolStripMenuItem.Image");
+            visitDoctorToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            visitDoctorToolStripMenuItem.Name = "visitDoctorToolStripMenuItem";
+            visitDoctorToolStripMenuItem.Size = new Size(236, 38);
+            visitDoctorToolStripMenuItem.Text = "Visiting Doctor";
+            // 
+            // paymentToolStripMenuItem
+            // 
+            paymentToolStripMenuItem.Image = (Image)resources.GetObject("paymentToolStripMenuItem.Image");
+            paymentToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            paymentToolStripMenuItem.Name = "paymentToolStripMenuItem";
+            paymentToolStripMenuItem.Size = new Size(236, 38);
+            paymentToolStripMenuItem.Text = "Payment";
+            // 
             // frmManageAppointments
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -279,5 +317,9 @@
         private Panel panel1;
         private PictureBox pbManagePeople;
         private Label label1;
+        private ToolStripMenuItem cancelAppointmentToolStripMenuItem;
+        private ToolStripMenuItem completeProceduresToolStripMenuItem;
+        private ToolStripMenuItem visitDoctorToolStripMenuItem;
+        private ToolStripMenuItem paymentToolStripMenuItem;
     }
 }

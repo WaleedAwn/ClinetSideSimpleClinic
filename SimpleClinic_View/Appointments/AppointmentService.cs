@@ -341,7 +341,58 @@ namespace SimpleClinic_View.Appointments
             return apiResult.IsSuccess;
         }
 
-        
+
+        private async Task<bool> UpdateAppointmentStatus(int AppointmentId, byte status)
+        {
+            var apiResult = new ApiResult<bool>();
+            try
+            {
+                var response = await _httpClient.PutAsJsonAsync($"UpdateStatus/Id={AppointmentId}/Status={status}","");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResult.IsSuccess = true;
+                    apiResult.Result = true;
+                    apiResult.Status = ApiResponseStatus.Success;
+
+                }
+                else
+                {
+                    apiResult.IsSuccess = false;
+                    apiResult.Status = response.StatusCode switch
+                    {
+                        System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
+                        System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
+                        _ => ApiResponseStatus.ServerError,
+
+                    };
+                    // if there is any error message in the body
+                    apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Logger logger = new Logger(LoggingMethod.EventLogger);
+                logger.Log($"Appointment Error: {ex.Message}");
+
+            }
+            _apiResult.ErrorMessage = apiResult.ErrorMessage;
+
+            return apiResult.IsSuccess;
+        }
+
+        public async Task<bool> Cancel()
+        {
+            return await UpdateAppointmentStatus(this.AppointmentId, 2);
+        }
+
+        public async Task<bool> Complete()
+        {
+            return await UpdateAppointmentStatus(this.AppointmentId, 3);
+        }
+
+
         public async Task<bool> Save()
         {
             switch (_Mode)
