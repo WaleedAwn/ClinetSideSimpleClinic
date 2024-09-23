@@ -200,21 +200,45 @@ namespace SimpleClinic_View.Appointments
 
             int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
             var appointmentService = await AppointmentService.StatFind(id);
-            
-            if(appointmentService != null)
+
+            if (appointmentService != null)
             {
-                if(await appointmentService.Cancel())
+                if (await appointmentService.Cancel())
                 {
-                    MessageBox.Show("Appointment cancelled successfully!","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("Appointment cancelled successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _RefreshAppointments();
                 }
                 else
                 {
                     MessageBox.Show(appointmentService.ApiResult.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }    
+            }
 
         }
-        
+
+        private async void cmsAppointmentMenu_Opening(object sender, CancelEventArgs e)
+        {
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+
+            AppointmentService appointment = await AppointmentService.StatFind(id);
+
+            bool isNewOrWait = (appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.New ||
+                       appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.Waiting);
+
+            EditToolStripMenuItem.Enabled = isNewOrWait;
+            
+            deleteToolStripMenuItem1.Enabled = appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.New;
+            
+            cancelAppointmentToolStripMenuItem.Enabled = isNewOrWait;
+
+            completeProceduresToolStripMenuItem.Enabled = isNewOrWait;
+            
+            tsmiPayment.Enabled = appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.New;
+            
+            tsmiVisitDoctor.Enabled = appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.Waiting;
+
+        }
+    
+    
     }
 }

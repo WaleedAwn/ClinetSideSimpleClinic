@@ -21,33 +21,44 @@ namespace SimpleClinic_View.Appointments
         enum enMode { Add = 1, Update = 2 }
         enMode _Mode = enMode.Add;
 
+        public enum enAppointmentStatus { New =1, Cancelled =2, Waiting=3, Completed=4}
+
+        private enAppointmentStatus _appointmentStatus = enAppointmentStatus.New;
+
+        public enAppointmentStatus AppointmentStatus
+        {
+            get
+            {
+                switch (_apiResult.Result.AppointmentStatus)
+                {
+                    case "New":
+                        return enAppointmentStatus.New;
+
+                    case "Cancelled":
+                       return enAppointmentStatus.Cancelled;
+                    case "Waiting":
+                        return enAppointmentStatus.Waiting;
+                    case "Completed":
+                        return enAppointmentStatus.Completed;
+                        
+                }
+                return _appointmentStatus;
+            }
+            
+        }
+
         public AppointmentService()
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("http://localhost:5029/api/AppointmentApi/");
             _Mode = enMode.Add;
+            _appointmentStatus = enAppointmentStatus.New;
         }
 
-        private byte GetAppointmentStatus
-        {
-            get
-            {
-                switch(_apiResult.Result.AppointmentStatus)
-                {
-                    case "New":
-                        return 1;
-                    case "Cancelled":
-                        return 2;
-                    case "Completed":
-                        return 3;
-                }
-                return 0;
-            }
-        }
-
+        
         private AppointmentDTO _appointmentDTO
         {
-            get { return new AppointmentDTO(_apiResult.Result.Id, _apiResult.Result.PatientId, _apiResult.Result.DoctorId, _apiResult.Result.AppointmentDate,GetAppointmentStatus, _apiResult.Result.MedicalRecordId, _apiResult.Result.PaymentId); }
+            get { return new AppointmentDTO(_apiResult.Result.Id, _apiResult.Result.PatientId, _apiResult.Result.DoctorId, _apiResult.Result.AppointmentDate,(byte)AppointmentStatus, _apiResult.Result.MedicalRecordId, _apiResult.Result.PaymentId); }
         }
 
         private ApiResult<AllAppointmentDTO> _apiResult;
@@ -77,6 +88,7 @@ namespace SimpleClinic_View.Appointments
         private AppointmentService(int appointmentId, ApiResult<AllAppointmentDTO> apiResult)
         {
             _apiResult = apiResult;
+            
             this._appointmentId = appointmentId;
             _Mode = enMode.Update;
             _httpClient = new HttpClient();
@@ -387,11 +399,15 @@ namespace SimpleClinic_View.Appointments
             return await UpdateAppointmentStatus(this.AppointmentId, 2);
         }
 
-        public async Task<bool> Complete()
+        public async Task<bool> SetComplete()
+        {
+            return await UpdateAppointmentStatus(this.AppointmentId, 4);
+        }
+
+        public async Task<bool> SetWaiting()
         {
             return await UpdateAppointmentStatus(this.AppointmentId, 3);
         }
-
 
         public async Task<bool> Save()
         {
