@@ -40,14 +40,14 @@
             EditToolStripMenuItem = new ToolStripMenuItem();
             cbFilterBy = new ComboBox();
             AddNewToolStripMenuItem = new ToolStripMenuItem();
-            cmsUserMenu = new ContextMenuStrip(components);
+            cmsAppointmentMenu = new ContextMenuStrip(components);
             ShowDetailesToolStripMenuItem = new ToolStripMenuItem();
             dgvListAllAppointments = new DataGridView();
             panel1 = new Panel();
             pbManagePeople = new PictureBox();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)btnAddNew).BeginInit();
-            cmsUserMenu.SuspendLayout();
+            cmsAppointmentMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListAllAppointments).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).BeginInit();
@@ -133,6 +133,7 @@
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
             deleteToolStripMenuItem1.Size = new Size(245, 38);
             deleteToolStripMenuItem1.Text = "Delete Appointment";
+            deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // EditToolStripMenuItem
             // 
@@ -164,12 +165,12 @@
             AddNewToolStripMenuItem.Text = "Add new Appointment";
             AddNewToolStripMenuItem.Click += AddNewToolStripMenuItem_Click;
             // 
-            // cmsUserMenu
+            // cmsAppointmentMenu
             // 
-            cmsUserMenu.ImageScalingSize = new Size(24, 24);
-            cmsUserMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1 });
-            cmsUserMenu.Name = "contextMenuStrip1";
-            cmsUserMenu.Size = new Size(246, 156);
+            cmsAppointmentMenu.ImageScalingSize = new Size(24, 24);
+            cmsAppointmentMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1 });
+            cmsAppointmentMenu.Name = "contextMenuStrip1";
+            cmsAppointmentMenu.Size = new Size(246, 184);
             // 
             // ShowDetailesToolStripMenuItem
             // 
@@ -187,7 +188,7 @@
             dgvListAllAppointments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvListAllAppointments.BackgroundColor = Color.White;
             dgvListAllAppointments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvListAllAppointments.ContextMenuStrip = cmsUserMenu;
+            dgvListAllAppointments.ContextMenuStrip = cmsAppointmentMenu;
             dgvListAllAppointments.Dock = DockStyle.Fill;
             dgvListAllAppointments.Location = new Point(0, 0);
             dgvListAllAppointments.Name = "dgvListAllAppointments";
@@ -252,7 +253,7 @@
             Text = "frmManageAppointments";
             Load += frmManageAppointments_Load;
             ((System.ComponentModel.ISupportInitialize)btnAddNew).EndInit();
-            cmsUserMenu.ResumeLayout(false);
+            cmsAppointmentMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvListAllAppointments).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbManagePeople).EndInit();
@@ -272,7 +273,7 @@
         private ToolStripMenuItem EditToolStripMenuItem;
         private ComboBox cbFilterBy;
         private ToolStripMenuItem AddNewToolStripMenuItem;
-        private ContextMenuStrip cmsUserMenu;
+        private ContextMenuStrip cmsAppointmentMenu;
         private ToolStripMenuItem ShowDetailesToolStripMenuItem;
         private DataGridView dgvListAllAppointments;
         private Panel panel1;

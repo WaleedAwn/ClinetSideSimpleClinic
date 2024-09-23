@@ -173,5 +173,24 @@ namespace SimpleClinic_View.Appointments
             frm.ShowDialog();
             _RefreshAppointments();
         }
+
+        private async void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+            if(MessageBox.Show($"Are you sure you want to delete appointment wiht Id=[{id}]","Confirm Delete",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                var deleteResult = await AppointmentService.DeleteAppointment(id);
+                if(deleteResult.IsSuccess)
+                {
+                    MessageBox.Show("Delete Success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _RefreshAppointments();
+                }
+                else
+                {
+                    MessageBox.Show(deleteResult.ErrorMessage, "Delete Fail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+    
     }
 }

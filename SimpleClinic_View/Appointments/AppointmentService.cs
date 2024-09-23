@@ -262,13 +262,13 @@ namespace SimpleClinic_View.Appointments
             return apiResult.Result.Id;
         }
 
-        public async Task<ApiResult<bool>> DeleteAppointment(int AppointmentId)
+        public static async Task<ApiResult<bool>> DeleteAppointment(int AppointmentId)
         {
             var apiResult = new ApiResult<bool>();
 
             try
             {
-                var response = await _httpClient.DeleteAsync($"Delete/Id={AppointmentId}");
+                var response = await _staticHttpClient.DeleteAsync($"Delete/Id={AppointmentId}");
 
                 if (response.IsSuccessStatusCode)
                 {
