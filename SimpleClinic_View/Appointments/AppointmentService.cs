@@ -7,7 +7,6 @@ using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
-using SimpleClinic_View.Appointments.DTOs;
 using SimpleClinic_View.Patients.Logging;
 
 namespace SimpleClinic_View.Appointments
@@ -59,6 +58,14 @@ namespace SimpleClinic_View.Appointments
         private AppointmentDTO _appointmentDTO
         {
             get { return new AppointmentDTO(_apiResult.Result.Id, _apiResult.Result.PatientId, _apiResult.Result.DoctorId, _apiResult.Result.AppointmentDate,(byte)AppointmentStatus, _apiResult.Result.MedicalRecordId, _apiResult.Result.PaymentId); }
+        }
+
+        public AppointmentDTO AppointmentDto
+        {
+            get
+            {
+                return _appointmentDTO;
+            }
         }
 
         private ApiResult<AllAppointmentDTO> _apiResult;

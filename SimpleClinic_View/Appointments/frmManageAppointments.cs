@@ -226,19 +226,25 @@ namespace SimpleClinic_View.Appointments
                        appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.Waiting);
 
             EditToolStripMenuItem.Enabled = isNewOrWait;
-            
+
             deleteToolStripMenuItem1.Enabled = appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.New;
-            
+
             cancelAppointmentToolStripMenuItem.Enabled = isNewOrWait;
 
             completeProceduresToolStripMenuItem.Enabled = isNewOrWait;
-            
+
             tsmiPayment.Enabled = appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.New;
-            
+
             tsmiVisitDoctor.Enabled = appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.Waiting;
 
         }
-    
-    
+
+        private void ShowDetailesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+            frmShowAppointmentCard frm = new frmShowAppointmentCard(id);
+            frm.ShowDialog();
+
+        }
     }
 }

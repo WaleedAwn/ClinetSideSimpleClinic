@@ -174,7 +174,7 @@
             cmsAppointmentMenu.ImageScalingSize = new Size(24, 24);
             cmsAppointmentMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, cancelAppointmentToolStripMenuItem, completeProceduresToolStripMenuItem });
             cmsAppointmentMenu.Name = "contextMenuStrip1";
-            cmsAppointmentMenu.Size = new Size(246, 232);
+            cmsAppointmentMenu.Size = new Size(246, 260);
             cmsAppointmentMenu.Opening += cmsAppointmentMenu_Opening;
             // 
             // ShowDetailesToolStripMenuItem
@@ -184,6 +184,7 @@
             ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
             ShowDetailesToolStripMenuItem.Size = new Size(245, 38);
             ShowDetailesToolStripMenuItem.Text = "Show Details";
+            ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
             // 
             // cancelAppointmentToolStripMenuItem
             // 
@@ -208,7 +209,7 @@
             tsmiPayment.Image = (Image)resources.GetObject("tsmiPayment.Image");
             tsmiPayment.ImageScaling = ToolStripItemImageScaling.None;
             tsmiPayment.Name = "tsmiPayment";
-            tsmiPayment.Size = new Size(236, 38);
+            tsmiPayment.Size = new Size(182, 38);
             tsmiPayment.Text = "Payment";
             // 
             // tsmiVisitDoctor
@@ -216,7 +217,7 @@
             tsmiVisitDoctor.Image = (Image)resources.GetObject("tsmiVisitDoctor.Image");
             tsmiVisitDoctor.ImageScaling = ToolStripItemImageScaling.None;
             tsmiVisitDoctor.Name = "tsmiVisitDoctor";
-            tsmiVisitDoctor.Size = new Size(236, 38);
+            tsmiVisitDoctor.Size = new Size(182, 38);
             tsmiVisitDoctor.Text = "Visit Doctor";
             // 
             // dgvListAllAppointments
