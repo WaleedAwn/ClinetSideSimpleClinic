@@ -8,6 +8,10 @@ namespace SimpleClinic_View.Payments.DTOs
 {
     internal class PaymentDTOWithName
     {
+        public PaymentDTOWithName()
+        {
+            
+        }
         public PaymentDTOWithName(int id, string paidPatient, DateTime paymentDate, int paymentMethodId, string paymentMethod, decimal amountPaid, string? additionalNotes)
         {
             Id = id;

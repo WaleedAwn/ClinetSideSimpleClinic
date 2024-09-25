@@ -174,7 +174,7 @@
             cmsAppointmentMenu.ImageScalingSize = new Size(24, 24);
             cmsAppointmentMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, cancelAppointmentToolStripMenuItem, completeProceduresToolStripMenuItem });
             cmsAppointmentMenu.Name = "contextMenuStrip1";
-            cmsAppointmentMenu.Size = new Size(246, 260);
+            cmsAppointmentMenu.Size = new Size(246, 232);
             cmsAppointmentMenu.Opening += cmsAppointmentMenu_Opening;
             // 
             // ShowDetailesToolStripMenuItem
@@ -288,6 +288,7 @@
             Controls.Add(panel1);
             Controls.Add(pbManagePeople);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "frmManageAppointments";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmManageAppointments";

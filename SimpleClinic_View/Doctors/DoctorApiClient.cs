@@ -65,14 +65,13 @@ namespace SimpleClinic_View.Doctors
             return await GetAllDoctors();
         }
 
-
-        public async Task<ApiResult<AllDoctorsInfoDTO>> Find(int DoctorID)
+        public static async Task<ApiResult<AllDoctorsInfoDTO>> StatFind(int DoctorID)
         {
             var apiResult = new ApiResult<AllDoctorsInfoDTO>();
 
             try
             {
-                var response = await _httpClient.GetAsync($"Find/{DoctorID}");
+                var response = await _staticHttpClient.GetAsync($"Find/{DoctorID}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -103,6 +102,12 @@ namespace SimpleClinic_View.Doctors
                 loger.Log($"User Error:{ex.Message}");
             }
             return apiResult;
+        }
+
+
+        public async Task<ApiResult<AllDoctorsInfoDTO>> Find(int DoctorID)
+        {
+           return await StatFind(DoctorID);
         }
 
 

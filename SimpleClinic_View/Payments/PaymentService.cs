@@ -122,6 +122,41 @@ namespace SimpleClinic_View.Payments
             return apiResult;
         }
 
+        public static async Task<ApiResult<List<PaymentMethodDTO>>> GetAllPaymentMethodsAsync()
+        {
+            var apiResult = new ApiResult<List<PaymentMethodDTO>>();
+            try
+            {
+                var response = await _staticHttpClient.GetAsync("All");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResult.IsSuccess = true;
+                    apiResult.Status = ApiResponseStatus.Success;
+                    var Appointments = await _staticHttpClient.GetFromJsonAsync<List<PaymentMethodDTO>>("PaymentMethods");
+                    apiResult.Result = Appointments;
+
+                }
+                else
+                {
+                    apiResult.IsSuccess = false;
+                    apiResult.Status = ApiResponseStatus.NotFound;
+                    // if there is any message in the body 
+                    apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Logger loger = new Logger(LoggingMethod.EventLogger);
+                loger.Log($"Payment Error:{ex.Message}");
+
+            }
+
+
+            return apiResult;
+        }
+
 
         public async Task<PaymentService> Find(int Id)
         {
