@@ -67,9 +67,10 @@
             lblAddEditPersonTitel.AutoSize = true;
             lblAddEditPersonTitel.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAddEditPersonTitel.ForeColor = Color.Red;
-            lblAddEditPersonTitel.Location = new Point(443, 21);
+            lblAddEditPersonTitel.Location = new Point(322, 17);
+            lblAddEditPersonTitel.Margin = new Padding(2, 0, 2, 0);
             lblAddEditPersonTitel.Name = "lblAddEditPersonTitel";
-            lblAddEditPersonTitel.Size = new Size(271, 45);
+            lblAddEditPersonTitel.Size = new Size(229, 37);
             lblAddEditPersonTitel.TabIndex = 0;
             lblAddEditPersonTitel.Text = "Add New Person";
             // 
@@ -77,9 +78,10 @@
             // 
             lbPersonID.AutoSize = true;
             lbPersonID.Font = new Font("Microsoft Sans Serif", 12F);
-            lbPersonID.Location = new Point(155, 47);
+            lbPersonID.Location = new Point(118, 38);
+            lbPersonID.Margin = new Padding(2, 0, 2, 0);
             lbPersonID.Name = "lbPersonID";
-            lbPersonID.Size = new Size(75, 29);
+            lbPersonID.Size = new Size(68, 25);
             lbPersonID.TabIndex = 20;
             lbPersonID.Text = "[????]";
             // 
@@ -87,9 +89,10 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label5.Location = new Point(14, 235);
+            label5.Location = new Point(10, 188);
+            label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(114, 29);
+            label5.Size = new Size(96, 25);
             label5.TabIndex = 19;
             label5.Text = "Gender :";
             // 
@@ -97,9 +100,10 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label4.Location = new Point(20, 39);
+            label4.Location = new Point(15, 31);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(89, 29);
+            label4.Size = new Size(75, 25);
             label4.TabIndex = 18;
             label4.Text = "Name:";
             // 
@@ -107,9 +111,10 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label3.Location = new Point(14, 165);
+            label3.Location = new Point(10, 132);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(86, 29);
+            label3.Size = new Size(72, 25);
             label3.TabIndex = 17;
             label3.Text = "Email:";
             // 
@@ -117,9 +122,10 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label2.Location = new Point(588, 172);
+            label2.Location = new Point(428, 138);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(116, 29);
+            label2.Size = new Size(99, 25);
             label2.TabIndex = 16;
             label2.Text = "Address:";
             // 
@@ -127,9 +133,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label1.Location = new Point(22, 47);
+            label1.Location = new Point(16, 38);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(142, 29);
+            label1.Size = new Size(120, 25);
             label1.TabIndex = 15;
             label1.Text = "Person ID :";
             // 
@@ -137,9 +144,10 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label7.Location = new Point(14, 101);
+            label7.Location = new Point(10, 81);
+            label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(95, 29);
+            label7.Size = new Size(81, 25);
             label7.TabIndex = 29;
             label7.Text = "Phone:";
             // 
@@ -147,9 +155,10 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label6.Location = new Point(535, 117);
+            label6.Location = new Point(389, 94);
+            label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(169, 29);
+            label6.Size = new Size(143, 25);
             label6.TabIndex = 28;
             label6.Text = "Date Of Birth:";
             // 
@@ -173,17 +182,19 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label5);
-            panel1.Location = new Point(22, 115);
+            panel1.Location = new Point(16, 92);
+            panel1.Margin = new Padding(2, 2, 2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1126, 301);
+            panel1.Size = new Size(819, 241);
             panel1.TabIndex = 30;
             // 
             // pbDateOfBirth
             // 
             pbDateOfBirth.Image = (Image)resources.GetObject("pbDateOfBirth.Image");
-            pbDateOfBirth.Location = new Point(721, 108);
+            pbDateOfBirth.Location = new Point(524, 86);
+            pbDateOfBirth.Margin = new Padding(2, 2, 2, 2);
             pbDateOfBirth.Name = "pbDateOfBirth";
-            pbDateOfBirth.Size = new Size(44, 38);
+            pbDateOfBirth.Size = new Size(32, 30);
             pbDateOfBirth.SizeMode = PictureBoxSizeMode.Zoom;
             pbDateOfBirth.TabIndex = 42;
             pbDateOfBirth.TabStop = false;
@@ -191,34 +202,38 @@
             // tbAdress
             // 
             tbAdress.BackColor = Color.White;
-            tbAdress.Location = new Point(778, 177);
+            tbAdress.Location = new Point(566, 142);
+            tbAdress.Margin = new Padding(2, 2, 2, 2);
             tbAdress.Multiline = true;
             tbAdress.Name = "tbAdress";
-            tbAdress.Size = new Size(255, 87);
+            tbAdress.Size = new Size(187, 70);
             tbAdress.TabIndex = 41;
             // 
             // dtpDateOFBirth
             // 
-            dtpDateOFBirth.Location = new Point(771, 113);
+            dtpDateOFBirth.Location = new Point(561, 90);
+            dtpDateOFBirth.Margin = new Padding(2, 2, 2, 2);
             dtpDateOFBirth.Name = "dtpDateOFBirth";
-            dtpDateOFBirth.Size = new Size(250, 33);
+            dtpDateOFBirth.Size = new Size(183, 27);
             dtpDateOFBirth.TabIndex = 40;
             // 
             // cbgender
             // 
             cbgender.FormattingEnabled = true;
             cbgender.Items.AddRange(new object[] { "Male", "Femal" });
-            cbgender.Location = new Point(189, 239);
+            cbgender.Location = new Point(137, 191);
+            cbgender.Margin = new Padding(2, 2, 2, 2);
             cbgender.Name = "cbgender";
-            cbgender.Size = new Size(182, 33);
+            cbgender.Size = new Size(133, 28);
             cbgender.TabIndex = 39;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(134, 235);
+            pictureBox2.Location = new Point(97, 188);
+            pictureBox2.Margin = new Padding(2, 2, 2, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(44, 38);
+            pictureBox2.Size = new Size(32, 30);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 38;
             pictureBox2.TabStop = false;
@@ -226,17 +241,19 @@
             // tbEmail
             // 
             tbEmail.BackColor = Color.White;
-            tbEmail.Location = new Point(190, 172);
+            tbEmail.Location = new Point(138, 138);
+            tbEmail.Margin = new Padding(2, 2, 2, 2);
             tbEmail.Name = "tbEmail";
-            tbEmail.Size = new Size(254, 33);
+            tbEmail.Size = new Size(186, 27);
             tbEmail.TabIndex = 37;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(134, 172);
+            pictureBox1.Location = new Point(97, 138);
+            pictureBox1.Margin = new Padding(2, 2, 2, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(44, 38);
+            pictureBox1.Size = new Size(32, 30);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 36;
             pictureBox1.TabStop = false;
@@ -244,17 +261,19 @@
             // tbPhoneNumber
             // 
             tbPhoneNumber.BackColor = Color.White;
-            tbPhoneNumber.Location = new Point(189, 108);
+            tbPhoneNumber.Location = new Point(137, 86);
+            tbPhoneNumber.Margin = new Padding(2, 2, 2, 2);
             tbPhoneNumber.Name = "tbPhoneNumber";
-            tbPhoneNumber.Size = new Size(254, 33);
+            tbPhoneNumber.Size = new Size(186, 27);
             tbPhoneNumber.TabIndex = 35;
             // 
             // pbEmail
             // 
             pbEmail.Image = (Image)resources.GetObject("pbEmail.Image");
-            pbEmail.Location = new Point(133, 108);
+            pbEmail.Location = new Point(97, 86);
+            pbEmail.Margin = new Padding(2, 2, 2, 2);
             pbEmail.Name = "pbEmail";
-            pbEmail.Size = new Size(44, 38);
+            pbEmail.Size = new Size(32, 30);
             pbEmail.SizeMode = PictureBoxSizeMode.Zoom;
             pbEmail.TabIndex = 33;
             pbEmail.TabStop = false;
@@ -262,9 +281,10 @@
             // pbAddress
             // 
             pbAddress.Image = (Image)resources.GetObject("pbAddress.Image");
-            pbAddress.Location = new Point(721, 177);
+            pbAddress.Location = new Point(524, 142);
+            pbAddress.Margin = new Padding(2, 2, 2, 2);
             pbAddress.Name = "pbAddress";
-            pbAddress.Size = new Size(44, 38);
+            pbAddress.Size = new Size(32, 30);
             pbAddress.SizeMode = PictureBoxSizeMode.Zoom;
             pbAddress.TabIndex = 32;
             pbAddress.TabStop = false;
@@ -272,9 +292,10 @@
             // pbGender
             // 
             pbGender.Image = (Image)resources.GetObject("pbGender.Image");
-            pbGender.Location = new Point(133, 41);
+            pbGender.Location = new Point(97, 33);
+            pbGender.Margin = new Padding(2, 2, 2, 2);
             pbGender.Name = "pbGender";
-            pbGender.Size = new Size(44, 38);
+            pbGender.Size = new Size(32, 30);
             pbGender.SizeMode = PictureBoxSizeMode.Zoom;
             pbGender.TabIndex = 31;
             pbGender.TabStop = false;
@@ -282,18 +303,20 @@
             // tbName
             // 
             tbName.BackColor = Color.White;
-            tbName.Location = new Point(190, 44);
+            tbName.Location = new Point(138, 35);
+            tbName.Margin = new Padding(2, 2, 2, 2);
             tbName.Name = "tbName";
-            tbName.Size = new Size(254, 33);
+            tbName.Size = new Size(186, 27);
             tbName.TabIndex = 30;
             // 
             // btnClose
             // 
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(872, 436);
+            btnClose.Location = new Point(634, 349);
+            btnClose.Margin = new Padding(2, 2, 2, 2);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(139, 53);
+            btnClose.Size = new Size(101, 42);
             btnClose.TabIndex = 31;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
@@ -303,9 +326,10 @@
             // 
             btnSave.Image = (Image)resources.GetObject("btnSave.Image");
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(1039, 436);
+            btnSave.Location = new Point(756, 349);
+            btnSave.Margin = new Padding(2, 2, 2, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(139, 53);
+            btnSave.Size = new Size(101, 42);
             btnSave.TabIndex = 32;
             btnSave.Text = "Save ";
             btnSave.UseVisualStyleBackColor = true;
@@ -313,16 +337,17 @@
             // 
             // frmAddEditPersoninfo
             // 
-            AutoScaleDimensions = new SizeF(11F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1232, 563);
+            ClientSize = new Size(896, 450);
             Controls.Add(btnSave);
             Controls.Add(btnClose);
             Controls.Add(panel1);
             Controls.Add(lblAddEditPersonTitel);
             Controls.Add(lbPersonID);
             Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "frmAddEditPersoninfo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmAddEditPersoninfo";
