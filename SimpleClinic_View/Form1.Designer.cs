@@ -32,12 +32,13 @@
             btnPatient = new Button();
             btnUsers = new Button();
             button2 = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
             button1.Location = new Point(362, 76);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(81, 27);
             button1.TabIndex = 0;
@@ -48,7 +49,7 @@
             // btnPatient
             // 
             btnPatient.Location = new Point(362, 172);
-            btnPatient.Margin = new Padding(2, 2, 2, 2);
+            btnPatient.Margin = new Padding(2);
             btnPatient.Name = "btnPatient";
             btnPatient.Size = new Size(81, 27);
             btnPatient.TabIndex = 1;
@@ -59,7 +60,7 @@
             // btnUsers
             // 
             btnUsers.Location = new Point(181, 76);
-            btnUsers.Margin = new Padding(2, 2, 2, 2);
+            btnUsers.Margin = new Padding(2);
             btnUsers.Name = "btnUsers";
             btnUsers.Size = new Size(81, 27);
             btnUsers.TabIndex = 2;
@@ -77,16 +78,27 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(349, 311);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 4;
+            button3.Text = "button3";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(900, 676);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(btnUsers);
             Controls.Add(btnPatient);
             Controls.Add(button1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
@@ -98,5 +110,6 @@
         private Button btnPatient;
         private Button btnUsers;
         private Button button2;
+        private Button button3;
     }
 }

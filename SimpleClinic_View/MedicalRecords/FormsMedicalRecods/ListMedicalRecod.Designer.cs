@@ -26,32 +26,35 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private async void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListMedicalRecod));
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
             dataGridView1 = new DataGridView();
             contextMenuStrip1 = new ContextMenuStrip(components);
             ShowDetailesToolStripMenuItem = new ToolStripMenuItem();
-            AddNewToolStripMenuItem = new ToolStripMenuItem();
-            EditToolStripMenuItem = new ToolStripMenuItem();
-            deleteToolStripMenuItem1 = new ToolStripMenuItem();
-            doAppoitmentToolStripMenuItem = new ToolStripMenuItem();
-            addASPatientToolStripMenuItem = new ToolStripMenuItem();
-            addASDoctorToolStripMenuItem = new ToolStripMenuItem();
+            muAddMedicalRecord = new ToolStripMenuItem();
+            EditMedicalRecord = new ToolStripMenuItem();
+            DeleteMedicalRecord = new ToolStripMenuItem();
             panel3 = new Panel();
             btnClose = new Button();
+            panel4 = new Panel();
+            pbAddNewMedicalRecord = new PictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             panel3.SuspendLayout();
+            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbAddNewMedicalRecord).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(panel4);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
@@ -95,55 +98,41 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, doAppoitmentToolStripMenuItem, addASPatientToolStripMenuItem, addASDoctorToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, muAddMedicalRecord, EditMedicalRecord, DeleteMedicalRecord });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(193, 214);
+            contextMenuStrip1.Size = new Size(254, 124);
             // 
             // ShowDetailesToolStripMenuItem
             // 
-            ShowDetailesToolStripMenuItem.Image = Properties.Resources.Add_Person_40;
+            ShowDetailesToolStripMenuItem.Image = (Image)resources.GetObject("ShowDetailesToolStripMenuItem.Image");
             ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
-            ShowDetailesToolStripMenuItem.Size = new Size(192, 30);
-            ShowDetailesToolStripMenuItem.Text = "Show Details";
+            ShowDetailesToolStripMenuItem.Size = new Size(253, 30);
+            ShowDetailesToolStripMenuItem.Text = "Show Medical Record";
+            ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
             // 
-            // AddNewToolStripMenuItem
+            // muAddMedicalRecord
             // 
-            AddNewToolStripMenuItem.Image = Properties.Resources.Edit_User_32;
-            AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
-            AddNewToolStripMenuItem.Size = new Size(192, 30);
-            AddNewToolStripMenuItem.Text = "Add new Person";
+            muAddMedicalRecord.Image = (Image)resources.GetObject("muAddMedicalRecord.Image");
+            muAddMedicalRecord.Name = "muAddMedicalRecord";
+            muAddMedicalRecord.Size = new Size(253, 30);
+            muAddMedicalRecord.Text = "Add new Medical Record";
+            muAddMedicalRecord.Click += muAddMedicalRecord_Click;
             // 
-            // EditToolStripMenuItem
+            // EditMedicalRecord
             // 
-            EditToolStripMenuItem.Image = Properties.Resources.Delete_User_32;
-            EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            EditToolStripMenuItem.Size = new Size(192, 30);
-            EditToolStripMenuItem.Text = "Edit Info";
+            EditMedicalRecord.Image = (Image)resources.GetObject("EditMedicalRecord.Image");
+            EditMedicalRecord.Name = "EditMedicalRecord";
+            EditMedicalRecord.Size = new Size(253, 30);
+            EditMedicalRecord.Text = "Edit Medical Record";
+            EditMedicalRecord.Click += EditMedicalRecord_Click;
             // 
-            // deleteToolStripMenuItem1
+            // DeleteMedicalRecord
             // 
-            deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
-            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(192, 30);
-            deleteToolStripMenuItem1.Text = "Delete";
-            // 
-            // doAppoitmentToolStripMenuItem
-            // 
-            doAppoitmentToolStripMenuItem.Name = "doAppoitmentToolStripMenuItem";
-            doAppoitmentToolStripMenuItem.Size = new Size(192, 30);
-            doAppoitmentToolStripMenuItem.Text = "Do Appoitment";
-            // 
-            // addASPatientToolStripMenuItem
-            // 
-            addASPatientToolStripMenuItem.Name = "addASPatientToolStripMenuItem";
-            addASPatientToolStripMenuItem.Size = new Size(192, 30);
-            addASPatientToolStripMenuItem.Text = "Add AS Patient";
-            // 
-            // addASDoctorToolStripMenuItem
-            // 
-            addASDoctorToolStripMenuItem.Name = "addASDoctorToolStripMenuItem";
-            addASDoctorToolStripMenuItem.Size = new Size(192, 30);
-            addASDoctorToolStripMenuItem.Text = "Add AS Doctor";
+            DeleteMedicalRecord.Image = (Image)resources.GetObject("DeleteMedicalRecord.Image");
+            DeleteMedicalRecord.Name = "DeleteMedicalRecord";
+            DeleteMedicalRecord.Size = new Size(253, 30);
+            DeleteMedicalRecord.Text = "Delete Medical Record";
+            DeleteMedicalRecord.Click += DeleteMedicalRecord_Click;
             // 
             // panel3
             // 
@@ -170,6 +159,26 @@
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
+            // panel4
+            // 
+            panel4.Controls.Add(pbAddNewMedicalRecord);
+            panel4.Dock = DockStyle.Right;
+            panel4.Location = new Point(496, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(75, 125);
+            panel4.TabIndex = 1;
+            // 
+            // pbAddNewMedicalRecord
+            // 
+            pbAddNewMedicalRecord.Dock = DockStyle.Bottom;
+            pbAddNewMedicalRecord.Image = (Image)resources.GetObject("pbAddNewMedicalRecord.Image");
+            pbAddNewMedicalRecord.Location = new Point(0, 61);
+            pbAddNewMedicalRecord.Name = "pbAddNewMedicalRecord";
+            pbAddNewMedicalRecord.Size = new Size(75, 64);
+            pbAddNewMedicalRecord.TabIndex = 0;
+            pbAddNewMedicalRecord.TabStop = false;
+            pbAddNewMedicalRecord.Click += this.pbAddNewMedicalRecord_Click;
+            // 
             // ListMedicalRecod
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -186,6 +195,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             contextMenuStrip1.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pbAddNewMedicalRecord).EndInit();
             ResumeLayout(false);
         }
 
@@ -199,11 +210,10 @@
         private Label label1;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem ShowDetailesToolStripMenuItem;
-        private ToolStripMenuItem AddNewToolStripMenuItem;
-        private ToolStripMenuItem EditToolStripMenuItem;
-        private ToolStripMenuItem deleteToolStripMenuItem1;
-        private ToolStripMenuItem doAppoitmentToolStripMenuItem;
-        private ToolStripMenuItem addASPatientToolStripMenuItem;
-        private ToolStripMenuItem addASDoctorToolStripMenuItem;
+        private ToolStripMenuItem muAddMedicalRecord;
+        private ToolStripMenuItem EditMedicalRecord;
+        private ToolStripMenuItem DeleteMedicalRecord;
+        private Panel panel4;
+        private PictureBox pbAddNewMedicalRecord;
     }
 }

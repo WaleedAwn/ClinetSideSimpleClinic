@@ -19,6 +19,8 @@ namespace SimpleClinic_View.MedicalRecords.Repositry.Repositories
             _apiEndpoint = apiEndpoint;
         }
 
+        
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             var response = await _httpClient.GetAsync(_apiEndpoint+"/All");
@@ -33,26 +35,35 @@ namespace SimpleClinic_View.MedicalRecords.Repositry.Repositories
 
         public async Task<T?> GetByIdAsync(int id)
         {
-            var response = await _httpClient.GetAsync(_apiEndpoint+"/Find/{id}");
+            var response = await _httpClient.GetAsync(_apiEndpoint+$"/Find/{id}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<T>();
         }
 
-        public async Task<bool> AddAsync(T entity)
-        {
-            var response = await _httpClient.PostAsJsonAsync(_apiEndpoint+"/Add", entity);
-            return response.IsSuccessStatusCode;
-        }
+   
+            public async Task<int> AddAsync(T entity)
+            {
+                var response = await _httpClient.PostAsJsonAsync(_apiEndpoint + "/Add", entity);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadFromJsonAsync<int>();
+                    return result; 
+                }
+                return -1; 
+            }
+
+        
 
         public async Task<bool> UpdateAsync(int id,T entity)
         {
-            var response = await _httpClient.PutAsJsonAsync($"{_apiEndpoint}/Update/{id}", entity);
+            var response = await _httpClient.PutAsJsonAsync(_apiEndpoint+ $"/Update/{id}", entity);
             return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var response = await _httpClient.DeleteAsync($"{_apiEndpoint}/Delete/{id}");
+            var response = await _httpClient.DeleteAsync(_apiEndpoint+$"/Delete/{id}");
             return response.IsSuccessStatusCode;
         }
     }

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace SimpleClinic_View.MedicalRecords.Model
 {
    
-        public class MedicalRecordDTO
+        public class MedicalRecordsDTO
         {
-            public int MedicalRecordID { get; set; }
-            public string? VisitDescription { get; set; }
-            public string? Diagnosis { get; set; }
-            public string? AdditionalNotes { get; set; }
+        public int MedicalRecordID { get; set; }
+        public string? VisitDescription { get; set; }
+        public string? Diagnosis { get; set; }
+        public string? AdditionalNotes { get; set; }
 
-            public MedicalRecordDTO(int MedicalRecordID,string? VisitDescription,string? Diagnosis, string? AdditionalNotes) 
+        public MedicalRecordsDTO(int MedicalRecordID,string? VisitDescription,string? Diagnosis, string? AdditionalNotes) 
             {
                 this.MedicalRecordID = MedicalRecordID;
                 this.VisitDescription = VisitDescription;

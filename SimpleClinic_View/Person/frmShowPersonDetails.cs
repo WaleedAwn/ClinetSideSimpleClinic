@@ -22,14 +22,14 @@ namespace SimpleClinic_View
 
         private void frmShowPersonDetails_Load(object sender, EventArgs e)
         {
-            
+
             ctrlPersonCard1._LoadPersonData(_personID);
 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-           
+
             this.Close();
         }
 
@@ -44,6 +44,11 @@ namespace SimpleClinic_View
         {
             Form frm = new frmAddEditPersoninfo(-1);
             frm.ShowDialog();
+
+        }
+
+        private void ctrlPersonCard1_Load(object sender, EventArgs e)
+        {
 
         }
     }
