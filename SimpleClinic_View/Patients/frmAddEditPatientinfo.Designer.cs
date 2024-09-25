@@ -53,6 +53,8 @@
             lblAddEditPatientTitel = new Label();
             lbPatientID = new Label();
             label1 = new Label();
+            lbPersonID = new Label();
+            label9 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbDateOfBirth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -72,6 +74,7 @@
             btnSave.TabIndex = 38;
             btnSave.Text = "Save ";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnClose
             // 
@@ -83,6 +86,7 @@
             btnClose.TabIndex = 37;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // panel1
             // 
@@ -293,7 +297,7 @@
             // 
             lbPatientID.AutoSize = true;
             lbPatientID.Font = new Font("Microsoft Sans Serif", 12F);
-            lbPatientID.Location = new Point(174, 47);
+            lbPatientID.Location = new Point(174, 66);
             lbPatientID.Name = "lbPatientID";
             lbPatientID.Size = new Size(75, 29);
             lbPatientID.TabIndex = 35;
@@ -303,17 +307,39 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label1.Location = new Point(41, 47);
+            label1.Location = new Point(41, 66);
             label1.Name = "label1";
             label1.Size = new Size(140, 29);
             label1.TabIndex = 34;
             label1.Text = "Patient ID :";
+            // 
+            // lbPersonID
+            // 
+            lbPersonID.AutoSize = true;
+            lbPersonID.Font = new Font("Microsoft Sans Serif", 12F);
+            lbPersonID.Location = new Point(174, 21);
+            lbPersonID.Name = "lbPersonID";
+            lbPersonID.Size = new Size(75, 29);
+            lbPersonID.TabIndex = 40;
+            lbPersonID.Text = "[????]";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            label9.Location = new Point(41, 21);
+            label9.Name = "label9";
+            label9.Size = new Size(142, 29);
+            label9.TabIndex = 39;
+            label9.Text = "Person ID :";
             // 
             // frmAddEditPatientinfo
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1228, 532);
+            Controls.Add(lbPersonID);
+            Controls.Add(label9);
             Controls.Add(btnSave);
             Controls.Add(btnClose);
             Controls.Add(panel1);
@@ -361,5 +387,7 @@
         private Label lblAddEditPatientTitel;
         private Label lbPatientID;
         private Label label1;
+        private Label lbPersonID;
+        private Label label9;
     }
 }

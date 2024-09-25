@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.ApplicationServices;
 using SimpleClinic_View.Globals;
 using SimpleClinic_View.Person;
 using SimpleClinic_View.Person.DTOs;
@@ -19,17 +20,31 @@ namespace SimpleClinic_View.Controls
     public partial class ctrlPersonCardWithFilter : UserControl
     {
 
-        // Define a custom event handler delegate with parameters
-        public event Action<int> OnPersonSelected;
-        // Create a protected method to raise the event with a parameter
-        protected virtual void PersonSelected(int PersonID)
+        public class PersonSelectedEventArgs : EventArgs
         {
-            Action<int> handler = OnPersonSelected;
-            if (handler != null)
+            public int PersonId { get; } 
+            public int PatientId { get; } 
+            
+            public PersonSelectedEventArgs(int personId, int patientId)
             {
-                handler(PersonID); // Raise the event with the parameter
+                this.PersonId = personId;
+                this.PatientId = patientId;
             }
         }
+        //define the event 
+        public event EventHandler<PersonSelectedEventArgs> OnPersonSelected;
+
+        public void RaisOnPersonSelectd(int personId, int patientId)
+        {
+            RaisOnPersonSelectd(new PersonSelectedEventArgs(personId, patientId));
+
+        }
+
+        protected virtual void RaisOnPersonSelectd(PersonSelectedEventArgs e)
+        {
+            OnPersonSelected?.Invoke(this, e);
+        }
+
 
         private ApiResult<PersonsDTO> _apiResult;
         private int _personId = -1;
@@ -38,6 +53,13 @@ namespace SimpleClinic_View.Controls
             get
             {
                return ctrlPersonCard1.PersonId;
+            }
+        }
+        public int PatientId
+        {
+            get
+            {
+                return ctrlPersonCard1.PatientId;
             }
         }
 
@@ -81,23 +103,33 @@ namespace SimpleClinic_View.Controls
             _apiResult = new ApiResult<PersonsDTO>();
         }
 
-
-        public void LoadPersonInfo(int PersonID)
+        public void DeleteItemFromFilter(int index)
         {
+            cbPersonFilters.Items.RemoveAt(index);
+            if(cbPersonFilters.Items.Count >0)
+                cbPersonFilters.SelectedIndex = 0;
+        }
 
+        public  void LoadPersonInfo(int PersonID)
+        {
+            
             cbPersonFilters.SelectedIndex = 0;
             txtSearch.Text = PersonID.ToString();
             FindNow();
 
         }
 
-        private void FindNow()
+        private async void FindNow()
         {
-            switch (cbPersonFilters.Text)
+             switch (cbPersonFilters.Text)
             {
+                
                 case "Person ID":
-                    ctrlPersonCard1._LoadPersonData(int.Parse(txtSearch.Text));
+                     await ctrlPersonCard1._LoadPersonData(int.Parse(txtSearch.Text));
 
+                    break;
+                case "Patient ID":
+                    await ctrlPersonCard1._LoadPatientData(int.Parse(txtSearch.Text));
                     break;
 
                 case "National No":
@@ -111,7 +143,7 @@ namespace SimpleClinic_View.Controls
 
             if (OnPersonSelected != null && FilterEnabled)
                 // Raise the event with a parameter
-                OnPersonSelected(ctrlPersonCard1.PersonId);
+                RaisOnPersonSelectd(ctrlPersonCard1.PersonId,ctrlPersonCard1.PatientId);
         }
 
         private async void btnFind_Click(object sender, EventArgs e)
@@ -136,9 +168,10 @@ namespace SimpleClinic_View.Controls
         private void AddNewPerson_DataBack(object sender, int PersonID)
         {
             cbPersonFilters.SelectedIndex = 0;
-            txtSearch.Text = PersonId.ToString();
+            txtSearch.Text = PersonID.ToString();
+            _personId = PersonID;
             cbPersonFilters.Focus();
-            ctrlPersonCard1._LoadPersonData(PersonId);
+            ctrlPersonCard1._LoadPersonData(PersonID);
         }
 
         private void ctrlPersonCardWithFilter_Load(object sender, EventArgs e)
@@ -179,7 +212,7 @@ namespace SimpleClinic_View.Controls
                 btnFind.PerformClick();
             }
 
-            if (cbPersonFilters.Text == "Person ID")
+            if (cbPersonFilters.Text == "Person ID" || cbPersonFilters.Text == "Patient ID")
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
 
         }

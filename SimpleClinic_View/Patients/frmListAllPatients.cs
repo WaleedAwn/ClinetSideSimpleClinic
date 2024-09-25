@@ -1,14 +1,4 @@
 ﻿using SimpleClinic_View.Patients;
-using SimpleClinic_View.Patients.DTOs;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SimpleClinic_View
 {
@@ -27,23 +17,22 @@ namespace SimpleClinic_View
         {
             dgvListAllPatients.Rows.Clear();
 
-            List<AllPatientInfoDTO> peopleList = await _Patient.GetAllPatientsAsync();
+            var peopleList = await _Patient.GetAllPatientsAsync();
 
-            if (peopleList != null && peopleList.Count > 0)
+            if (peopleList != null && peopleList.Result.Count > 0)
             {
-                foreach (var person in peopleList)
+                foreach (var person in peopleList.Result)
                 {
                     string formattedDateOfBirth = person.DateOfBirth.ToString("yyyy-MM-dd");
                     dgvListAllPatients.Rows.Add(person.Id, person.PersonName, person.PhoneNumber,
-                    person.Email, formattedDateOfBirth, person.Gender, person.Address);
+                    person.Email, formattedDateOfBirth, person.Gender, person.Address, person.personId);
                 }
-                lblCounter.Text = peopleList.Count.ToString();
+                lblCounter.Text = peopleList.Result.Count.ToString();
             }
             else
             {
-                MessageBox.Show("No Patient to display.", "Information", MessageBoxButtons.OK);
+                MessageBox.Show("No people to display.", "Information", MessageBoxButtons.OK);
             }
-
 
         }
 
@@ -59,13 +48,15 @@ namespace SimpleClinic_View
 
         private void ShowDetailesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form frm = new frmShowPatientDetails((int)dgvListAllPatients.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
         }
 
         private void btnAddNewpatient_Click(object sender, EventArgs e)
         {
             Form fr = new frmAddEditPatientinfo(-1);
             fr.ShowDialog();
+            _RefreshAllPatientsData();
 
         }
 
@@ -73,7 +64,39 @@ namespace SimpleClinic_View
         {
             Form frm = new frmAddEditPatientinfo((int)dgvListAllPatients.CurrentRow.Cells[0].Value);
             frm.ShowDialog();
+            _RefreshAllPatientsData();
+        }
 
+        private async void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            int PatientID = (int)dgvListAllPatients.CurrentRow.Cells[0].Value;
+            //  int PersonID = (int)dgvListAllPatients.CurrentRow.Cells[7].Value; 
+            // i Will USe this Way To Avoid Create Object With all Patient Date 
+
+
+            if (MessageBox.Show("Are you sure you want to delete this Patient [" + PatientID + "]", "Confirm Delete", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                var Isdeleted = await PatientFacade.DeletePatient(PatientID);
+                if (Isdeleted.IsSuccess)
+                {
+                    MessageBox.Show("Patient  deleted Successfully.");
+                    _RefreshAllPatientsData();
+                }
+                else
+                {
+                    MessageBox.Show("Patient is not  Deleted.");
+
+                }
+
+
+            }
+
+        }
+
+        private void AddNewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new frmAddEditPatientinfo(-1);
+            frm.ShowDialog();
             _RefreshAllPatientsData();
         }
     }

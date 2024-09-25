@@ -33,6 +33,8 @@
             btnUsers = new Button();
             button2 = new Button();
             button3 = new Button();
+
+            btnDoctor = new Button();
             SuspendLayout();
             // 
             // button1
@@ -48,8 +50,9 @@
             // 
             // btnPatient
             // 
-            btnPatient.Location = new Point(362, 172);
             btnPatient.Margin = new Padding(2);
+
+            btnPatient.Location = new Point(498, 186);
             btnPatient.Name = "btnPatient";
             btnPatient.Size = new Size(81, 27);
             btnPatient.TabIndex = 1;
@@ -87,6 +90,15 @@
             button3.Text = "button3";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
+            // btnDoctor
+            // 
+            btnDoctor.Location = new Point(498, 303);
+            btnDoctor.Name = "btnDoctor";
+            btnDoctor.Size = new Size(112, 34);
+            btnDoctor.TabIndex = 3;
+            btnDoctor.Text = "Doctors";
+            btnDoctor.UseVisualStyleBackColor = true;
+            btnDoctor.Click += btnDoctor_Click;
             // 
             // Form1
             // 
@@ -95,6 +107,9 @@
             ClientSize = new Size(900, 676);
             Controls.Add(button3);
             Controls.Add(button2);
+=======
+            ClientSize = new Size(1238, 845);
+            Controls.Add(btnDoctor);
             Controls.Add(btnUsers);
             Controls.Add(btnPatient);
             Controls.Add(button1);
@@ -111,5 +126,6 @@
         private Button btnUsers;
         private Button button2;
         private Button button3;
+        private Button btnDoctor;
     }
 }

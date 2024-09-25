@@ -1,4 +1,5 @@
 
+using SimpleClinic_View.Doctors;
 using SimpleClinic_View.Users;
 using SimpleClinic_View.MedicalRecords.ListMedicalRecods;
     namespace SimpleClinic_View
@@ -25,6 +26,13 @@ using SimpleClinic_View.MedicalRecords.ListMedicalRecods;
         private void btnUsers_Click(object sender, EventArgs e)
         {
             Form frm = new frmManageUsers();
+
+            frm.ShowDialog();
+        }
+
+        private void btnDoctor_Click(object sender, EventArgs e)
+        {
+            Form frm =new frmListAllDoctors();
             frm.ShowDialog();
         }
 

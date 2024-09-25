@@ -15,23 +15,46 @@ namespace SimpleClinic_View.Users
     public partial class frmManageUsers : Form
     {
         private UserService _userServices;
+        DataTable _dtUsers;
         public frmManageUsers()
         {
             InitializeComponent();
             _userServices = new UserService();
+            _dtUsers = new DataTable();
         }
 
         private async void _RefreshUsers()
         {
-            dgvListAllUsers.Rows.Clear();
-            var userList = await _userServices.GetAllUsers();
-            if (userList.Result.Count > 0)
-                lblCounter.Text = userList.Result.Count.ToString();
 
-            foreach (var user in userList.Result)
+            var userList = await _userServices.GetAllUsers();
+
+            if (!userList.IsSuccess)
+                return;
+
+            _dtUsers = userList.Result.ToDataTable();
+            _dtUsers.Columns.Remove("Password"); 
+            dgvListAllUsers.DataSource = _dtUsers;
+
+            lblCounter.Text = dgvListAllUsers.Rows.Count.ToString();
+
+
+            if (dgvListAllUsers.Rows.Count > 0)
             {
-                dgvListAllUsers.Rows.Add(user.Id, user.PersonId, user.Name, user.UserName);
+                dgvListAllUsers.Columns[0].HeaderText = "User Id";
+                dgvListAllUsers.Columns[0].Width = 125;
+
+                dgvListAllUsers.Columns[1].HeaderText = "Person Id";
+                dgvListAllUsers.Columns[1].Width = 125;
+
+                dgvListAllUsers.Columns[2].HeaderText = "Full Name";
+                dgvListAllUsers.Columns[2].Width = 300;
+
+                dgvListAllUsers.Columns[3].HeaderText = "UserName";
+                dgvListAllUsers.Columns[3].Width = 125;
+
             }
+            cbFilterBy.SelectedIndex = 0;
+
         }
 
         private void frmManageUsers_Load(object sender, EventArgs e)
@@ -97,7 +120,63 @@ namespace SimpleClinic_View.Users
             int id = (int)dgvListAllUsers.CurrentRow.Cells[0].Value;
             frmChangeUserPassword frm = new frmChangeUserPassword(id);
             frm.ShowDialog();
-            
+
+        }
+
+        private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtFilter.Visible = (cbFilterBy.Text != "None");
+
+            if (txtFilter.Visible)
+            {
+                txtFilter.Text = "";
+                txtFilter.Focus();
+            }
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            string FilterColumn = "";
+            switch (cbFilterBy.Text)
+            {
+                case "User Id":
+                    FilterColumn = "Id";
+                    break;
+                case "Person Id":
+                    FilterColumn = "PersonId";
+                    break;
+                case "Full Name":
+                    FilterColumn = "Name";
+                    break;
+                case "User Name":
+                    FilterColumn = "UserName";
+                    break;
+                default:
+                    FilterColumn = "None";
+                    break;
+
+            }
+
+            if (txtFilter.Text.Trim() == "" || FilterColumn == "None")
+            {
+                _dtUsers.DefaultView.RowFilter = "";
+                lblCounter.Text = dgvListAllUsers.Rows.Count.ToString();
+                return;
+            }
+
+            if (FilterColumn == "Id" || FilterColumn == "PersonId")
+                _dtUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterColumn, txtFilter.Text.Trim());
+            else
+                _dtUsers.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterColumn, txtFilter.Text.Trim());
+
+
+        }
+
+        private void txtFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(cbFilterBy.Text == "User Id" || cbFilterBy.Text == "Person Id")
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+
         }
     }
 }

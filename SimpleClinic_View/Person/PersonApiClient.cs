@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.ApplicationServices;
 using SimpleClinic_View.Globals;
-using SimpleClinic_View.Logging;
+using SimpleClinic_View.Patients.Logging;
 using SimpleClinic_View.Person.DTOs;
 using SimpleClinic_View.Users.DTOs;
 using System;

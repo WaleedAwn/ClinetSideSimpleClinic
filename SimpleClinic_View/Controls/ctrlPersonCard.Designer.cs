@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrlPersonCard));
             PnPersoncard = new GroupBox();
+            lblPatientIdValue = new Label();
+            lblPatientId = new Label();
             lblPhone = new Label();
             lblDateOfBirth = new Label();
             pbPhone = new PictureBox();
@@ -59,6 +61,8 @@
             // 
             // PnPersoncard
             // 
+            PnPersoncard.Controls.Add(lblPatientIdValue);
+            PnPersoncard.Controls.Add(lblPatientId);
             PnPersoncard.Controls.Add(lblPhone);
             PnPersoncard.Controls.Add(lblDateOfBirth);
             PnPersoncard.Controls.Add(pbPhone);
@@ -88,6 +92,30 @@
             PnPersoncard.TabStop = false;
             PnPersoncard.Text = " Person Information";
             PnPersoncard.Enter += PnPersoncard_Enter;
+            // 
+            // lblPatientIdValue
+            // 
+            lblPatientIdValue.AutoSize = true;
+            lblPatientIdValue.Font = new Font("Microsoft Sans Serif", 12F);
+            lblPatientIdValue.Location = new Point(490, 38);
+            lblPatientIdValue.Margin = new Padding(2, 0, 2, 0);
+            lblPatientIdValue.Name = "lblPatientIdValue";
+            lblPatientIdValue.Size = new Size(68, 25);
+            lblPatientIdValue.TabIndex = 20;
+            lblPatientIdValue.Text = "[????]";
+            lblPatientIdValue.Visible = false;
+            // 
+            // lblPatientId
+            // 
+            lblPatientId.AutoSize = true;
+            lblPatientId.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            lblPatientId.Location = new Point(368, 38);
+            lblPatientId.Margin = new Padding(2, 0, 2, 0);
+            lblPatientId.Name = "lblPatientId";
+            lblPatientId.Size = new Size(113, 25);
+            lblPatientId.TabIndex = 19;
+            lblPatientId.Text = "Patient ID:";
+            lblPatientId.Visible = false;
             // 
             // lblPhone
             // 
@@ -340,5 +368,7 @@
         private Label lblDateOfBirth;
         private PictureBox pbPhone;
         private PictureBox pbDateOfBirth;
+        private Label lblPatientIdValue;
+        private Label lblPatientId;
     }
 }
