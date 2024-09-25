@@ -45,13 +45,13 @@ namespace SimpleClinic_View.Appointments
             llShowPayment.Enabled = false;
         }
 
-        private  void _FillAppointmentInfo()
+        private  async void _FillAppointmentInfo()
         {
 
             llShowPayment.Enabled = _AppointmentDto.PaymentId != null;
             llShowMedicalRecord.Enabled = _AppointmentDto.MedicalRecordId != null;
 
-             ctrlPersonCard1._LoadPatientData(_AppointmentDto.PatientId);
+            ctrlPersonCard1._LoadPatientData(_AppointmentDto.PatientId);
 
             ctrlDoctorCard1.LoadDoctorInfo(_AppointmentDto.DoctorId);
 

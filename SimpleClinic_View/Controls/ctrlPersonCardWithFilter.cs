@@ -190,7 +190,7 @@ namespace SimpleClinic_View.Controls
         {
             if (string.IsNullOrEmpty(txtSearch.Text))
             {
-                //e.Cancel = true;
+                e.Cancel = true;
                 epPersonFilter.SetError(txtSearch, "This field is required!");
 
             }

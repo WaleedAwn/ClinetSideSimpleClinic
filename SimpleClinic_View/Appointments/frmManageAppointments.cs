@@ -30,7 +30,7 @@ namespace SimpleClinic_View.Appointments
         private async void _RefreshAppointments()
         {
 
-            var appointments = await _appointmentService.GetAllAppointments();
+            var appointments = await  _appointmentService.GetAllAppointments();
 
             if (!appointments.IsSuccess)
                 return;
@@ -40,7 +40,7 @@ namespace SimpleClinic_View.Appointments
 
             dgvListAllAppointments.DataSource = _dtAppointments;
 
-
+            
             lblCounter.Text = dgvListAllAppointments.Rows.Count.ToString();
 
             if (dgvListAllAppointments.Rows.Count > 0)
