@@ -2,7 +2,8 @@
 using SimpleClinic_View.Doctors;
 using SimpleClinic_View.Users;
 using SimpleClinic_View.MedicalRecords.ListMedicalRecods;
-    namespace SimpleClinic_View
+using SimpleClinic_View.Preception.FormsPreception;
+namespace SimpleClinic_View
 {
     public partial class Form1 : Form
     {
@@ -44,6 +45,8 @@ using SimpleClinic_View.MedicalRecords.ListMedicalRecods;
 
         private void button3_Click(object sender, EventArgs e)
         {
+            frmListPerception frm=new frmListPerception();
+            frm.ShowDialog();
         }
     }
 }
