@@ -30,10 +30,10 @@
         {
             ctrlPersonCard1 = new SimpleClinic_View.Controls.ctrlPersonCard();
             gbUserInfo = new GroupBox();
-            lblUserID = new Label();
-            label1 = new Label();
             lblUsername = new Label();
             label3 = new Label();
+            lblUserID = new Label();
+            label1 = new Label();
             gbUserInfo.SuspendLayout();
             SuspendLayout();
             // 
@@ -59,28 +59,6 @@
             gbUserInfo.TabStop = false;
             gbUserInfo.Text = "User Info";
             // 
-            // lblUserID
-            // 
-            lblUserID.AutoSize = true;
-            lblUserID.Font = new Font("Microsoft Sans Serif", 12F);
-            lblUserID.Location = new Point(213, 30);
-            lblUserID.Margin = new Padding(2, 0, 2, 0);
-            lblUserID.Name = "lblUserID";
-            lblUserID.Size = new Size(68, 25);
-            lblUserID.TabIndex = 9;
-            lblUserID.Text = "[????]";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            label1.Location = new Point(109, 30);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(91, 25);
-            label1.TabIndex = 8;
-            label1.Text = "User ID:";
-            // 
             // lblUsername
             // 
             lblUsername.AutoSize = true;
@@ -102,6 +80,28 @@
             label3.Size = new Size(117, 25);
             label3.TabIndex = 10;
             label3.Text = "Username:";
+            // 
+            // lblUserID
+            // 
+            lblUserID.AutoSize = true;
+            lblUserID.Font = new Font("Microsoft Sans Serif", 12F);
+            lblUserID.Location = new Point(213, 30);
+            lblUserID.Margin = new Padding(2, 0, 2, 0);
+            lblUserID.Name = "lblUserID";
+            lblUserID.Size = new Size(68, 25);
+            lblUserID.TabIndex = 9;
+            lblUserID.Text = "[????]";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
+            label1.Location = new Point(109, 30);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(91, 25);
+            label1.TabIndex = 8;
+            label1.Text = "User ID:";
             // 
             // ctrlUserCard
             // 
