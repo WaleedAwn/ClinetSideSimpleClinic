@@ -741,20 +741,6 @@
   <metadata name="cmsPaymentMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="ShowDetailesToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAgBJREFUWEfV
-        l01LAlEUhv0p/SFjNPNjxslJizSyMrU0Mwr8QNtU1iZII1oZBLUpaCHRqmWbWrVqFS6E/sCN9zJXrjo2
-        OM6lPPDivXPOPeeZOUdxHBNpkiRN+eTg4YzX13F5fW2scU13ize/or7n8ruk2WySeqNBsrlcBzC6W6xN
-        u917rDivQrHcDqjqvR42njklt+Z0uckw4a5RdGEpSgJBla5xzSgW8sx6OgDX05sbDrWOEoaCj931ejJJ
-        Idh+2LnbSpxC6OnNrT8REpQS80SR/SSgKN2C/YJPlgM09nI/1pMDOfX05sYDbC1rRFZkgr7XTk4MC/NC
-        K/I72/RMYWNxPIBMbI4+ZqNCZmIg0YhqHQCPkw2cFeEs2mYZAJ92yDIAO/j99WlJ/Xn09OY2EQCN8zPq
-        C4XDdG0UIwwABeNrq+Tu5ppqJR4nB9XKQJwwANz11UWdPD0+UAFCi0QG4oQBoBgPgLVRnDAA1gIUZi0w
-        mgNhAB9vr7QgWvEnQ5jeTPcUxQDiGh8DCQFIplIkm82QYChEIVBc1TRSrZSpj4+1HeDluUV7zyYfECjO
-        9vAhRhgA7va0dtydfhRlawhDWS4VxQFg4PqL8oKPb4PtAPj+Y/+b+B8k7G0FGFW2AYyjsQHs0uQB4K+4
-        USIrQq6RAPAWgwN2CS8leNvS0/8nczh+AP3ef6ev+iULAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="AddNewToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO

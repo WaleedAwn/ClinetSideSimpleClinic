@@ -36,10 +36,8 @@
             panel1 = new Panel();
             dgvListAllPayments = new DataGridView();
             cmsPaymentMenu = new ContextMenuStrip(components);
-            ShowDetailesToolStripMenuItem = new ToolStripMenuItem();
             AddNewToolStripMenuItem = new ToolStripMenuItem();
             EditToolStripMenuItem = new ToolStripMenuItem();
-            deleteToolStripMenuItem1 = new ToolStripMenuItem();
             label3 = new Label();
             txtFilter = new TextBox();
             cbFilterBy = new ComboBox();
@@ -119,24 +117,16 @@
             // cmsPaymentMenu
             // 
             cmsPaymentMenu.ImageScalingSize = new Size(24, 24);
-            cmsPaymentMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1 });
+            cmsPaymentMenu.Items.AddRange(new ToolStripItem[] { AddNewToolStripMenuItem, EditToolStripMenuItem });
             cmsPaymentMenu.Name = "contextMenuStrip1";
-            cmsPaymentMenu.Size = new Size(214, 156);
-            // 
-            // ShowDetailesToolStripMenuItem
-            // 
-            ShowDetailesToolStripMenuItem.Image = (Image)resources.GetObject("ShowDetailesToolStripMenuItem.Image");
-            ShowDetailesToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
-            ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
-            ShowDetailesToolStripMenuItem.Size = new Size(213, 38);
-            ShowDetailesToolStripMenuItem.Text = "Show Details";
+            cmsPaymentMenu.Size = new Size(227, 108);
             // 
             // AddNewToolStripMenuItem
             // 
             AddNewToolStripMenuItem.Image = (Image)resources.GetObject("AddNewToolStripMenuItem.Image");
             AddNewToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
-            AddNewToolStripMenuItem.Size = new Size(213, 38);
+            AddNewToolStripMenuItem.Size = new Size(226, 38);
             AddNewToolStripMenuItem.Text = "Add new Payment";
             AddNewToolStripMenuItem.Click += AddNewToolStripMenuItem_Click;
             // 
@@ -145,17 +135,9 @@
             EditToolStripMenuItem.Image = (Image)resources.GetObject("EditToolStripMenuItem.Image");
             EditToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            EditToolStripMenuItem.Size = new Size(213, 38);
+            EditToolStripMenuItem.Size = new Size(226, 38);
             EditToolStripMenuItem.Text = "Edit Payment";
             EditToolStripMenuItem.Click += EditToolStripMenuItem_Click;
-            // 
-            // deleteToolStripMenuItem1
-            // 
-            deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
-            deleteToolStripMenuItem1.ImageScaling = ToolStripItemImageScaling.None;
-            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(213, 38);
-            deleteToolStripMenuItem1.Text = "Delete Payment";
             // 
             // label3
             // 
@@ -289,9 +271,7 @@
         private Label lblCounter;
         private Label label2;
         private ContextMenuStrip cmsPaymentMenu;
-        private ToolStripMenuItem ShowDetailesToolStripMenuItem;
         private ToolStripMenuItem AddNewToolStripMenuItem;
         private ToolStripMenuItem EditToolStripMenuItem;
-        private ToolStripMenuItem deleteToolStripMenuItem1;
     }
 }

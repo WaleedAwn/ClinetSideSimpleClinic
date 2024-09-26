@@ -45,9 +45,8 @@ namespace SimpleClinic_View.Appointments
 
             if (dgvListAllAppointments.Rows.Count > 0)
             {
+
                 dgvListAllAppointments.Columns[0].HeaderText = "Id";
-
-
                 dgvListAllAppointments.Columns[1].HeaderText = "Patient Id";
                 dgvListAllAppointments.Columns[2].HeaderText = "Patient Name";
                 dgvListAllAppointments.Columns[3].HeaderText = "Dr.Id";
