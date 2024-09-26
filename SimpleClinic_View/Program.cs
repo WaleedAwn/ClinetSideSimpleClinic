@@ -17,7 +17,7 @@ namespace SimpleClinic_View
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new ListMedicalRecod());
+            Application.Run(new frmManageUsers());
         }
     }
 }

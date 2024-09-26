@@ -77,8 +77,6 @@ namespace SimpleClinic_View.Users
             return await UpdateUser(_userId, this.UserDTO);
         }
 
-
-
         public  async Task<ApiResult<List<AllUserDTO>>> GetAllUsers()
         {
             var apiResult = new ApiResult<List<AllUserDTO>>();
@@ -115,9 +113,7 @@ namespace SimpleClinic_View.Users
         
         public  async Task<UserService> Find(int Id)
         {
-            return await StatFind(Id);
-
-            
+            return await StatFind(Id);            
         }       
         
         public static async Task<UserService> StatFind(int Id)
