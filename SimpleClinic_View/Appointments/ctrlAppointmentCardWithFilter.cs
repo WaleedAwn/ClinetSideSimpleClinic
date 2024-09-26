@@ -34,12 +34,11 @@ namespace SimpleClinic_View.Appointments
             }
         }
 
-        private int _AppointmentId = -1;
         public int AppointmentId
         {
             get
             {
-                return _AppointmentId;
+                return ctrlAppointmentCardMini1.AppointmentId;
             }
         }
 
@@ -132,7 +131,6 @@ namespace SimpleClinic_View.Appointments
         {
             if (appointmentId > 0)
             {
-                _AppointmentId = appointmentId;
                 txtSearch.Focus();
                 LoadAppointmentInfo(appointmentId);
             }

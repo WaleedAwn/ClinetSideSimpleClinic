@@ -22,7 +22,14 @@ namespace SimpleClinic_View.Appointments
             _AppointmentDto = new AppointmentDTO();
         }
 
-      
+        private int _AppointmentId = -1;
+        public int AppointmentId
+        {
+            get
+            {
+                return _AppointmentId;
+            }
+        }
         public AppointmentDTO GetAppointmenDto
         {
             get
@@ -42,6 +49,7 @@ namespace SimpleClinic_View.Appointments
                 return;
             }
 
+            _AppointmentId = appointmentId;
             _AppointmentDto = appointment.AppointmentDto;
             _FillAppointmentInfo();
 
@@ -72,11 +80,11 @@ namespace SimpleClinic_View.Appointments
             lblIsTreated.Text = llShowMedicalRecord.Enabled ? "Yes" : "No";
             await ctrlPersonCard1._LoadPatientData(_AppointmentDto.PatientId);
 
-            var doctor = DoctorApiClient.StatFind(_AppointmentDto.DoctorId);
+            var doctor = await DoctorApiClient.StatFind(_AppointmentDto.DoctorId);
 
-            lblDoctorId.Text = doctor.Result.Result.Id.ToString();
-            lblDrName.Text = doctor.Result.Result.PersonName;
-            lblSpecialization.Text = doctor.Result.Result.Specialization;
+            lblDoctorId.Text = doctor.Result.Id.ToString();
+            lblDrName.Text = doctor.Result.PersonName;
+            lblSpecialization.Text = doctor.Result.Specialization;
 
             //ctrlDoctorCard1.LoadDoctorInfo(_AppointmentDto.DoctorId);
 

@@ -35,6 +35,11 @@
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             dgvListAllPayments = new DataGridView();
+            cmsPaymentMenu = new ContextMenuStrip(components);
+            ShowDetailesToolStripMenuItem = new ToolStripMenuItem();
+            AddNewToolStripMenuItem = new ToolStripMenuItem();
+            EditToolStripMenuItem = new ToolStripMenuItem();
+            deleteToolStripMenuItem1 = new ToolStripMenuItem();
             label3 = new Label();
             txtFilter = new TextBox();
             cbFilterBy = new ComboBox();
@@ -42,17 +47,12 @@
             btnClose = new Button();
             lblCounter = new Label();
             label2 = new Label();
-            cmsPaymentMenu = new ContextMenuStrip(components);
-            ShowDetailesToolStripMenuItem = new ToolStripMenuItem();
-            AddNewToolStripMenuItem = new ToolStripMenuItem();
-            EditToolStripMenuItem = new ToolStripMenuItem();
-            deleteToolStripMenuItem1 = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pbMangePayments).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvListAllPayments).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnAddNew).BeginInit();
             cmsPaymentMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnAddNew).BeginInit();
             SuspendLayout();
             // 
             // pbMangePayments
@@ -116,6 +116,47 @@
             dgvListAllPayments.Size = new Size(1218, 264);
             dgvListAllPayments.TabIndex = 0;
             // 
+            // cmsPaymentMenu
+            // 
+            cmsPaymentMenu.ImageScalingSize = new Size(24, 24);
+            cmsPaymentMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1 });
+            cmsPaymentMenu.Name = "contextMenuStrip1";
+            cmsPaymentMenu.Size = new Size(214, 156);
+            // 
+            // ShowDetailesToolStripMenuItem
+            // 
+            ShowDetailesToolStripMenuItem.Image = (Image)resources.GetObject("ShowDetailesToolStripMenuItem.Image");
+            ShowDetailesToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
+            ShowDetailesToolStripMenuItem.Size = new Size(213, 38);
+            ShowDetailesToolStripMenuItem.Text = "Show Details";
+            // 
+            // AddNewToolStripMenuItem
+            // 
+            AddNewToolStripMenuItem.Image = (Image)resources.GetObject("AddNewToolStripMenuItem.Image");
+            AddNewToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
+            AddNewToolStripMenuItem.Size = new Size(213, 38);
+            AddNewToolStripMenuItem.Text = "Add new Payment";
+            AddNewToolStripMenuItem.Click += AddNewToolStripMenuItem_Click;
+            // 
+            // EditToolStripMenuItem
+            // 
+            EditToolStripMenuItem.Image = (Image)resources.GetObject("EditToolStripMenuItem.Image");
+            EditToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            EditToolStripMenuItem.Name = "EditToolStripMenuItem";
+            EditToolStripMenuItem.Size = new Size(213, 38);
+            EditToolStripMenuItem.Text = "Edit Payment";
+            EditToolStripMenuItem.Click += EditToolStripMenuItem_Click;
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
+            deleteToolStripMenuItem1.ImageScaling = ToolStripItemImageScaling.None;
+            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            deleteToolStripMenuItem1.Size = new Size(213, 38);
+            deleteToolStripMenuItem1.Text = "Delete Payment";
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -160,6 +201,7 @@
             btnAddNew.Size = new Size(78, 60);
             btnAddNew.TabIndex = 28;
             btnAddNew.TabStop = false;
+            btnAddNew.Click += btnAddNew_Click;
             // 
             // btnClose
             // 
@@ -200,45 +242,6 @@
             label2.TabIndex = 30;
             label2.Text = "# Records:";
             // 
-            // cmsPaymentMenu
-            // 
-            cmsPaymentMenu.ImageScalingSize = new Size(24, 24);
-            cmsPaymentMenu.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1 });
-            cmsPaymentMenu.Name = "contextMenuStrip1";
-            cmsPaymentMenu.Size = new Size(214, 156);
-            // 
-            // ShowDetailesToolStripMenuItem
-            // 
-            ShowDetailesToolStripMenuItem.Image = (Image)resources.GetObject("ShowDetailesToolStripMenuItem.Image");
-            ShowDetailesToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
-            ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
-            ShowDetailesToolStripMenuItem.Size = new Size(213, 38);
-            ShowDetailesToolStripMenuItem.Text = "Show Details";
-            // 
-            // AddNewToolStripMenuItem
-            // 
-            AddNewToolStripMenuItem.Image = (Image)resources.GetObject("AddNewToolStripMenuItem.Image");
-            AddNewToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
-            AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
-            AddNewToolStripMenuItem.Size = new Size(213, 38);
-            AddNewToolStripMenuItem.Text = "Add new Payment";
-            // 
-            // EditToolStripMenuItem
-            // 
-            EditToolStripMenuItem.Image = (Image)resources.GetObject("EditToolStripMenuItem.Image");
-            EditToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
-            EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            EditToolStripMenuItem.Size = new Size(213, 38);
-            EditToolStripMenuItem.Text = "Edit Payment";
-            // 
-            // deleteToolStripMenuItem1
-            // 
-            deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
-            deleteToolStripMenuItem1.ImageScaling = ToolStripItemImageScaling.None;
-            deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(213, 38);
-            deleteToolStripMenuItem1.Text = "Delete Payment";
-            // 
             // frmManagePayments
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -265,8 +268,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvListAllPayments).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnAddNew).EndInit();
             cmsPaymentMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnAddNew).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

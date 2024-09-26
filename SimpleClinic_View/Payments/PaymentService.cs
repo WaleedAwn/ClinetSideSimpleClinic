@@ -212,6 +212,7 @@ namespace SimpleClinic_View.Payments
         }
 
 
+
         public async Task<int> AddPayment(PaymentDTO newPaymentDto)
         {
             var apiResult = new ApiResult<PaymentDTO>();

@@ -136,5 +136,28 @@ namespace SimpleClinic_View.Payments
         {
             this.Close();
         }
+
+        private void AddNewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddUpdatePayment frm = new frmAddUpdatePayment();
+            frm.ShowDialog();
+            _RefreshPayments();
+        }
+
+        private void EditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int id = (int)dgvListAllPayments.CurrentRow.Cells[0].Value;
+
+            frmAddUpdatePayment frm = new frmAddUpdatePayment(id, enType.Payment);
+            frm.ShowDialog();
+            _RefreshPayments();
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            frmAddUpdatePayment frm = new frmAddUpdatePayment();
+            frm.ShowDialog();
+            _RefreshPayments();
+        }
     }
 }

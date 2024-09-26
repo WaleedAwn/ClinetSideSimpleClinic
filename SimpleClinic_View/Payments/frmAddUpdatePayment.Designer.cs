@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddUpdatePayment));
-            tabControl1 = new TabControl();
+            tcPayments = new TabControl();
             tpAppointmentInfo = new TabPage();
             btnNext = new Button();
             ctrlAppointmentCardWithFilter1 = new Appointments.ctrlAppointmentCardWithFilter();
@@ -52,7 +53,8 @@
             lblMode = new Label();
             btnSave = new Button();
             btnClose = new Button();
-            tabControl1.SuspendLayout();
+            epPayments = new ErrorProvider(components);
+            tcPayments.SuspendLayout();
             tpAppointmentInfo.SuspendLayout();
             tpPaymentInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
@@ -60,18 +62,19 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)epPayments).BeginInit();
             SuspendLayout();
             // 
-            // tabControl1
+            // tcPayments
             // 
-            tabControl1.Controls.Add(tpAppointmentInfo);
-            tabControl1.Controls.Add(tpPaymentInfo);
-            tabControl1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tabControl1.Location = new Point(12, 35);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1068, 524);
-            tabControl1.TabIndex = 6;
+            tcPayments.Controls.Add(tpAppointmentInfo);
+            tcPayments.Controls.Add(tpPaymentInfo);
+            tcPayments.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tcPayments.Location = new Point(12, 35);
+            tcPayments.Name = "tcPayments";
+            tcPayments.SelectedIndex = 0;
+            tcPayments.Size = new Size(1068, 524);
+            tcPayments.TabIndex = 6;
             // 
             // tpAppointmentInfo
             // 
@@ -99,6 +102,7 @@
             btnNext.TabIndex = 21;
             btnNext.Text = "Next";
             btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
             // 
             // ctrlAppointmentCardWithFilter1
             // 
@@ -215,6 +219,7 @@
             txtAmountPaid.Name = "txtAmountPaid";
             txtAmountPaid.Size = new Size(339, 34);
             txtAmountPaid.TabIndex = 30;
+            txtAmountPaid.Validating += txtAmountPaid_Validating;
             // 
             // label3
             // 
@@ -311,6 +316,7 @@
             btnSave.TabIndex = 21;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // btnClose
             // 
@@ -326,6 +332,11 @@
             btnClose.TabIndex = 22;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
+            // 
+            // epPayments
+            // 
+            epPayments.ContainerControl = this;
             // 
             // frmAddUpdatePayment
             // 
@@ -336,13 +347,14 @@
             Controls.Add(btnSave);
             Controls.Add(btnClose);
             Controls.Add(lblMode);
-            Controls.Add(tabControl1);
+            Controls.Add(tcPayments);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "frmAddUpdatePayment";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Add Update Payment";
-            tabControl1.ResumeLayout(false);
+            Load += frmAddUpdatePayment_Load;
+            tcPayments.ResumeLayout(false);
             tpAppointmentInfo.ResumeLayout(false);
             tpPaymentInfo.ResumeLayout(false);
             tpPaymentInfo.PerformLayout();
@@ -351,12 +363,13 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)epPayments).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private TabControl tabControl1;
+        private TabControl tcPayments;
         private TabPage tpAppointmentInfo;
         private TabPage tpPaymentInfo;
         private PictureBox pictureBox5;
@@ -379,5 +392,6 @@
         private Button btnNext;
         private Button btnSave;
         private Button btnClose;
+        private ErrorProvider epPayments;
     }
 }
