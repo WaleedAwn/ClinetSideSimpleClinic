@@ -369,7 +369,7 @@ namespace SimpleClinic_View.Users
                 Logger loger = new Logger(LoggingMethod.EventLogger);
                 loger.Log($"User Error:{ex.Message}");
             }
-            return apiResult.Result;
+            return apiResult;
         }
 
         public static async Task<bool> IsUserExist(string userName)

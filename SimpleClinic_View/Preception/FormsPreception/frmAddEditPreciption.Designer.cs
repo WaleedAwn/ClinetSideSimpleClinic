@@ -216,7 +216,6 @@
             // 
             // pictureBox6
             // 
-            pictureBox6.Image = Properties.Resources.Calendar_321;
             pictureBox6.Location = new Point(217, 241);
             pictureBox6.Margin = new Padding(2);
             pictureBox6.Name = "pictureBox6";
@@ -227,7 +226,6 @@
             // 
             // pictureBox5
             // 
-            pictureBox5.Image = Properties.Resources.Calendar_32;
             pictureBox5.Location = new Point(218, 199);
             pictureBox5.Margin = new Padding(2);
             pictureBox5.Name = "pictureBox5";
