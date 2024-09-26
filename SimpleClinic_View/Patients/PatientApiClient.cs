@@ -8,6 +8,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleClinic_View.Globals;
+using SimpleClinic_View.HttpConection;
 using SimpleClinic_View.Patients.DTOs;
 using SimpleClinic_View.Patients.Logging;
 using SimpleClinic_View.Person.DTOs;
@@ -16,24 +17,23 @@ namespace SimpleClinic_View.Patients
 {
     public class PatientApiClient
     {
-        private readonly HttpClient _httpClient;
-
+        private static readonly HttpClient _staticHttpClient = HttpClientSingleton.Instance;
+        private static string _endPoint = "Patient/";
         public PatientApiClient()
         {
-            _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Patient/") };
         }
         public async Task<ApiResult<List<AllPatientInfoDTO>>> GetAllPatientsAsync()
         {
             var apiResult = new ApiResult<List<AllPatientInfoDTO>>();
             try
             {
-                var response = await _httpClient.GetAsync("All");
+                var response = await _staticHttpClient.GetAsync(_endPoint+"All");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    var users = await _httpClient.GetFromJsonAsync<List<AllPatientInfoDTO>>("All");
+                    var users = await _staticHttpClient.GetFromJsonAsync<List<AllPatientInfoDTO>>(_endPoint+"All");
                     apiResult.Result = users;
 
                 }
@@ -64,7 +64,7 @@ namespace SimpleClinic_View.Patients
 
             try
             {
-                var response = await _httpClient.GetAsync($"Find/{PatientID}");
+                var response = await _staticHttpClient.GetAsync(_endPoint+$"Find/{PatientID}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -104,7 +104,7 @@ namespace SimpleClinic_View.Patients
             try
             {
 
-                var response = await _httpClient.GetAsync($"IsExist/{PatientID}");
+                var response = await _staticHttpClient.GetAsync(_endPoint + $"IsExist/{PatientID}");
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.Status = ApiResponseStatus.Success;
@@ -138,7 +138,7 @@ namespace SimpleClinic_View.Patients
             var apiResult = new ApiResult<AllPatientInfoDTO>();
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("Add", newPatient);
+                var response = await _staticHttpClient.PostAsJsonAsync(_endPoint + "Add", newPatient);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -175,7 +175,7 @@ namespace SimpleClinic_View.Patients
             var apiResult = new ApiResult<PatientDTO>();
             try
             {
-                var response = await _httpClient.PutAsJsonAsync($"Update/{PatientID}", UpdatePatient);
+                var response = await _staticHttpClient.PutAsJsonAsync(_endPoint + $"Update/{PatientID}", UpdatePatient);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -215,7 +215,7 @@ namespace SimpleClinic_View.Patients
 
             try
             {
-                var response = await _httpClient.DeleteAsync($"Delete/{PatientID}");
+                var response = await _staticHttpClient.DeleteAsync(_endPoint + $"Delete/{PatientID}");
 
                 if (response.IsSuccessStatusCode)
                 {
