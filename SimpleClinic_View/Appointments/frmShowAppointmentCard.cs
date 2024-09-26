@@ -31,9 +31,8 @@ namespace SimpleClinic_View.Appointments
 
         private async void frmShowAppointmentCard_Load(object sender, EventArgs e)
         {
-            var appointmentService = await AppointmentService.StatFind(_AppointmentId);
-
-            ctrlAppointmentCard1.LoadAppointmentInfo(appointmentService.AppointmentDto);
+            
+            await ctrlAppointmentCard1.LoadAppointmentInfo(_AppointmentId);
 
         }
 

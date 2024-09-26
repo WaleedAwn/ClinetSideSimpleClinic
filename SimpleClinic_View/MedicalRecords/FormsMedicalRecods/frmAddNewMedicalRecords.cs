@@ -15,20 +15,18 @@ namespace SimpleClinic_View.MedicalRecords.FormsMedicalRecods
 {
     public partial class frmAddNewMedicalRecords : Form
     {
-        private ClientRepository<MedicalRecordsDTO> _medicalRepository;
+        private ClientRepository<MedicalRecordsDTO> _medicalRepository= new ClientRepository<MedicalRecordsDTO>("MedicalRecords");
         public enum enMode { AddNew = 0, Update = 1 };
         private enMode _Mode;
         int _MedicalRecordID = -1;
         public frmAddNewMedicalRecords()
         {
             InitializeComponent();
-            _medicalRepository = new ClientRepository<MedicalRecordsDTO>("MedicalRecords");
             _Mode = enMode.AddNew;
         }
         public frmAddNewMedicalRecords(int MedicalRecordID)
         {
             InitializeComponent();
-            _medicalRepository = new ClientRepository<MedicalRecordsDTO>("MedicalRecords");
             _MedicalRecordID = MedicalRecordID;
             _Mode = enMode.Update;
         }

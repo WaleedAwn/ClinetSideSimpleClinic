@@ -199,7 +199,7 @@ namespace SimpleClinic_View.Appointments
             {
 
                 var response = await _staticHttpClient.GetAsync($"Find/Id={Id}");
-
+                
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
@@ -235,6 +235,54 @@ namespace SimpleClinic_View.Appointments
 
 
             return new AppointmentService(AppointmentId, apiResult);
+
+        }
+
+        public static async Task<ApiResult<int>> GetAppointmentIdByPaymentId(int Id)
+        {
+            var apiResult = new ApiResult<int>();
+            
+
+            try
+            {
+
+                var response = await _staticHttpClient.GetAsync($"Find/PaymentId={Id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResult.IsSuccess = true;
+                    apiResult.Status = ApiResponseStatus.Success;
+
+                    var AppointmentId = await response.Content.ReadFromJsonAsync<int>();
+                    apiResult.Result = AppointmentId;
+
+                }
+
+                else
+                {
+                    apiResult.IsSuccess = false;
+                    apiResult.Status = response.StatusCode switch
+                    {
+                        System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
+                        System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
+                        _ => ApiResponseStatus.ServerError,
+                    };
+                    // if there any message in the body will be stored in ErrorMessage
+                    apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                int num = 10;
+                Logger loger = new Logger(LoggingMethod.EventLogger);
+                loger.Log($"Appointment Error:{ex.Message}");
+            }
+
+
+            return apiResult;
 
         }
 

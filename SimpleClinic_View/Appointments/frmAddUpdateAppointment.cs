@@ -21,6 +21,10 @@ namespace SimpleClinic_View.Appointments
     public partial class frmAddUpdateAppointment : Form
     {
 
+        public delegate void DataBackEventHandler(object sender, int appointmentId);
+        public event DataBackEventHandler DataBack;
+        
+
         public enum enMode { AddNew = 1, Update = 2 }
         enMode _Mode;
         private int _AppointmentId = -1;
@@ -177,6 +181,9 @@ namespace SimpleClinic_View.Appointments
             if (await _appointmentService.Save())
             {
                 MessageBox.Show("New appointment added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                // firing the event
+                DataBack?.Invoke(this, _appointmentService.AppointmentId);
 
                 ctrlPersonCardWithFilter1.FilterEnabled = false;
 

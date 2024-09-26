@@ -1,4 +1,5 @@
 ﻿using SimpleClinic_View.Appointments.DTOs;
+using SimpleClinic_View.Doctors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,15 +12,30 @@ using System.Windows.Forms;
 
 namespace SimpleClinic_View.Appointments
 {
-    public partial class ctrlAppointmentCard : UserControl
+    public partial class ctrlAppointmentCardMini : UserControl
     {
-
         AppointmentDTO _AppointmentDto;
-        
 
-        public ctrlAppointmentCard()
+        public ctrlAppointmentCardMini()
         {
             InitializeComponent();
+            _AppointmentDto = new AppointmentDTO();
+        }
+
+        private int _AppointmentId = -1;
+        public int AppointmentId
+        {
+            get
+            {
+                return _AppointmentId;
+            }
+        }
+        public AppointmentDTO GetAppointmenDto
+        {
+            get
+            {
+                return _AppointmentDto;
+            }
         }
 
         public async Task LoadAppointmentInfo(int appointmentId)
@@ -28,10 +44,12 @@ namespace SimpleClinic_View.Appointments
 
             if (appointment.AppointmentDto == null)
             {
+                
                 MessageBox.Show("No appointment data found!", "Erorr", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            _AppointmentId = appointmentId;
             _AppointmentDto = appointment.AppointmentDto;
             _FillAppointmentInfo();
 
@@ -44,11 +62,14 @@ namespace SimpleClinic_View.Appointments
             lblIsPaid.Text = "????";
             lblIsTreated.Text = "????";
             lblAppointmentDate.Text = "????";
+            lblDrName.Text = "????"; ;
+            lblDoctorId.Text = "????";
+            lblSpecialization.Text = "????";
             llShowMedicalRecord.Enabled = false;
             llShowPayment.Enabled = false;
         }
 
-        private  async void _FillAppointmentInfo()
+        private async void _FillAppointmentInfo()
         {
 
             llShowPayment.Enabled = _AppointmentDto.PaymentId != null;
@@ -57,15 +78,20 @@ namespace SimpleClinic_View.Appointments
             lblIsPaid.Text = llShowPayment.Enabled ? "Yes" : "No";
 
             lblIsTreated.Text = llShowMedicalRecord.Enabled ? "Yes" : "No";
-            
-            ctrlPersonCard1._LoadPatientData(_AppointmentDto.PatientId);
+            await ctrlPersonCard1._LoadPatientData(_AppointmentDto.PatientId);
 
-            ctrlDoctorCard1.LoadDoctorInfo(_AppointmentDto.DoctorId);
+            var doctor = await DoctorApiClient.StatFind(_AppointmentDto.DoctorId);
+
+            lblDoctorId.Text = doctor.Result.Id.ToString();
+            lblDrName.Text = doctor.Result.PersonName;
+            lblSpecialization.Text = doctor.Result.Specialization;
+
+            //ctrlDoctorCard1.LoadDoctorInfo(_AppointmentDto.DoctorId);
 
             lblAppointmentId.Text = _AppointmentDto.Id.ToString();
             lblAppointmentDate.Text = _AppointmentDto.AppointmentDate.ToShortDateString();
 
-            switch(_AppointmentDto.AppointmentStatus)
+            switch (_AppointmentDto.AppointmentStatus)
             {
                 case 1:
                     lblStatus.Text = "New";
@@ -80,12 +106,10 @@ namespace SimpleClinic_View.Appointments
                     lblStatus.Text = "Completed";
                     break;
             }
-            
-        }
-
-        private void ctrlDoctorCard1_Load(object sender, EventArgs e)
-        {
 
         }
+
+
+
     }
 }

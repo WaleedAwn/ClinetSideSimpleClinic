@@ -209,15 +209,16 @@
             tsmiPayment.Image = (Image)resources.GetObject("tsmiPayment.Image");
             tsmiPayment.ImageScaling = ToolStripItemImageScaling.None;
             tsmiPayment.Name = "tsmiPayment";
-            tsmiPayment.Size = new Size(182, 38);
+            tsmiPayment.Size = new Size(236, 38);
             tsmiPayment.Text = "Payment";
+            tsmiPayment.Click += tsmiPayment_Click;
             // 
             // tsmiVisitDoctor
             // 
             tsmiVisitDoctor.Image = (Image)resources.GetObject("tsmiVisitDoctor.Image");
             tsmiVisitDoctor.ImageScaling = ToolStripItemImageScaling.None;
             tsmiVisitDoctor.Name = "tsmiVisitDoctor";
-            tsmiVisitDoctor.Size = new Size(182, 38);
+            tsmiVisitDoctor.Size = new Size(236, 38);
             tsmiVisitDoctor.Text = "Visit Doctor";
             // 
             // dgvListAllAppointments
@@ -288,6 +289,7 @@
             Controls.Add(panel1);
             Controls.Add(pbManagePeople);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "frmManageAppointments";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmManageAppointments";

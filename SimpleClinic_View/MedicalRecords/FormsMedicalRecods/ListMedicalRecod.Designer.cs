@@ -31,6 +31,8 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListMedicalRecod));
             panel1 = new Panel();
+            panel4 = new Panel();
+            pbAddNewMedicalRecord = new PictureBox();
             label1 = new Label();
             panel2 = new Panel();
             dataGridView1 = new DataGridView();
@@ -41,15 +43,13 @@
             DeleteMedicalRecord = new ToolStripMenuItem();
             panel3 = new Panel();
             btnClose = new Button();
-            panel4 = new Panel();
-            pbAddNewMedicalRecord = new PictureBox();
             panel1.SuspendLayout();
+            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbAddNewMedicalRecord).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             contextMenuStrip1.SuspendLayout();
             panel3.SuspendLayout();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pbAddNewMedicalRecord).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -59,8 +59,28 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(571, 125);
+            panel1.Size = new Size(947, 125);
             panel1.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(pbAddNewMedicalRecord);
+            panel4.Dock = DockStyle.Right;
+            panel4.Location = new Point(872, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(75, 125);
+            panel4.TabIndex = 1;
+            // 
+            // pbAddNewMedicalRecord
+            // 
+            pbAddNewMedicalRecord.Dock = DockStyle.Bottom;
+            pbAddNewMedicalRecord.Image = (Image)resources.GetObject("pbAddNewMedicalRecord.Image");
+            pbAddNewMedicalRecord.Location = new Point(0, 61);
+            pbAddNewMedicalRecord.Name = "pbAddNewMedicalRecord";
+            pbAddNewMedicalRecord.Size = new Size(75, 64);
+            pbAddNewMedicalRecord.TabIndex = 0;
+            pbAddNewMedicalRecord.TabStop = false;
+            pbAddNewMedicalRecord.Click += pbAddNewMedicalRecord_Click;
             // 
             // label1
             // 
@@ -69,7 +89,7 @@
             label1.ForeColor = Color.Red;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(571, 125);
+            label1.Size = new Size(947, 125);
             label1.TabIndex = 0;
             label1.Text = "List Medical Records";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -80,7 +100,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 125);
             panel2.Name = "panel2";
-            panel2.Size = new Size(571, 371);
+            panel2.Size = new Size(947, 433);
             panel2.TabIndex = 2;
             // 
             // dataGridView1
@@ -89,10 +109,11 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.ContextMenuStrip = contextMenuStrip1;
             dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.GridColor = SystemColors.MenuText;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(571, 371);
+            dataGridView1.RowHeadersWidth = 70;
+            dataGridView1.Size = new Size(947, 433);
             dataGridView1.TabIndex = 1;
             // 
             // contextMenuStrip1
@@ -138,9 +159,9 @@
             // 
             panel3.Controls.Add(btnClose);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 451);
+            panel3.Location = new Point(0, 513);
             panel3.Name = "panel3";
-            panel3.Size = new Size(571, 45);
+            panel3.Size = new Size(947, 45);
             panel3.TabIndex = 3;
             // 
             // btnClose
@@ -150,7 +171,7 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClose.Location = new Point(453, 0);
+            btnClose.Location = new Point(829, 0);
             btnClose.Margin = new Padding(2);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(118, 45);
@@ -159,31 +180,12 @@
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
-            // panel4
-            // 
-            panel4.Controls.Add(pbAddNewMedicalRecord);
-            panel4.Dock = DockStyle.Right;
-            panel4.Location = new Point(496, 0);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(75, 125);
-            panel4.TabIndex = 1;
-            // 
-            // pbAddNewMedicalRecord
-            // 
-            pbAddNewMedicalRecord.Dock = DockStyle.Bottom;
-            pbAddNewMedicalRecord.Image = (Image)resources.GetObject("pbAddNewMedicalRecord.Image");
-            pbAddNewMedicalRecord.Location = new Point(0, 61);
-            pbAddNewMedicalRecord.Name = "pbAddNewMedicalRecord";
-            pbAddNewMedicalRecord.Size = new Size(75, 64);
-            pbAddNewMedicalRecord.TabIndex = 0;
-            pbAddNewMedicalRecord.TabStop = false;
-            pbAddNewMedicalRecord.Click += this.pbAddNewMedicalRecord_Click;
-            // 
             // ListMedicalRecod
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(571, 496);
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(947, 558);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -191,12 +193,12 @@
             Text = "ListMedicalRecod";
             Load += ListMedicalRecod_Load;
             panel1.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pbAddNewMedicalRecord).EndInit();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             contextMenuStrip1.ResumeLayout(false);
             panel3.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pbAddNewMedicalRecord).EndInit();
             ResumeLayout(false);
         }
 

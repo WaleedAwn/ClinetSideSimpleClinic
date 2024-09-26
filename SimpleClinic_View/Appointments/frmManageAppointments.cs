@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using SimpleClinic_View.Appointments.DTOs;
 using SimpleClinic_View.Globals;
+using SimpleClinic_View.Payments;
 using SimpleClinic_View.Users;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,6 @@ namespace SimpleClinic_View.Appointments
         private AppointmentService _appointmentService;
         DataTable _dtAppointments;
 
-        BindingSource _bindingSource = new BindingSource();
         public frmManageAppointments()
         {
             InitializeComponent();
@@ -45,8 +45,8 @@ namespace SimpleClinic_View.Appointments
 
             if (dgvListAllAppointments.Rows.Count > 0)
             {
-                dgvListAllAppointments.Columns[0].HeaderText = "Id";
 
+                dgvListAllAppointments.Columns[0].HeaderText = "Id";
                 dgvListAllAppointments.Columns[1].HeaderText = "Patient Id";
                 dgvListAllAppointments.Columns[2].HeaderText = "Patient Name";
                 dgvListAllAppointments.Columns[3].HeaderText = "Dr.Id";
@@ -245,6 +245,14 @@ namespace SimpleClinic_View.Appointments
             frmShowAppointmentCard frm = new frmShowAppointmentCard(id);
             frm.ShowDialog();
 
+        }
+
+        private void tsmiPayment_Click(object sender, EventArgs e)
+        {
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+            frmAddUpdatePayment frm = new frmAddUpdatePayment(id, enType.Appointment);
+            frm.ShowDialog();
+            _RefreshAppointments();
         }
     }
 }

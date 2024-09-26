@@ -334,13 +334,13 @@ namespace SimpleClinic_View.Users
             return apiResult.IsSuccess;
         }
       
-        public  async Task<bool> CheckCredentials(string userName, string password)
+        public static async Task<ApiResult<bool>> CheckCredentials(string userName, string password)
         {
             var apiResult = new ApiResult<bool>();
             try
             {
 
-                var response = await _httpClient.GetAsync($"CheckCredentials/UserName={userName}/Password{password}");
+                var response = await _staticHttpClient.GetAsync($"CheckCredentials/UserName={userName}/Password{password}");
 
                 if (response.IsSuccessStatusCode)
                 {
