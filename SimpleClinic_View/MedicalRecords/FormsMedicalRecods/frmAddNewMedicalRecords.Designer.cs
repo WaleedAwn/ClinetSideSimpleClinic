@@ -143,7 +143,6 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.edit_32;
             pictureBox1.Location = new Point(208, 70);
             pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";

@@ -23,7 +23,7 @@ namespace SimpleClinic_View.MedicalRecords.Repositry.Repositories
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            var response = await _httpClient.GetAsync(_apiEndpoint+"/All");
+            var response = await _httpClient.GetAsync(_apiEndpoint + "/All");
             response.EnsureSuccessStatusCode();
 
             // استخدام ReadFromJsonAsync لقراءة محتوى الاستجابة
@@ -35,7 +35,7 @@ namespace SimpleClinic_View.MedicalRecords.Repositry.Repositories
 
         public async Task<T?> GetByIdAsync(int id)
         {
-            var response = await _httpClient.GetAsync(_apiEndpoint+$"/Find/{id}");
+            var response = await _httpClient.GetAsync(_apiEndpoint + $"/Find/{id}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<T>();
         }
