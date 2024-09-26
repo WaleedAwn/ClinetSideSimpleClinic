@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimpleClinic_View.MedicalRecords.Repositry;
-using SimpleClinic_View.MedicalRecords.Model;
 using System.Net.Http.Json;
 using SimpleClinic_View.Globals;
 using System.Collections.Generic;
 using SimpleClinic_View.MedicalRecords.Repositry.Repositories;
+using SimpleClinic_View.MedicalRecords.Model;
 
 namespace SimpleClinic_View.MedicalRecords.ctrMedicalRecords
 {

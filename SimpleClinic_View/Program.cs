@@ -1,4 +1,5 @@
 using SimpleClinic_View.Appointments;
+using SimpleClinic_View.MedicalRecords.ListMedicalRecods;
 using SimpleClinic_View.Payments;
 using SimpleClinic_View.Users;
 
@@ -16,7 +17,7 @@ namespace SimpleClinic_View
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new frmManageAppointments());
+            Application.Run(new ListMedicalRecod());
         }
     }
 }

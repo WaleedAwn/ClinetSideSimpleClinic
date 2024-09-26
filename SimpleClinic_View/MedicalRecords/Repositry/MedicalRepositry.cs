@@ -10,9 +10,11 @@ namespace SimpleClinic_View.MedicalRecords.Repositry.Repositories
 {
     public class ClientRepository<T> : IMedicalRecordRepository<T> where T : class
     {
-        private readonly HttpClient _httpClient;
-        private readonly string _apiEndpoint;
+        private  readonly HttpClient _httpClient;
+        private static readonly HttpClient _staticHttpClient = HttpClientSingleton.Instance;
 
+        private readonly string _apiEndpoint;
+        
         public ClientRepository(string apiEndpoint)
         {
             _httpClient = HttpClientSingleton.Instance;
@@ -35,7 +37,7 @@ namespace SimpleClinic_View.MedicalRecords.Repositry.Repositories
 
         public async Task<T?> GetByIdAsync(int id)
         {
-            var response = await _httpClient.GetAsync(_apiEndpoint+$"/Find/{id}");
+            var response = await _staticHttpClient.GetAsync(_apiEndpoint+$"/Find/{id}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<T>();
         }
