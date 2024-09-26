@@ -68,7 +68,6 @@ namespace SimpleClinic_View.MedicalRecords.ListMedicalRecods
                 {
                     MessageBox.Show($"The Medical Record With ID {RowNumber} Deleted SuccessFully :-)", "Deleted Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                    await LoadMedicalRecordsAsync();
-
                 }
                 else
                 {

@@ -16,11 +16,11 @@ namespace SimpleClinic_View.Doctors
     {
         private readonly HttpClient _httpClient;
         private static readonly HttpClient _staticHttpClient = new HttpClient
-        { BaseAddress = new Uri("http://localhost:5029/api/Doctor/") };
+        { BaseAddress = new Uri("http://localhost:5029/api/Doctors/") };
 
         public DoctorApiClient()
         {
-            _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Doctor/") };
+            _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Doctors/") };
         }
 
 

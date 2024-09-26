@@ -47,10 +47,14 @@
             lbUserName = new Label();
             pictureBox2 = new PictureBox();
             panel2 = new Panel();
+            label15 = new Label();
+            btn_Preceptions = new Button();
+            label11 = new Label();
+            btn_MedicalRecord = new Button();
             label8 = new Label();
-            btn_Users = new Button();
             label7 = new Label();
             label6 = new Label();
+            btn_Users = new Button();
             btn_Appointments = new Button();
             label4 = new Label();
             btn_Doctors = new Button();
@@ -299,10 +303,14 @@
             // 
             panel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel2.BackColor = Color.FromArgb(28, 43, 54);
+            panel2.Controls.Add(label15);
+            panel2.Controls.Add(btn_Preceptions);
+            panel2.Controls.Add(label11);
+            panel2.Controls.Add(btn_MedicalRecord);
             panel2.Controls.Add(label8);
-            panel2.Controls.Add(btn_Users);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(label6);
+            panel2.Controls.Add(btn_Users);
             panel2.Controls.Add(btn_Appointments);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(btn_Doctors);
@@ -317,37 +325,77 @@
             panel2.Size = new Size(236, 1021);
             panel2.TabIndex = 8;
             // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.ForeColor = SystemColors.ActiveBorder;
+            label15.Location = new Point(-2, 645);
+            label15.Name = "label15";
+            label15.Size = new Size(220, 25);
+            label15.TabIndex = 24;
+            label15.Text = "__________________________";
+            // 
+            // btn_Preceptions
+            // 
+            btn_Preceptions.AutoSize = true;
+            btn_Preceptions.BackColor = Color.FromArgb(28, 43, 54);
+            btn_Preceptions.BackgroundImageLayout = ImageLayout.None;
+            btn_Preceptions.CausesValidation = false;
+            btn_Preceptions.Cursor = Cursors.Hand;
+            btn_Preceptions.FlatAppearance.BorderColor = Color.FromArgb(28, 43, 54);
+            btn_Preceptions.FlatAppearance.BorderSize = 0;
+            btn_Preceptions.FlatStyle = FlatStyle.Flat;
+            btn_Preceptions.Font = new Font("Javanese Text", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_Preceptions.ForeColor = Color.White;
+            btn_Preceptions.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Preceptions.Location = new Point(-3, 571);
+            btn_Preceptions.Name = "btn_Preceptions";
+            btn_Preceptions.Size = new Size(239, 90);
+            btn_Preceptions.TabIndex = 23;
+            btn_Preceptions.Text = "Preceptions";
+            btn_Preceptions.UseVisualStyleBackColor = true;
+            btn_Preceptions.Click += btn_Preceptions_Click;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.ForeColor = SystemColors.ActiveBorder;
+            label11.Location = new Point(6, 543);
+            label11.Name = "label11";
+            label11.Size = new Size(220, 25);
+            label11.TabIndex = 22;
+            label11.Text = "__________________________";
+            // 
+            // btn_MedicalRecord
+            // 
+            btn_MedicalRecord.AutoSize = true;
+            btn_MedicalRecord.BackColor = Color.FromArgb(28, 43, 54);
+            btn_MedicalRecord.BackgroundImageLayout = ImageLayout.None;
+            btn_MedicalRecord.CausesValidation = false;
+            btn_MedicalRecord.Cursor = Cursors.Hand;
+            btn_MedicalRecord.FlatAppearance.BorderColor = Color.FromArgb(28, 43, 54);
+            btn_MedicalRecord.FlatAppearance.BorderSize = 0;
+            btn_MedicalRecord.FlatStyle = FlatStyle.Flat;
+            btn_MedicalRecord.Font = new Font("Javanese Text", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_MedicalRecord.ForeColor = Color.White;
+            btn_MedicalRecord.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_MedicalRecord.Location = new Point(-16, 478);
+            btn_MedicalRecord.Name = "btn_MedicalRecord";
+            btn_MedicalRecord.Size = new Size(270, 90);
+            btn_MedicalRecord.TabIndex = 21;
+            btn_MedicalRecord.Text = "Medical Record";
+            btn_MedicalRecord.UseVisualStyleBackColor = true;
+            btn_MedicalRecord.Click += btn_MedicalRecord_Click;
+            // 
             // label8
             // 
             label8.AutoSize = true;
             label8.ForeColor = SystemColors.ActiveBorder;
-            label8.Location = new Point(6, 630);
+            label8.Location = new Point(8, 766);
             label8.Name = "label8";
             label8.Size = new Size(220, 25);
             label8.TabIndex = 20;
             label8.Text = "__________________________";
-            // 
-            // btn_Users
-            // 
-            btn_Users.AutoSize = true;
-            btn_Users.BackColor = Color.FromArgb(28, 43, 54);
-            btn_Users.BackgroundImageLayout = ImageLayout.None;
-            btn_Users.CausesValidation = false;
-            btn_Users.Cursor = Cursors.Hand;
-            btn_Users.FlatAppearance.BorderColor = Color.FromArgb(28, 43, 54);
-            btn_Users.FlatAppearance.BorderSize = 0;
-            btn_Users.FlatStyle = FlatStyle.Flat;
-            btn_Users.Font = new Font("Javanese Text", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_Users.ForeColor = Color.White;
-            btn_Users.Image = Properties.Resources.Delete_User_32;
-            btn_Users.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Users.Location = new Point(0, 566);
-            btn_Users.Name = "btn_Users";
-            btn_Users.Size = new Size(236, 89);
-            btn_Users.TabIndex = 19;
-            btn_Users.Text = "Users";
-            btn_Users.UseVisualStyleBackColor = true;
-            btn_Users.Click += btn_Users_Click;
             // 
             // label7
             // 
@@ -363,11 +411,32 @@
             // 
             label6.AutoSize = true;
             label6.ForeColor = SystemColors.ActiveBorder;
-            label6.Location = new Point(8, 539);
+            label6.Location = new Point(9, 450);
             label6.Name = "label6";
             label6.Size = new Size(220, 25);
             label6.TabIndex = 17;
             label6.Text = "__________________________";
+            // 
+            // btn_Users
+            // 
+            btn_Users.AutoSize = true;
+            btn_Users.BackColor = Color.FromArgb(28, 43, 54);
+            btn_Users.BackgroundImageLayout = ImageLayout.None;
+            btn_Users.CausesValidation = false;
+            btn_Users.Cursor = Cursors.Hand;
+            btn_Users.FlatAppearance.BorderColor = Color.FromArgb(28, 43, 54);
+            btn_Users.FlatAppearance.BorderSize = 0;
+            btn_Users.FlatStyle = FlatStyle.Flat;
+            btn_Users.Font = new Font("Javanese Text", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_Users.ForeColor = Color.White;
+            btn_Users.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Users.Location = new Point(-3, 673);
+            btn_Users.Name = "btn_Users";
+            btn_Users.Size = new Size(239, 90);
+            btn_Users.TabIndex = 19;
+            btn_Users.Text = "Users";
+            btn_Users.UseVisualStyleBackColor = true;
+            btn_Users.Click += btn_Users_Click;
             // 
             // btn_Appointments
             // 
@@ -383,9 +452,9 @@
             btn_Appointments.ForeColor = Color.White;
             btn_Appointments.Image = Properties.Resources.Delete_User_32;
             btn_Appointments.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Appointments.Location = new Point(-3, 470);
+            btn_Appointments.Location = new Point(0, 385);
             btn_Appointments.Name = "btn_Appointments";
-            btn_Appointments.Size = new Size(293, 90);
+            btn_Appointments.Size = new Size(264, 90);
             btn_Appointments.TabIndex = 16;
             btn_Appointments.Text = "Appointment";
             btn_Appointments.UseVisualStyleBackColor = true;
@@ -395,7 +464,7 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.ActiveBorder;
-            label4.Location = new Point(9, 447);
+            label4.Location = new Point(9, 357);
             label4.Name = "label4";
             label4.Size = new Size(220, 25);
             label4.TabIndex = 15;
@@ -415,9 +484,9 @@
             btn_Doctors.ForeColor = Color.White;
             btn_Doctors.Image = Properties.Resources.Delete_User_32;
             btn_Doctors.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Doctors.Location = new Point(0, 378);
+            btn_Doctors.Location = new Point(3, 292);
             btn_Doctors.Name = "btn_Doctors";
-            btn_Doctors.Size = new Size(236, 90);
+            btn_Doctors.Size = new Size(239, 90);
             btn_Doctors.TabIndex = 14;
             btn_Doctors.Text = "Doctors";
             btn_Doctors.UseVisualStyleBackColor = true;
@@ -427,7 +496,7 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = SystemColors.ActiveBorder;
-            label5.Location = new Point(9, 336);
+            label5.Location = new Point(9, 264);
             label5.Name = "label5";
             label5.Size = new Size(220, 25);
             label5.TabIndex = 13;
@@ -447,7 +516,7 @@
             btn_Patients.ForeColor = Color.White;
             btn_Patients.Image = Properties.Resources.Delete_User_32;
             btn_Patients.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Patients.Location = new Point(-3, 265);
+            btn_Patients.Location = new Point(6, 215);
             btn_Patients.Name = "btn_Patients";
             btn_Patients.Size = new Size(239, 90);
             btn_Patients.TabIndex = 12;
@@ -459,7 +528,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ActiveBorder;
-            label3.Location = new Point(9, 229);
+            label3.Location = new Point(8, 190);
             label3.Name = "label3";
             label3.Size = new Size(220, 25);
             label3.TabIndex = 10;
@@ -479,7 +548,7 @@
             btnPerson.ForeColor = Color.White;
             btnPerson.Image = Properties.Resources.Delete_User_32;
             btnPerson.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPerson.Location = new Point(0, 163);
+            btnPerson.Location = new Point(3, 142);
             btnPerson.Name = "btnPerson";
             btnPerson.Size = new Size(239, 90);
             btnPerson.TabIndex = 10;
@@ -548,5 +617,9 @@
         private Label lbTotalPatient;
         private Label lbTotalAppointment;
         private Label lbTotalDoctors;
+        private Label label11;
+        private Button btn_MedicalRecord;
+        private Label label15;
+        private Button btn_Preceptions;
     }
 }
