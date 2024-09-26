@@ -1,6 +1,9 @@
-﻿using Microsoft.VisualBasic;
+﻿
+
+using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.ApplicationServices;
 using SimpleClinic_View.Globals;
+using SimpleClinic_View.HttpConection;
 using SimpleClinic_View.Patients.Logging;
 using SimpleClinic_View.Person.DTOs;
 using SimpleClinic_View.Users.DTOs;
@@ -17,27 +20,24 @@ namespace SimpleClinic_View.Person
 {
     public class PersonApiClient
     {
-        private readonly HttpClient _httpClient;
-        private static readonly HttpClient _staticHttpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Persons/") };
-
+        private static readonly HttpClient _staticHttpClient = HttpClientSingleton.Instance;
+        private static string _endPoint = "Persons/";
         public PersonApiClient()
         {
-            _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Persons/") };
         }
         public async Task<ApiResult<List<PersonsDTO>>> GetAllPeople()
         {
             var apiResult = new ApiResult<List<PersonsDTO>>();
             try
             {
-                var response = await _httpClient.GetAsync("All");
+                var response = await _staticHttpClient.GetAsync(_endPoint + "All");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    var users = await _httpClient.GetFromJsonAsync<List<PersonsDTO>>("All");
+                    var users = await _staticHttpClient.GetFromJsonAsync<List<PersonsDTO>>(_endPoint+"All");
                     apiResult.Result = users;
-
                 }
                 else
                 {
@@ -56,6 +56,7 @@ namespace SimpleClinic_View.Person
             }
 
 
+
             return apiResult;
         }
 
@@ -65,7 +66,7 @@ namespace SimpleClinic_View.Person
 
             try
             {
-                var response = await _staticHttpClient.GetAsync($"Find/{PersonID}");
+                var response = await _staticHttpClient.GetAsync(_endPoint+$"Find/{PersonID}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -111,7 +112,7 @@ namespace SimpleClinic_View.Person
             try
             {
 
-                var response = await _httpClient.GetAsync($"IsExist/{PersonID}");
+                var response = await _staticHttpClient.GetAsync(_endPoint+$"IsExist/{PersonID}");
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.Status = ApiResponseStatus.Success;
@@ -137,17 +138,17 @@ namespace SimpleClinic_View.Person
                 Logger logger = new Logger(LoggingMethod.EventLogger);
                 logger.Log($"User Error: {ex.Message}");
             }
-            return apiResult;        
+            return apiResult;
         }
 
-        
+
 
         public async Task<ApiResult<PersonsDTO>> AddNewPerson(PersonsDTO newPerson)
         {
             var apiResult = new ApiResult<PersonsDTO>();
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("Add", newPerson);
+                var response = await _staticHttpClient.PostAsJsonAsync(_endPoint+"Add", newPerson);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -184,7 +185,7 @@ namespace SimpleClinic_View.Person
             var apiResult = new ApiResult<PersonsDTO>();
             try
             {
-                var response = await _httpClient.PutAsJsonAsync($"Update/{PersonID}", UpdatePerson);
+                var response = await _staticHttpClient.PutAsJsonAsync(_endPoint+$"Update/{PersonID}", UpdatePerson);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -224,7 +225,7 @@ namespace SimpleClinic_View.Person
 
             try
             {
-                var response = await _httpClient.DeleteAsync($"Delete/{PersonID}");
+                var response = await _staticHttpClient.DeleteAsync(_endPoint+$"Delete/{PersonID}");
 
                 if (response.IsSuccessStatusCode)
                 {

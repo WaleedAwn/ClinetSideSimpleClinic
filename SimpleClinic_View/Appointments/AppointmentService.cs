@@ -8,15 +8,16 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleClinic_View.Patients.Logging;
+using SimpleClinic_View.HttpConection;
 
 namespace SimpleClinic_View.Appointments
 {
     public class AppointmentService
     {
-        private readonly HttpClient _httpClient;
 
         // Singleton HttpClient instance for static methods
-        private static readonly HttpClient _staticHttpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/AppointmentApi/") };
+        private static readonly HttpClient _staticHttpClient = HttpClientSingleton.Instance;
+        private static string _endPoint = "AppointmentApi/";
         enum enMode { Add = 1, Update = 2 }
         enMode _Mode = enMode.Add;
 
@@ -48,8 +49,6 @@ namespace SimpleClinic_View.Appointments
 
         public AppointmentService()
         {
-            _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("http://localhost:5029/api/AppointmentApi/");
             _Mode = enMode.Add;
             _appointmentStatus = enAppointmentStatus.New;
         }
@@ -98,8 +97,6 @@ namespace SimpleClinic_View.Appointments
             
             this._appointmentId = appointmentId;
             _Mode = enMode.Update;
-            _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("http://localhost:5029/api/AppointmentApi/");
 
         }
 
@@ -120,13 +117,13 @@ namespace SimpleClinic_View.Appointments
             var apiResult = new ApiResult<List<AllAppointmentDTO>>();
             try
             {
-                var response = await _httpClient.GetAsync("All");
+                var response = await _staticHttpClient.GetAsync(_endPoint+"All");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    var Appointments = await _httpClient.GetFromJsonAsync<List<AllAppointmentDTO>>("All");
+                    var Appointments = await _staticHttpClient.GetFromJsonAsync<List<AllAppointmentDTO>>(_endPoint+"All");
                     apiResult.Result = Appointments;
 
                 }
@@ -155,13 +152,13 @@ namespace SimpleClinic_View.Appointments
             var apiResult = new ApiResult<List<AllAppointmentDTO>>();
             try
             {
-                var response = await _httpClient.GetAsync($"All/PatientId={patientId}");
+                var response = await _staticHttpClient.GetAsync(_endPoint+$"All/PatientId={patientId}");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    var Appointments = await _httpClient.GetFromJsonAsync<List<AllAppointmentDTO>>($"All/PatientId={patientId}");
+                    var Appointments = await _staticHttpClient.GetFromJsonAsync<List<AllAppointmentDTO>>(_endPoint + $"All/PatientId={patientId}");
                     apiResult.Result = Appointments;
 
                 }
@@ -198,7 +195,7 @@ namespace SimpleClinic_View.Appointments
             try
             {
 
-                var response = await _staticHttpClient.GetAsync($"Find/Id={Id}");
+                var response = await _staticHttpClient.GetAsync(_endPoint+$"Find/Id={Id}");
                 
                 if (response.IsSuccessStatusCode)
                 {
@@ -246,7 +243,7 @@ namespace SimpleClinic_View.Appointments
             try
             {
 
-                var response = await _staticHttpClient.GetAsync($"Find/PaymentId={Id}");
+                var response = await _staticHttpClient.GetAsync(_endPoint+$"Find/PaymentId={Id}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -276,7 +273,6 @@ namespace SimpleClinic_View.Appointments
             }
             catch (Exception ex)
             {
-                int num = 10;
                 Logger loger = new Logger(LoggingMethod.EventLogger);
                 loger.Log($"Appointment Error:{ex.Message}");
             }
@@ -295,7 +291,7 @@ namespace SimpleClinic_View.Appointments
 
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("Add", newAppointmentDTO);
+                var response = await _staticHttpClient.PostAsJsonAsync(_endPoint+"Add", newAppointmentDTO);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -335,7 +331,7 @@ namespace SimpleClinic_View.Appointments
 
             try
             {
-                var response = await _staticHttpClient.DeleteAsync($"Delete/Id={AppointmentId}");
+                var response = await _staticHttpClient.DeleteAsync(_endPoint+$"Delete/Id={AppointmentId}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -373,7 +369,7 @@ namespace SimpleClinic_View.Appointments
             var apiResult = new ApiResult<AppointmentDTO>();
             try
             {
-                var response = await _httpClient.PutAsJsonAsync($"Update/Id={AppointmentId}", updatedAppointment);
+                var response = await _staticHttpClient.PutAsJsonAsync(_endPoint+$"Update/Id={AppointmentId}", updatedAppointment);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -414,7 +410,7 @@ namespace SimpleClinic_View.Appointments
             var apiResult = new ApiResult<bool>();
             try
             {
-                var response = await _httpClient.PutAsJsonAsync($"UpdateStatus/Id={AppointmentId}/Status={status}","");
+                var response = await _staticHttpClient.PutAsJsonAsync(_endPoint+$"UpdateStatus/Id={AppointmentId}/Status={status}","");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -464,6 +460,43 @@ namespace SimpleClinic_View.Appointments
             return await UpdateAppointmentStatus(this.AppointmentId, 3);
         }
 
+        public async Task<ApiResult<int>> GetAppointmentsNumber()
+        {
+            var apiResult = new ApiResult<int>();
+
+            try
+            {
+
+                var response = await _httpClient.GetAsync($"CountNumber");
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResult.Status = ApiResponseStatus.Success;
+                    apiResult.Result = await response.Content.ReadFromJsonAsync<int>();
+                    apiResult.IsSuccess = true;
+                }
+                else
+                {
+                    apiResult.IsSuccess = false;
+                    apiResult.Result = -1;
+                    apiResult.Status = response.StatusCode switch
+                    {
+                        System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
+                        System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
+                        _ => ApiResponseStatus.ServerError,
+                    };
+                }
+                apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
+
+            }
+            catch (Exception ex)
+            {
+                Logger logger = new Logger(LoggingMethod.EventLogger);
+                logger.Log($"User Error: {ex.Message}");
+            }
+            return apiResult;
+        }
+
+
         public async Task<bool> Save()
         {
             switch (_Mode)
@@ -489,6 +522,10 @@ namespace SimpleClinic_View.Appointments
             }
             return false;
         }
+
+
+
+
 
     }
 

@@ -7,15 +7,17 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleClinic_View.Payments.DTOs;
+using SimpleClinic_View.HttpConection;
 
 namespace SimpleClinic_View.Payments
 {
     internal class PaymentService
     {
-        
+
 
         // Singleton HttpClient instance for static methods
-        private static readonly HttpClient _staticHttpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/PaymentApi/") };
+        private static readonly HttpClient _staticHttpClient = HttpClientSingleton.Instance;
+        private static string _endPoint = "PaymentApi/";
         enum enMode { Add = 1, Update = 2 }
         enMode _Mode = enMode.Add;
 
@@ -92,13 +94,13 @@ namespace SimpleClinic_View.Payments
             var apiResult = new ApiResult<List<PaymentDTOWithName>>();
             try
             {
-                var response = await _staticHttpClient.GetAsync("All");
+                var response = await _staticHttpClient.GetAsync(_endPoint+"All");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    var Appointments = await _staticHttpClient.GetFromJsonAsync<List<PaymentDTOWithName>>("All");
+                    var Appointments = await _staticHttpClient.GetFromJsonAsync<List<PaymentDTOWithName>>(_endPoint + "All");
                     apiResult.Result = Appointments;
 
                 }
@@ -127,13 +129,13 @@ namespace SimpleClinic_View.Payments
             var apiResult = new ApiResult<List<PaymentMethodDTO>>();
             try
             {
-                var response = await _staticHttpClient.GetAsync("All");
+                var response = await _staticHttpClient.GetAsync(_endPoint+ "PaymentMethods");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    var Appointments = await _staticHttpClient.GetFromJsonAsync<List<PaymentMethodDTO>>("PaymentMethods");
+                    var Appointments = await _staticHttpClient.GetFromJsonAsync<List<PaymentMethodDTO>>(_endPoint + "PaymentMethods");
                     apiResult.Result = Appointments;
 
                 }
@@ -171,7 +173,7 @@ namespace SimpleClinic_View.Payments
             try
             {
 
-                var response = await _staticHttpClient.GetAsync($"Find/Id={Id}");
+                var response = await _staticHttpClient.GetAsync(_endPoint+$"Find/Id={Id}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -221,7 +223,7 @@ namespace SimpleClinic_View.Payments
 
             try
             {
-                var response = await _staticHttpClient.PostAsJsonAsync("Add", newPaymentDto);
+                var response = await _staticHttpClient.PostAsJsonAsync(_endPoint+"Add", newPaymentDto);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -261,7 +263,7 @@ namespace SimpleClinic_View.Payments
 
             try
             {
-                var response = await _staticHttpClient.DeleteAsync($"Delete/Id={paymentId}");
+                var response = await _staticHttpClient.DeleteAsync(_endPoint + $"Delete/Id={paymentId}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -299,7 +301,7 @@ namespace SimpleClinic_View.Payments
             var apiResult = new ApiResult<PaymentDTO>();
             try
             {
-                var response = await _staticHttpClient.PutAsJsonAsync($"Update/Id={paymentId}", updatedPayment);
+                var response = await _staticHttpClient.PutAsJsonAsync(_endPoint + $"Update/Id={paymentId}", updatedPayment);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -360,9 +362,6 @@ namespace SimpleClinic_View.Payments
             }
             return false;
         }
-
-
-
 
     }
 }

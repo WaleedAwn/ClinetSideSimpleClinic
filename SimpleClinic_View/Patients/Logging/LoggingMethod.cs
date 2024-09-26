@@ -24,5 +24,9 @@ namespace SimpleClinic_View.Patients.Logging
             EventLog.WriteEntry(sourceName, message, logType);
 
         }
+    
+    
     }
+
+
 }

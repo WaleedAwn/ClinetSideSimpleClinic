@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimpleClinic_View.MedicalRecords.Repositry;
-using SimpleClinic_View.MedicalRecords.Model;
 using SimpleClinic_View.MedicalRecords.Repositry.Repositories;
 using SimpleClinic_View.MedicalRecords.FormsMedicalRecods;
+using SimpleClinic_View.MedicalRecords.Model;
 namespace SimpleClinic_View.MedicalRecords.ListMedicalRecods
 {
     public partial class ListMedicalRecod : Form
@@ -68,7 +68,6 @@ namespace SimpleClinic_View.MedicalRecords.ListMedicalRecods
                 {
                     MessageBox.Show($"The Medical Record With ID {RowNumber} Deleted SuccessFully :-)", "Deleted Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                    await LoadMedicalRecordsAsync();
-
                 }
                 else
                 {

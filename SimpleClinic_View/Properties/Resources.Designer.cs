@@ -73,19 +73,9 @@ namespace SimpleClinic_View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Calendar_32 {
+        internal static System.Drawing.Bitmap block_users {
             get {
-                object obj = ResourceManager.GetObject("Calendar 32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Calendar_321 {
-            get {
-                object obj = ResourceManager.GetObject("Calendar 321", resourceCulture);
+                object obj = ResourceManager.GetObject("block_users", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -126,6 +116,16 @@ namespace SimpleClinic_View.Properties {
         internal static System.Drawing.Bitmap Edit_User_32 {
             get {
                 object obj = ResourceManager.GetObject("Edit User 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo_circle {
+            get {
+                object obj = ResourceManager.GetObject("logo_circle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
