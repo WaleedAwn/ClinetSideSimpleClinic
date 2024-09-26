@@ -208,8 +208,46 @@ namespace SimpleClinic_View.Doctors
             return apiResult;
         }
 
+        public async Task<ApiResult<int>> GetDoctorsNumber()
+        {
+            var apiResult = new ApiResult<int>();
+
+            try
+            {
+
+                var response = await _httpClient.GetAsync($"CountNumber");
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResult.Status = ApiResponseStatus.Success;
+                    apiResult.Result = await response.Content.ReadFromJsonAsync<int>();
+                    apiResult.IsSuccess = true;
+                }
+                else
+                {
+                    apiResult.IsSuccess = false;
+                    apiResult.Result = -1;
+                    apiResult.Status = response.StatusCode switch
+                    {
+                        System.Net.HttpStatusCode.NotFound => ApiResponseStatus.NotFound,
+                        System.Net.HttpStatusCode.BadRequest => ApiResponseStatus.BadRequest,
+                        _ => ApiResponseStatus.ServerError,
+                    };
+                }
+                apiResult.ErrorMessage = await response.Content.ReadAsStringAsync();
+
+            }
+            catch (Exception ex)
+            {
+                Logger logger = new Logger(LoggingMethod.EventLogger);
+                logger.Log($"User Error: {ex.Message}");
+            }
+            return apiResult;
+        }
+
+
 
     }
 
 
 }
+

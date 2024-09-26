@@ -1,4 +1,5 @@
 using SimpleClinic_View.Appointments;
+using SimpleClinic_View.Doctors;
 using SimpleClinic_View.Users;
 
 namespace SimpleClinic_View
@@ -14,7 +15,7 @@ namespace SimpleClinic_View
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new MainScreen());
         }
     }
 }

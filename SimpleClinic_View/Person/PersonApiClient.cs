@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualBasic;
+﻿
+
+using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.ApplicationServices;
 using SimpleClinic_View.Globals;
 using SimpleClinic_View.Logging;
@@ -37,7 +39,6 @@ namespace SimpleClinic_View.Person
                     apiResult.Status = ApiResponseStatus.Success;
                     var users = await _httpClient.GetFromJsonAsync<List<PersonsDTO>>("All");
                     apiResult.Result = users;
-
                 }
                 else
                 {
@@ -54,6 +55,7 @@ namespace SimpleClinic_View.Person
                 loger.Log($"User Error:{ex.Message}");
 
             }
+
 
 
             return apiResult;
@@ -137,10 +139,10 @@ namespace SimpleClinic_View.Person
                 Logger logger = new Logger(LoggingMethod.EventLogger);
                 logger.Log($"User Error: {ex.Message}");
             }
-            return apiResult;        
+            return apiResult;
         }
 
-        
+
 
         public async Task<ApiResult<PersonsDTO>> AddNewPerson(PersonsDTO newPerson)
         {

@@ -195,13 +195,13 @@
             contextMenuStrip2.ImageScalingSize = new Size(24, 24);
             contextMenuStrip2.Items.AddRange(new ToolStripItem[] { ShowDetailesToolStripMenuItem, AddNewToolStripMenuItem, EditToolStripMenuItem, deleteToolStripMenuItem1, doAppoitmentToolStripMenuItem });
             contextMenuStrip2.Name = "contextMenuStrip1";
-            contextMenuStrip2.Size = new Size(249, 197);
+            contextMenuStrip2.Size = new Size(230, 164);
             // 
             // ShowDetailesToolStripMenuItem
             // 
             ShowDetailesToolStripMenuItem.Image = Properties.Resources.Add_Person_40;
             ShowDetailesToolStripMenuItem.Name = "ShowDetailesToolStripMenuItem";
-            ShowDetailesToolStripMenuItem.Size = new Size(248, 32);
+            ShowDetailesToolStripMenuItem.Size = new Size(229, 32);
             ShowDetailesToolStripMenuItem.Text = "Show Details";
             ShowDetailesToolStripMenuItem.Click += ShowDetailesToolStripMenuItem_Click;
             // 
@@ -209,7 +209,7 @@
             // 
             AddNewToolStripMenuItem.Image = Properties.Resources.Edit_User_32;
             AddNewToolStripMenuItem.Name = "AddNewToolStripMenuItem";
-            AddNewToolStripMenuItem.Size = new Size(248, 32);
+            AddNewToolStripMenuItem.Size = new Size(229, 32);
             AddNewToolStripMenuItem.Text = "Add new Patient";
             AddNewToolStripMenuItem.Click += AddNewToolStripMenuItem_Click;
             // 
@@ -217,7 +217,7 @@
             // 
             EditToolStripMenuItem.Image = Properties.Resources.Delete_User_32;
             EditToolStripMenuItem.Name = "EditToolStripMenuItem";
-            EditToolStripMenuItem.Size = new Size(248, 32);
+            EditToolStripMenuItem.Size = new Size(229, 32);
             EditToolStripMenuItem.Text = "Edit Info";
             EditToolStripMenuItem.Click += EditToolStripMenuItem_Click;
             // 
@@ -225,14 +225,14 @@
             // 
             deleteToolStripMenuItem1.Image = Properties.Resources.Delete_User_32;
             deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            deleteToolStripMenuItem1.Size = new Size(248, 32);
+            deleteToolStripMenuItem1.Size = new Size(229, 32);
             deleteToolStripMenuItem1.Text = "Delete";
             deleteToolStripMenuItem1.Click += deleteToolStripMenuItem1_Click;
             // 
             // doAppoitmentToolStripMenuItem
             // 
             doAppoitmentToolStripMenuItem.Name = "doAppoitmentToolStripMenuItem";
-            doAppoitmentToolStripMenuItem.Size = new Size(248, 32);
+            doAppoitmentToolStripMenuItem.Size = new Size(229, 32);
             doAppoitmentToolStripMenuItem.Text = "Do Appoitment";
             // 
             // label1
