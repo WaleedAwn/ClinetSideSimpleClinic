@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleClinic_View.Logging
+namespace SimpleClinic_View.Patients.Logging
 {
     internal class LoggingMethod
     {

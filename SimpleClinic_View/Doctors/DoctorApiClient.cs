@@ -1,7 +1,7 @@
 ﻿using SimpleClinic_View.Doctors.DTOs;
 using SimpleClinic_View.Globals;
-using SimpleClinic_View.Logging;
 using SimpleClinic_View.Patients.DTOs;
+using SimpleClinic_View.Patients.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,23 +15,27 @@ namespace SimpleClinic_View.Doctors
     public class DoctorApiClient
     {
         private readonly HttpClient _httpClient;
+        private static readonly HttpClient _staticHttpClient = new HttpClient
+        { BaseAddress = new Uri("http://localhost:5029/api/Doctor/") };
 
         public DoctorApiClient()
         {
-            _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Doctors/") };
+            _httpClient = new HttpClient { BaseAddress = new Uri("http://localhost:5029/api/Doctor/") };
         }
-        public async Task<ApiResult<List<AllDoctorsInfoDTO>>> GetAllDoctorsAsync()
+
+
+        public static async Task<ApiResult<List<AllDoctorsInfoDTO>>> GetAllDoctors()
         {
             var apiResult = new ApiResult<List<AllDoctorsInfoDTO>>();
             try
             {
-                var response = await _httpClient.GetAsync("All");
+                var response = await _staticHttpClient.GetAsync("All");
 
                 if (response.IsSuccessStatusCode)
                 {
                     apiResult.IsSuccess = true;
                     apiResult.Status = ApiResponseStatus.Success;
-                    var users = await _httpClient.GetFromJsonAsync<List<AllDoctorsInfoDTO>>("All");
+                    var users = await _staticHttpClient.GetFromJsonAsync<List<AllDoctorsInfoDTO>>("All");
                     apiResult.Result = users;
 
                 }
@@ -53,6 +57,12 @@ namespace SimpleClinic_View.Doctors
 
 
             return apiResult;
+        }
+
+
+        public async Task<ApiResult<List<AllDoctorsInfoDTO>>> GetAllDoctorsAsync()
+        {        
+            return await GetAllDoctors();
         }
 
 

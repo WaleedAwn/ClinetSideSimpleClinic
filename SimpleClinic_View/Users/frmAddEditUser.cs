@@ -44,6 +44,9 @@ namespace SimpleClinic_View.Users
         {
             //this will initialize the reset the defaule values
 
+            // deleting the PatientId filter from the combo box 
+            ctrlPersonCardWithFilter1.DeleteItemFromFilter(1);
+
             if (_Mode == enMode.AddNew)
             {
                 lblMode.Text = "Add New User";
@@ -97,6 +100,7 @@ namespace SimpleClinic_View.Users
             txtPassword.Text = _apiResult.Result.Password;
             txtConfirmPassword.Text = _apiResult.Result.Password;
             ctrlPersonCardWithFilter1.LoadPersonInfo(_apiResult.Result.PersonId);
+            
 
         }
 
@@ -194,7 +198,7 @@ namespace SimpleClinic_View.Users
 
         private async void btnNext_Click(object sender, EventArgs e)
         {
-            if (_Mode == enMode.Update)
+            if(_Mode == enMode.Update)
             {
                 btnSave.Enabled = true;
                 tpUserInfo.Enabled = true;
@@ -202,7 +206,8 @@ namespace SimpleClinic_View.Users
                 return;
             }
 
-            //incase of add new mode.
+            // Incase of add new mode.
+
             if (ctrlPersonCardWithFilter1.PersonId != -1)
             {
 
@@ -253,10 +258,12 @@ namespace SimpleClinic_View.Users
             if (await _userService.Save())
             {
                 lblUserId.Text = _userService.UserId.ToString();
+                ctrlPersonCardWithFilter1.FilterEnabled = false;
                 //change form mode to update.
                 _Mode = enMode.Update;
                 lblMode.Text = "Update User";
                 this.Text = "Update User";
+
 
                 MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

@@ -8,8 +8,8 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using SimpleClinic_View.Globals;
-using SimpleClinic_View.Logging;
 using SimpleClinic_View.Patients.DTOs;
+using SimpleClinic_View.Patients.Logging;
 using SimpleClinic_View.Person.DTOs;
 
 namespace SimpleClinic_View.Patients

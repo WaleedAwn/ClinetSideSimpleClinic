@@ -55,13 +55,14 @@
             ctrlPersonCard1.Name = "ctrlPersonCard1";
             ctrlPersonCard1.Size = new Size(609, 246);
             ctrlPersonCard1.TabIndex = 2;
+            ctrlPersonCard1.Load += ctrlPersonCard1_Load;
             // 
             // btnClose
             // 
             btnClose.Image = Properties.Resources.Close_32;
             btnClose.ImageAlign = ContentAlignment.MiddleLeft;
             btnClose.Location = new Point(631, 432);
-            btnClose.Margin = new Padding(2, 2, 2, 2);
+            btnClose.Margin = new Padding(2);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(101, 42);
             btnClose.TabIndex = 9;
@@ -75,7 +76,7 @@
             btnAddNew.BackgroundImageLayout = ImageLayout.Zoom;
             btnAddNew.BorderStyle = BorderStyle.FixedSingle;
             btnAddNew.Location = new Point(677, 111);
-            btnAddNew.Margin = new Padding(2, 2, 2, 2);
+            btnAddNew.Margin = new Padding(2);
             btnAddNew.Name = "btnAddNew";
             btnAddNew.Size = new Size(73, 60);
             btnAddNew.TabIndex = 10;
@@ -86,7 +87,7 @@
             // 
             btnEditInfo.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEditInfo.Location = new Point(535, 133);
-            btnEditInfo.Margin = new Padding(2, 2, 2, 2);
+            btnEditInfo.Margin = new Padding(2);
             btnEditInfo.Name = "btnEditInfo";
             btnEditInfo.Size = new Size(112, 38);
             btnEditInfo.TabIndex = 11;
@@ -104,7 +105,7 @@
             Controls.Add(btnClose);
             Controls.Add(ctrlPersonCard1);
             Controls.Add(lblAddEditPerson);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "frmShowPersonDetails";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmShowPersonDetails";

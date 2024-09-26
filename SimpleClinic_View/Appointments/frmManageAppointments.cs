@@ -1,4 +1,5 @@
-﻿using SimpleClinic_View.Appointments.DTOs;
+﻿using Microsoft.VisualBasic;
+using SimpleClinic_View.Appointments.DTOs;
 using SimpleClinic_View.Globals;
 using SimpleClinic_View.Users;
 using System;
@@ -50,10 +51,11 @@ namespace SimpleClinic_View.Appointments
                 dgvListAllAppointments.Columns[2].HeaderText = "Patient Name";
                 dgvListAllAppointments.Columns[3].HeaderText = "Dr.Id";
                 dgvListAllAppointments.Columns[4].HeaderText = "Dr.Name";
-                dgvListAllAppointments.Columns[5].HeaderText = "App Date";
-                dgvListAllAppointments.Columns[6].HeaderText = "Status";
-                dgvListAllAppointments.Columns[7].HeaderText = "Medical Record";
-                dgvListAllAppointments.Columns[8].HeaderText = "Payment";
+                dgvListAllAppointments.Columns[5].HeaderText = "Dr.Specialization";
+                dgvListAllAppointments.Columns[6].HeaderText = "App Date";
+                dgvListAllAppointments.Columns[7].HeaderText = "Status";
+                dgvListAllAppointments.Columns[8].HeaderText = "Medical Record";
+                dgvListAllAppointments.Columns[9].HeaderText = "Payment";
 
             }
 
@@ -144,6 +146,105 @@ namespace SimpleClinic_View.Appointments
         {
             if (cbFilterBy.SelectedIndex == 1 || cbFilterBy.SelectedIndex == 2 || cbFilterBy.SelectedIndex == 4 || cbFilterBy.SelectedIndex == 7 || cbFilterBy.SelectedIndex == 8)
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void AddNewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateAppointment frm = new frmAddUpdateAppointment();
+            frm.ShowDialog();
+            _RefreshAppointments();
+        }
+
+        private void EditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+            frmAddUpdateAppointment frm = new frmAddUpdateAppointment(id);
+            frm.ShowDialog();
+            _RefreshAppointments();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateAppointment frm = new frmAddUpdateAppointment();
+            frm.ShowDialog();
+            _RefreshAppointments();
+        }
+
+        private async void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+            if (MessageBox.Show($"Are you sure you want to delete appointment wiht Id=[{id}]", "Confirm Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                var deleteResult = await AppointmentService.DeleteAppointment(id);
+                if (deleteResult.IsSuccess)
+                {
+                    MessageBox.Show("Delete Success", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _RefreshAppointments();
+                }
+                else
+                {
+                    MessageBox.Show(deleteResult.ErrorMessage, "Delete Fail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private async void cancelAppointmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure do want to cancel this appointment?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+            var appointmentService = await AppointmentService.StatFind(id);
+
+            if (appointmentService != null)
+            {
+                if (await appointmentService.Cancel())
+                {
+                    MessageBox.Show("Appointment cancelled successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _RefreshAppointments();
+                }
+                else
+                {
+                    MessageBox.Show(appointmentService.ApiResult.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+        private async void cmsAppointmentMenu_Opening(object sender, CancelEventArgs e)
+        {
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+
+            AppointmentService appointment = await AppointmentService.StatFind(id);
+
+            bool isNewOrWait = (appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.New ||
+                       appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.Waiting);
+
+            EditToolStripMenuItem.Enabled = isNewOrWait;
+
+            deleteToolStripMenuItem1.Enabled = appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.New;
+
+            cancelAppointmentToolStripMenuItem.Enabled = isNewOrWait;
+
+            completeProceduresToolStripMenuItem.Enabled = isNewOrWait;
+
+            tsmiPayment.Enabled = appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.New;
+
+            tsmiVisitDoctor.Enabled = appointment.AppointmentStatus == AppointmentService.enAppointmentStatus.Waiting;
+
+        }
+
+        private void ShowDetailesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int id = (int)dgvListAllAppointments.CurrentRow.Cells[0].Value;
+            frmShowAppointmentCard frm = new frmShowAppointmentCard(id);
+            frm.ShowDialog();
+
         }
     }
 }

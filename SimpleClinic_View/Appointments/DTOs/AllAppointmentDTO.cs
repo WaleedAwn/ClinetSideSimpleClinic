@@ -6,12 +6,13 @@
         {
             
         }
-        public AllAppointmentDTO(int id, int patientId, string personName, int doctorId, string doctorName, DateTime appointmentDate, string appointmentStatus, int? medicalRecordId, int? paymentId)
+        public AllAppointmentDTO(int id, int patientId, string personName, int doctorId, string doctorName, string specialization, DateTime appointmentDate, string appointmentStatus, int? medicalRecordId, int? paymentId)
         {
             Id = id;
             PatientId = patientId;
             PersonName = personName;
             DoctorName = doctorName;
+            this.Specialization = specialization;
             DoctorId = doctorId;
             AppointmentDate = appointmentDate;
             AppointmentStatus = appointmentStatus;
@@ -24,6 +25,7 @@
         public string PersonName { get; set; }
         public int DoctorId { get; set; }
         public string DoctorName { get; set; }
+        public string Specialization {  get; set; }
         public DateTime AppointmentDate { get; set; }
 
         public string AppointmentStatus { get; set; }

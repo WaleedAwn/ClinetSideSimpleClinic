@@ -22,6 +22,7 @@ namespace SimpleClinic_View
 
         private void frmShowPersonDetails_Load(object sender, EventArgs e)
         {
+
             if (_personID == -1)
             {
                 MessageBox.Show("This form will be closed because No Person with ID = " +_personID);
@@ -35,7 +36,7 @@ namespace SimpleClinic_View
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-           
+
             this.Close();
         }
 
@@ -50,6 +51,11 @@ namespace SimpleClinic_View
         {
             Form frm = new frmAddEditPersoninfo(-1);
             frm.ShowDialog();
+
+        }
+
+        private void ctrlPersonCard1_Load(object sender, EventArgs e)
+        {
 
         }
     }

@@ -2,6 +2,10 @@
 {
     public class AllDoctorsInfoDTO
     {
+        public AllDoctorsInfoDTO()
+        {
+            
+        }
         public AllDoctorsInfoDTO(int id, int PersonId, string specialization, string personName, DateTime dateOfBirth, string gender, string PhoneNumber, string email, string address)
         {
             this.Id = id;
@@ -27,6 +31,10 @@
         public string Email { get; set; }
         public string Address { get; set; }
 
+        public override string ToString()
+        {
+            return $"{this.PersonName} - {this.Specialization}";
+        }
     }
 
 }
